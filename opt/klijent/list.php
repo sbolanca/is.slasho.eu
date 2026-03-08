@@ -8,6 +8,7 @@ $SN=trazKlijente($pagetype);
 
 	
 	
+	
 $tmpl->addVar( "opt_klijent", "searchoptions", $SN['searchoptions']);
 if (!$SN['searchoptions']) $tmpl->addVar( "opt_klijent", "sohide", 'style="display:none"');			
 

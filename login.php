@@ -2,15 +2,15 @@
 
 require_once( 'configuration.php' );
 
-require_once 'inc/mobile/Mobile_Detect.php';
-$detect = new Mobile_Detect;
+//require_once 'inc/mobile/Mobile_Detect.php';
+//$detect = new Mobile_Detect;
 
 
 
 if(preg_match('/(?i)msie [1-9]/',$_SERVER['HTTP_USER_AGENT'])) $forbiden=true;
 else $forbiden=false;
 
-$deviceType = ($detect->isMobile() ? ($detect->isTablet() ? 'tablet' : 'phone') : 'computer');
+//$deviceType = ($detect->isMobile() ? ($detect->isTablet() ? 'tablet' : 'phone') : 'computer');
 
 $Connection = mysqli_connect($simConfig_host, $simConfig_user, $simConfig_password,$simConfig_db) or die();
 //mysqli_select_db($simConfig_db, $Connection);
@@ -77,7 +77,7 @@ if (isset($_POST['login'])) {
 	$_SESSION['aktualno'] = intval($MM_lrow['aktualno']);	
 	$_SESSION['colorset'] = $MM_lrow['colorset'];	
     $_SESSION['MM_UserGroup'] = $loginStrGroup;	
-	$_SESSION['deviceType'] = $deviceType;	
+	//$_SESSION['deviceType'] = $deviceType;	
 	
 	
 	

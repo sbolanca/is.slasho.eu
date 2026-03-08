@@ -44,10 +44,10 @@
 		
 		$mainFrame->includeScript(auto_version("js/admin.js"),"admin");		
 		$mainFrame->includeScript("js/scriptloader.js","scriptloader");		
-		$mainFrame->addHeaderScript("var deviceType='".$mainFrame->deviceType."';","deviceType");
-		$mainFrame->addHeaderScript("var isMobile=".($mainFrame->deviceType=='mobile'?1:0).";","isMobile");
-		$mainFrame->addHeaderScript("var isTablet=".($mainFrame->deviceType=='tablet'?1:0).";","isTablet");
-		$mainFrame->addHeaderScript("var isComputer=".($mainFrame->deviceType=='computer'?1:0).";","isTablet");
+		//$mainFrame->addHeaderScript("var deviceType='".$mainFrame->deviceType."';","deviceType");
+		//$mainFrame->addHeaderScript("var isMobile=".($mainFrame->deviceType=='mobile'?1:0).";","isMobile");
+		//$mainFrame->addHeaderScript("var isTablet=".($mainFrame->deviceType=='tablet'?1:0).";","isTablet");
+		//$mainFrame->addHeaderScript("var isComputer=".($mainFrame->deviceType=='computer'?1:0).";","isTablet");
 		$mainFrame->addHeaderScript("var isAdmin=".$mainFrame->isAdmin.";","isAdmin");
 		$mainFrame->addHeaderScript("var isSuper=".$mainFrame->isSuper.";","isSuper");
 		$mainFrame->addHeaderScript("var lang='".$lang."';","setlang");

@@ -9,7 +9,7 @@ class simMainFrame {
 	var $headeronloadscripts=array();
 	var $conditionPairs=array();
 	var $allowCM=true;
-	var $deviceType;
+	//var $deviceType;
 	var $isAdmin;
 	var $isSuper;	
 	var $adminUsername;	
@@ -32,7 +32,7 @@ class simMainFrame {
 	function simMainFrame($tname,$isAdmin,$title,$desc='',$keywords='') {
 		$this->templateName=$tname;
 		$this->templatePath="tmpl/".$tname;
-		$this->deviceType=$_SESSION['deviceType'];
+		//$this->deviceType=$_SESSION['deviceType'];
 		$this->isAdmin=$isAdmin;
 		if ($this->isAdmin) $this->currPage='index.php'; else $this->currPage='index.php';
 		$this->setTitle($title);

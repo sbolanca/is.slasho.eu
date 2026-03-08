@@ -9,24 +9,7 @@ function GetContents(field,edid)
 	var oEditor = FCKeditorAPI.GetInstance(edid) ;
 	field.value=oEditor.GetXHTML( true )  ;
 }
-function initEditor(edid,h,w,hide)
-{
-	if (document.getElementById(edid)) {
-		if(!h) h=450;
-		if(!w) w='100%';
-		oFCKeditor = new FCKeditor( edid) ;
-		var sBasePath = '/edit/FCKeditor/' ;
-		//alert(sBasePath);
-		oFCKeditor.BasePath	= sBasePath ;
-		//oFCKeditor.ToolbarSet	= 'Default' ;
-		oFCKeditor.ToolbarSet	= 'Basic' ;
-		oFCKeditor.Width = w;
-		oFCKeditor.Height = h;
-			if (hide) oFCKeditor.Config['ToolbarStartExpanded'] = false ;
-	
-		oFCKeditor.ReplaceTextarea();	
-	}
-}
+
 function activateCMCommand(opt,act,param) {
 	if (param) param='&'+param;
 	else param='';

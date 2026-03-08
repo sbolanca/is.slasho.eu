@@ -2,7 +2,7 @@
 session_start();
 $MM_authorizedUsers = "";
 $MM_donotCheckaccess = "true";
-
+//koment
 function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) { 
   $isValid = False; 
   if (!empty($UserName)) { 

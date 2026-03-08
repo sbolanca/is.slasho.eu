@@ -1,0 +1,29 @@
+<sim:tmpl name="opt_stavka">
+
+						<table id="cstable" style="width: 100%;table-layout: fixed; border-collapse: collapse;" width="100%" class="itbl sml bgwhite" cellpadding="0" cellspacing="0" {ONTABLOAD}>
+						<thead>
+						<tr style="display: block;position: relative;">
+							<th style="width:35px" ></th>
+							<th style="width:50px">ID</th>
+							<th style="width:80px">Kod</th>
+							<th style="width:500px">Naziv</th>
+							<th style="text-align:center;width:75px">Mjera</th>
+							<th style="text-align:right;width:115px">Iznos (kn)</th>
+						</tr>
+						</thead>
+						<tbody style="display: block; overflow: auto; height:304px;width:100%">
+						<sim:tmpl name="opt_stavka_s" type="simplecondition" requiredvars="ROW_ID">						
+						<tr class="{ROW_CLS}"  {ROW_CM} {ROW_TAGID}>
+							<td style="width:35px" class="th">{ROW_IX}</td>
+							<td style="width:50px">{ROW_ID}</td>
+							<td style="width:80px">{ROW_CODE}</td>
+							<td style="width:500px">{ROW_NAZIV}</td>
+							<td style="text-align:center;width:75px">{ROW_MJERA}</td>
+							<td style="text-align:right;width:115px">{ROW_IZNOS}</td>
+							
+						</tr>
+						</sim:tmpl>
+						</tbody>
+						</table>
+					
+</sim:tmpl>	

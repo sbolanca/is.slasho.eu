@@ -1,0 +1,24 @@
+<sim:tmpl name="opt_stavka">
+					<form id="stavkaPDVForm" name="stavkaPDVForm" action="admin.php" method="POST">
+						<input type="hidden" name="opt" value="stavka" />
+						<input type="hidden" name="act" value="setpdv_go" />
+						<input type="hidden" name="ids" value="{IDS}" />
+						<table class="etbl" style="width:100%">
+						
+						<tr>
+							<th >Stopa PDV-a:</th>
+							<td><input class="decimal" type="text" name="stopa_pdv" value="{PDV}" size="3" /> %
+							
+							</td>
+						</tr>
+						
+						
+						
+						<tr>
+							<th ></th>
+
+						
+						<th><input type="button" class="button" value="SPREMI" onClick="activateCMCommandPOST('stavka','setpdv_go','stavkaPDVForm');" /></th></tr>
+						</table>
+					</form>
+</sim:tmpl>

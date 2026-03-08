@@ -1,0 +1,40 @@
+<sim:tmpl name="opt_mail">
+					
+						<table class="etbl" style="width:100%">
+					
+						<tr>
+							<th >Template:</th>
+							<td>{ROW_TEMPLATE}</td>
+						</tr>
+						<tr>
+							<th >Primatelj:</th>
+							<td>{ROW_USER} [{ROW_MBG}]</td>
+						</tr>
+						<tr>
+							<th >Email:</th>
+							<td>{ROW_EMAIL}</td>
+						</tr>
+						<tr>
+							<th >Pošiljatelj:</th>
+							<td>{ROW_SENDER}</td>
+						</tr>
+						<tr>
+							<th >Vrijeme slanja:</th>
+							<td>{ROW_FDATE}</td>
+						</tr>
+						<tr>
+							<th >Naslov maila:</th>
+							<td>{ROW_SUBJECT}</td>
+						</tr>
+						
+						<tr>
+							<th colspan="2" style="text-align:left">Sadržaj mail poruke:</th>
+						</tr>
+						<tr>
+							<td colspan="2"><div style="padding:6px 4px;width:615px;max-height:200px;overflow:auto;font-family:'Courier'">{ROW_BODY}</div></td>
+						</tr>
+						
+						</tr>
+						</table>
+
+</sim:tmpl>

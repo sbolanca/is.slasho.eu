@@ -1,0 +1,25 @@
+<sim:tmpl name="opt_register">
+					<div >
+					<table id="usr" width="100%">
+					<tr><td>act.</td>
+						<td>USERNAME</td>
+						<td>NAME</td>
+						<td>EMAIL</td>
+						<td>PHONE</td>
+						<td>COUNTRY</td>
+						<td>use eml.</td>
+					</tr>
+						<sim:tmpl name="opt_register_item">	
+						<tr id="us{ROW_ID}" class="usl" oncontextmenu="cCM({ROW_ID},CM_opt_reg_list,event);">
+							<td><img id="uim{ROW_ID}" src="images/act{ROW_ACTIVE}.gif" /></td>
+							<td><a href="index.php?opt=property&amp;act=slist&amp;id={ROW_ID}">{ROW_USERNAME}</a></td>
+							<td>{ROW_NAME}</td>
+							<td><a href="mailto:{ROW_EMAIL}">{ROW_EMAIL}</a></td>
+							<td>{ROW_PHONE}</td>
+							<td>{ROW_COUNTRY}</td>
+							<td><img src="images/act{ROW_EMLCONTACT}.gif" /></td>
+
+						</sim:tmpl>
+					</table>			
+					</div>
+</sim:tmpl>

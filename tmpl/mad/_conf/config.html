@@ -1,0 +1,17 @@
+<sim:tmpl name="config">
+					<form id="configForm" name="configForm" action="index.php" method="POST">
+						<input type="hidden" name="opt" value="{C_OPT}" />
+						<input type="hidden" name="group" value="{C_GROUP}" />
+						<input type="hidden" name="act" value="{C_ACT}" />
+						<table id="popupdescription" style="width:300px" >
+						<sim:tmpl name="config_content">						
+						{CONF_CONTENT}				
+						</sim:tmpl>								
+						<tr>
+							<td align="right"></td>
+							<td><input type="button" class="button" value="Spremi" onClick="saveConfig('{C_OPT}','{C_ACT}')" /></td>
+						</tr>
+						</table>
+						
+					</form>
+					</sim:tmpl>		

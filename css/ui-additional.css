@@ -1,0 +1,30 @@
+.dialog-black .ui-dialog-titlebar {background:#000;}
+.dialog-grey .ui-dialog-titlebar {background:#aaa;}
+.dialog-red .ui-dialog-titlebar {background:#844;}
+.dialog-red-light .ui-dialog-titlebar {background:#fbb;color:#333}
+.dialog-red-full .ui-dialog-titlebar {background:#f00;}
+.dialog-green .ui-dialog-titlebar {background:#484;}
+.dialog-green-light .ui-dialog-titlebar {background:#bfb; color:#333}
+.dialog-green-full .ui-dialog-titlebar {background:#0f0;}
+.dialog-blue .ui-dialog-titlebar {background:#448;}
+.dialog-blue-light .ui-dialog-titlebar {background:#bbf; color:#333}
+.dialog-blue-full .ui-dialog-titlebar {background:#00f;}
+.dialog-yellow .ui-dialog-titlebar {background:#884;}
+.dialog-yellow-light .ui-dialog-titlebar {background:#ffb; color:#333}
+.dialog-yellow-full .ui-dialog-titlebar {background:#ff0; color:#444}
+.dialog-pink .ui-dialog-titlebar {background:#848;}
+.dialog-pink-light .ui-dialog-titlebar {background:#fbf;color:#333}
+.dialog-pink-full .ui-dialog-titlebar {background:#f0f;}
+.dialog-cyan .ui-dialog-titlebar {background:#488;}
+.dialog-cyan-light .ui-dialog-titlebar {background:#bff;color:#333}
+.dialog-cyan-full .ui-dialog-titlebar {background:#0ff;}
+.dialog-white .ui-dialog-titlebar {background:#fff;color:#444}
+.ui-autocomplete { z-index:3000000 !important;}  
+.ui-autocomplete {
+    max-height: 400px;
+    overflow-y: auto;
+    /* prevent horizontal scrollbar */
+    overflow-x: hidden;
+	font-size:13px;
+}
+

@@ -1,0 +1,96 @@
+<sim:tmpl name="opt_user">
+
+	<form id="userForm" name="userForm" action="index.php" method="POST">
+	 <input type="hidden" name="opt" value="user"/>
+	 <input type="hidden" name="act" value="save"/>
+	 <input type="hidden" name="id" value="{ROW_ID}"/>
+     <table  id="popupdescription" width="600">
+       <tr>
+         <td width="150">Kod</td>
+         <td><input type="text" name="code" size="5" value="{ROW_CODE}"/></td>
+       </tr>
+	   <tr>
+         <td width="150">Ime</td>
+         <td><input type="text" name="ime" size="50" value="{ROW_IME}"/></td>
+       </tr>
+	   <tr>
+         <td width="150">Prezime</td>
+         <td><input type="text" name="prezime" size="50" value="{ROW_PREZIME}"/></td>
+       </tr>
+	   <tr>
+         <td>Email</td>
+         <td><input type="text" name="email" size="50" value="{ROW_EMAIL}"/></td>
+       </tr>
+	    <tr>
+         <td>Telefon</td>
+         <td><input type="text" name="telefon" size="50" value="{ROW_PHONE}"/></td>
+       </tr>
+		<tr><td colspan="2" class="hr"></td></tr>
+	    
+     	<tr>
+         <td>Korisničko ime</td>
+         <td><input type="text" name="username" value="{ROW_USERNAME}"/></td>
+       </tr>
+     	<tr>
+         <td>Nova lozinka</td>
+         <td><input type="text" name="password" value=""/></td>
+       </tr>
+	    <tr><td colspan="2" class="hr"></td></tr>
+	   <tr>
+         <td>Aktiviran</td>
+         <td><label for="m0"><input type="radio" id="m0" name="active" value="0" {ACTSEL0}/> NE </label>---- <label for="m1"><input type="radio" name="active" id="m1" value="1" {ACTSEL1}/> DA</label></td>
+       </tr>
+	   <tr>
+         <td>Administrator</td>
+         <td><label for="a0"><input type="radio" id="a0" name="admin" value="0" {ADMSEL0}/> NE </label>---- <label for="a1"><input type="radio" name="admin" id="a1" value="1" {ADMSEL1}/> DA</label></td>
+       </tr>
+	   <sim:tmpl name="opt_user_spec" type="condition" conditionvar="SUPER">
+	  
+	   <sim:sub condition="1">
+	    <tr>
+         <td>Superadmin</td>
+         <td><label for="s0"><input type="radio" id="s0" name="super" value="0" {SUPSEL0}/> NE </label>---- <label for="s1"><input type="radio" name="super" id="s1" value="1" {SUPSEL1}/> DA</label>
+		
+       </tr>
+     	
+	   </sim:sub>
+	  
+	    <sim:sub condition="default">
+	   
+     	
+	   </sim:sub>
+     	</sim:tmpl>
+		
+		
+	   <tr><td colspan="2" class="hr"></td></tr>
+	    <tr>
+         <td>Offset:</td>
+         <td><input name="aktualno"  value="{ROW_AKTUALNO}" size="5"/> </td>
+       </tr>
+	    <tr>
+         <td>Boje:</td>
+         <td><select name="colorset" >
+		 <option value="">nenametljive</option>
+		 <option value="strong" {SELSTRONG}>srednje jake</option>
+		 <option value="daltonist" {SELDALTONIST}>intenzivne</option></select></td>
+       </tr>
+	   <tr>
+         <td>Učestalost slanja obavijesti</td>
+           <td><select name="mailfreq" >
+		 <option value="hourly">svaki sat</option>
+		 <option value="daily" {SELFDAILY}>dnevno</option>
+		 <option value="twoweekly" {SELFTWOWEEKLY}>dva puta tjedno</option>
+		 <option value="weekly" {SELFWEEKLY}>tjedno</option>
+		 <option value="monthly" {SELFMONTHLY}>mjesečno</option>
+		 <option value="nomail" {SELFNOMAIL}>- ne primam obavjesti -</option></select></td>
+       </tr>
+	   <tr><td colspan="2" class="hr"></td></tr>
+        <tr>
+         <td></td>
+         <td><input type="button" value="Spremi" onClick="activateCMCommandPOST('user','save','userForm');"/></td>
+       </tr>
+	   <tr><td>&nbsp;</td></tr>
+     </table>
+        </form>
+
+</sim:tmpl>

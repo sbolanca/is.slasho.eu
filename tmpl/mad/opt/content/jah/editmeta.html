@@ -1,0 +1,15 @@
+<sim:tmpl name="opt_content">
+					<sim:tmpl name="opt_content_content">	
+					<form id="contentMetaForm" name="contentMetaForm" action="index.php" method="POST">
+						<input type="hidden" name="opt" value="content" />
+						<input type="hidden" name="act" value="savemeta" />
+						<input type="hidden" name="id" value="{ROW_ID}" />
+						<input type="hidden" name="langID" value="{ROW_LANGID}" />
+						{_A_CONT_M_DESC}:<br/>
+						<textarea name="description" id="popupdescription" style="width:400px; height:100px;">{ROW_DESCRIPTION}</textarea><br/>
+						{_A_CONT_M_KEYWORD}:<br/>
+						<textarea name="keywords" id="cont" style="width:400px; height:50px;">{ROW_KEYWORDS}</textarea><br/>
+						<input type="button" class="button" value="{_A_CONT_M_SUBMIT}" onClick="activateCMCommandPOST('content','savemeta','contentMetaForm');" />
+					</form>
+					</sim:tmpl>							
+</sim:tmpl>

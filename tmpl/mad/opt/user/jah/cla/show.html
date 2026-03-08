@@ -1,0 +1,68 @@
+<sim:tmpl name="opt_user">
+
+	
+	<table width="100%" class="itbl" cellpadding="0" cellspacing="0"  style="border:10px solid #eee;">
+		<tr>
+			<td class="sn">HUZIP id:</td>
+			<td class="sv">{ROW_ID}</td>
+		</tr>
+		<tr >
+			<td class="sn">MBG:</td>
+			<td class="sv">{ROW_MBG}</td>
+		</tr>
+		<tr>
+			<td class="sn">OIB:</td>
+			<td class="sv">{ROW_OIB}</td>
+		</tr>
+		<tr>
+			<td class="sn">Ime:</td>
+			<td class="sv">{ROW_IME}</td>
+		</tr>
+		<tr>
+			<td class="sn">Prezime:</td>
+			<td class="sv">{ROW_PREZIME}</td>
+		</tr>
+		<tr>
+			<td class="sn">Datum rođenja:</td>
+			<td class="sv"><sim:var name="ROW_DATUM_RODJENJA"   modifier="dateformat" format="%d.%m.%Y"/></td>
+		</tr>
+		<tr>
+			<td class="sn">Država rođenja:</td>
+			<td class="sv">{ROW_DRZAVA_R}</td>
+		</tr>
+		<tr >
+			<td class="sn">Državljanstvo:</td>
+			<td class="sv">{ROW_DRZAVA_D}</td>
+		</tr>
+		<tr>
+			<td class="sn">Članstvo u <br />strukovnoj udruzi:</td>
+			<td class="sv">
+				<div title="Hrvatska glazbena udruga">
+					<input type="checkbox" {CHK1HGU} DISABLED/> HGU
+				</div>
+				<div title="Hrvatska udruga orkestralnih i komornih umjetnika ">
+					<input type="checkbox" {CHK1HUOKU} DISABLED/> HUOKU
+				</div>
+				<div title="Hrvatsko društvo glazbenih umjetnika">
+					<input type="checkbox" {CHK1HDGU} DISABLED/> HDGU
+				</div>
+				<div title="Hrvatsko društvo dramskih umjetnika">
+					<input type="checkbox" {CHK1HDDU} DISABLED/> HDDU
+				</div>
+				<div title="Hrvatsko društvo profesionalnih baletnih umjetnika">
+					<input type="checkbox" {CHK1HDBU} DISABLED/> HDPBU
+				</div>
+				<div title="Hrvatsko društvo filmskih djelatnika">
+					<input type="checkbox" {CHK1HDFD} DISABLED/> HDFD
+				</div>
+			</td>
+		</tr>
+	</table>
+
+
+	
+
+
+       
+			
+</sim:tmpl>

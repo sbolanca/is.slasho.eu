@@ -1,0 +1,188 @@
+<sim:tmpl name="mod_tools">
+
+<ul id="nav">
+		<li id="specijalniupit_item"><a>Specijalni upiti</a>
+			<ul>
+			<form name="searchForm"  id="searchForm" action="{SPECIJALNIUPITLINK}" style="padding:0px; margin:0px;" method="POST" >
+				<input type="hidden" name="opt" value="specijalniupit"/>
+				<input type="hidden" name="act" value="list"/>
+				<input type="hidden" name="exact" value="0"/>
+				<input type="hidden" class="reset" name="pagetype" value="{SPECIJALNIUPIT_PAGETYPE}"/>
+
+			
+				<li class="pad">
+						Traži po <strong>nazivu upita:</strong><br/>
+					<input class="sinput2" id="srcQNaziv" type="text" name="video" size="12" value="{NAZIV}" /><br/>
+					
+				</li>
+				<li class="pad">
+					<div class="kileft">Tip:</div>
+					<div class="kiright">
+						<select class="mlt" name="tip[]" multiple style="width:134px">
+							<sim:tmpl name="mod_tools_o">
+							<option value="{ROW_QOPT}" >{ROW_QOPT}</option>
+							</sim:tmpl>
+						</select>
+					</div>
+					
+				</li>
+				<li class="pad">Sortiraj po: <select class="ssel" name="ord" style="width:117px;">
+					<option value="qopt" {PEPX}>komponenti</option>
+					<option value="naziv" {NAZIVX}>nazivu</option>
+					<option value="ord" {ACTX}>redoslijedu</option>
+					</select>
+				</li>
+				
+				<li class="pad">
+					<input type="submit" value="Traži" class="sinput" style="width:104px;float:left"/>	
+					<input type="button" value="Reset" class="sinput" style="width:50px; float:right"  onClick="resetSrc();$('#searchForm .reset').val('');$('#title').html('SPECIJALNI UPITI')"/>
+					<div class="cleaner"></div>
+				</li>
+				</form>
+			</ul>
+			
+		</li>
+		
+		
+		<li id="klijent_item"><a>Klijenti<span class="qspec" onClick="getSQ('klijent')">!?</span></a>
+			<ul>
+			<form name="searchLForm"  id="searchLForm" action="{KLIJENTLINK}" style="padding:0px; margin:0px;" method="POST" >
+				<input type="hidden" name="opt" value="klijent"/>
+				<input type="hidden" name="act" value="list"/>
+				<input type="hidden" name="exact" value="0"/>
+				<input type="hidden" name="pagetype" value="{KLIJENT_PAGETYPE}"/>
+
+				
+					
+				<li class="pad">
+					Traži po <strong>nazivu:</strong><br/>
+					<input class="sinput2" type="text" name="klijent" size="12" value="{INSTRUMENT}" /><br/>
+					</li>
+				<li class="pad">
+					Traži po <strong>središtu:</strong><br/>
+					<input class="sinput2" type="text" name="srediste" size="12" value="{INSTRUMENT}" /><br/>
+					</li>
+				
+				
+				
+				<li class="pad">Sortiraj po: <select class="ssel" name="ord" style="width:117px;">
+					<option value="naziv" {NAZIVS}>nazivu</option>
+					<option value="sif" {NAZIVA}>šifri</option>
+					</select>
+				</li>
+				
+				<li class="pad">
+					<input type="submit" value="Traži" class="sinput" style="width:104px;float:left"/>	
+					<input type="button" value="Reset" class="sinput" style="width:50px; float:right" onClick="resetSrc('searchLForm')"/>
+					<div class="cleaner"></div>
+				</li>
+				</form>
+			</ul>
+		</li>
+		<li id="proizvodjac_item"><a>Proizvođači<span class="qspec" onClick="getSQ('proizvodjac')">!?</span></a>
+			<ul>
+			<form name="searchPForm"  id="searchPForm" action="{PROIZVODJACLINK}" style="padding:0px; margin:0px;" method="POST" >
+				<input type="hidden" name="opt" value="proizvodjac"/>
+				<input type="hidden" name="act" value="list"/>
+				<input type="hidden" name="exact" value="0"/>
+				<input type="hidden" name="pagetype" value="{PROIZVODJAC_PAGETYPE}"/>
+
+				
+					
+				<li class="pad">
+					Traži po <strong>nazivu:</strong><br/>
+					<input class="sinput2" type="text" name="proizvodjac" size="12" value="{INSTRUMENT}" /><br/>
+					</li>
+				
+				
+				
+				<li class="pad">Sortiraj po: <select class="ssel" name="ord" style="width:117px;">
+					<option value="naziv" {NAZIVS}>nazivu</option>
+					<option value="sif" {NAZIVA}>šifri</option>
+					</select>
+				</li>
+				
+				<li class="pad">
+					<input type="submit" value="Traži" class="sinput" style="width:104px;float:left"/>	
+					<input type="button" value="Reset" class="sinput" style="width:50px; float:right" onClick="resetSrc('searchPForm')"/>
+					<div class="cleaner"></div>
+				</li>
+				</form>
+			</ul>
+		</li>
+		<li id="racunnapomena_item"><a>Napomene računa<span class="qspec" onClick="getSQ('proizvodjac')">!?</span></a>
+			<ul>
+			<form name="searchNRForm"  id="searchNRForm" action="{RACUNNAPOMENALINK}" style="padding:0px; margin:0px;" method="POST" >
+				<input type="hidden" name="opt" value="proizvodjac"/>
+				<input type="hidden" name="act" value="list"/>
+				<input type="hidden" name="exact" value="0"/>
+				<input type="hidden" name="pagetype" value="{RACUNNAPOMENA_PAGETYPE}"/>
+
+				
+					
+				<li class="pad">
+					Traži po <strong>ID:</strong><br/>
+					<input class="sinput2" type="text" name="sif" size="12" value="{INSTRUMENT}" /><br/>
+				</li>
+				<li class="pad">
+					Traži po <strong>nazivu:</strong><br/>
+					<input class="sinput2" type="text" name="naziv" size="12" value="{INSTRUMENT}" /><br/>
+				</li>
+				<li class="pad">
+					Traži po <strong>napomeni:</strong><br/>
+					<input class="sinput2" type="text" name="tekst" size="12" value="{INSTRUMENT}" /><br/>
+				</li>
+				
+				
+				
+				<li class="pad">Sortiraj po: <select class="ssel" name="ord" style="width:117px;">
+					<option value="sif" {NAZIVA}>šifri</option>
+					<option value="naziv" {NAZIVS}>nazivu</option>
+					</select>
+				</li>
+				
+				<li class="pad">
+					<input type="submit" value="Traži" class="sinput" style="width:104px;float:left"/>	
+					<input type="button" value="Reset" class="sinput" style="width:50px; float:right" onClick="resetSrc('searchNRForm')"/>
+					<div class="cleaner"></div>
+				</li>
+				</form>
+			</ul>
+		</li>
+		<li id="kategorijaslike_item"><a>Kategorije slika<span class="qspec" onClick="getSQ('kategorijaslike')">!?</span></a>
+			<ul>
+			<form name="searchKSForm"  id="searchKSForm" action="{KATEGORIJASLIKELINK}" style="padding:0px; margin:0px;" method="POST" >
+				<input type="hidden" name="opt" value="kategorijaslike"/>
+				<input type="hidden" name="act" value="list"/>
+				<input type="hidden" name="exact" value="0"/>
+				<input type="hidden" name="pagetype" value="{KATEGORIJASLIKE_PAGETYPE}"/>
+
+				
+					
+				<li class="pad">
+					Traži po <strong>nazivu:</strong><br/>
+					<input class="sinput2" type="text" name="kategorijaslike" size="12" value="{INSTRUMENT}" /><br/>
+					</li>
+				
+				
+				
+				<li class="pad">Sortiraj po: <select class="ssel" name="ord" style="width:117px;">
+					<option value="ord" {NAZIVS}>redoslijedu</option>
+					<option value="naziv" {NAZIVS}>nazivu</option>
+					<option value="sif" {NAZIVA}>šifri</option>
+					</select>
+				</li>
+				
+				<li class="pad">
+					<input type="submit" value="Traži" class="sinput" style="width:104px;float:left"/>	
+					<input type="button" value="Reset" class="sinput" style="width:50px; float:right" onClick="resetSrc('searchKSForm')"/>
+					<div class="cleaner"></div>
+				</li>
+				</form>
+			</ul>
+		</li>
+	</ul>
+	<script>
+</script>
+
+</sim:tmpl>

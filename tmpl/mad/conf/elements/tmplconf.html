@@ -1,0 +1,13 @@
+<sim:tmpl name="conf_tmplconf">
+						<tr>
+							<td align="right">{CONF_LABEL}</td>
+							<td><select name="{CONF_NAME}" size="{CONF_SIZE}">
+							<option value="-1">{DEFAULTOPTIONTITLE}</option>
+							<sim:tmpl name="conf_tmplconf_option">
+							<option value="{OPT_VALUE}" {OPT_SEL}>{OPT_TEXT}</option>
+					</sim:tmpl></select></td>
+					<td><img src="/images/help.gif" onMouseOver="showHelp('{CONF_DESCRIPTION}',event);" onMouseOut="hideHelp();"/></td>
+
+						</tr>	
+														
+</sim:tmpl>

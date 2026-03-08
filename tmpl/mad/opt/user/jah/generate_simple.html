@@ -1,0 +1,21 @@
+<sim:tmpl name="opt_user">
+
+	<form id="userGenForm" name="userGenForm" action="index.php" method="POST">
+	 <input type="hidden" name="opt" value="user"/>
+	 <input type="hidden" name="year" value="{YEAR}"/>
+	 <input type="hidden" name="act" value="izv-generatesimplego"/>
+	 <table  id="popupdescription" >
+       <tr>
+         <td width="150">Šifra ili MBG</td>
+         <td><input type="text" name="sifra" size="10" value=""/></td>
+       </tr>
+	  
+	  <tr>
+	    <tr>
+         <td></td>
+         <td><input type="button" value="Generiraj izvještaj" onClick="canRefresh=false;activateCMCommandPOST('user','izv-generatesimplego','userGenForm');"/></td>
+       </tr>
+     </table>
+        </form>
+
+</sim:tmpl>

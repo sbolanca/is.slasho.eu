@@ -1,0 +1,65 @@
+<sim:tmpl name="opt_klijent">
+					<form id="klijentForm" name="klijentForm" action="admin.php" method="POST">
+						<input type="hidden" name="opt" value="klijent" />
+						<input type="hidden" name="act" value="save" />
+						<input type="hidden" name="id" value="{ROW_ID}" />
+						<table class="etbl" style="width:100%">
+						
+						<tr>
+							<th >Naziv:</th>
+							<td><input name="naziv" value="{ROW_NAZIV}" size="30" />
+							
+							</td>
+						</tr>
+						<tr>
+							<th >OIB:</th>
+							<td><input class="numeric" name="oib" value="{ROW_OIB}" size="15" />
+							
+							</td>
+						</tr>
+						<tr>
+							<th >Puni naziv:</th>
+							<td><input name="puni_naziv" value="{ROW_PUNI_NAZIV}" size="40" />
+							
+							</td>
+						</tr>
+						<tr>
+							<th >Adresa:</th>
+							<td><textarea name="adresa" style="width:100%;height:45px">{ROW_ADRESA}</textarea>
+							
+							</td>
+						</tr>
+						<tr>
+							<th >Sjedište:</th>
+							<td><textarea name="sjediste" style="width:100%;height:45px">{ROW_SJEDISTE}</textarea>
+							
+							</td>
+						</tr>
+						<tr>
+							<th >Telefon:</th>
+							<td><input  name="telefon" value="{ROW_TELEFON}" size="25" />
+							
+							</td>
+						</tr>
+						<tr>
+							<th >Email:</th>
+							<td><input  name="email" value="{ROW_EMAIL}" size="35" />
+							
+							</td>
+						</tr>
+						<tr>
+							<th >Servis:</th>
+							<td><input type="checkbox"  name="servis" value="1" {SRVCHK1} />
+							
+							</td>
+						</tr>
+						
+						
+						<tr>
+							<th ></th>
+
+						
+						<th><input type="button" class="button" value="SPREMI" onClick="activateCMCommandPOST('klijent','save','klijentForm');" /></th></tr>
+						</table>
+					</form>
+</sim:tmpl>

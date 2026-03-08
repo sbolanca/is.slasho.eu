@@ -1,0 +1,134 @@
+<sim:tmpl name="main"><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">		
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>{PAGETITLE}</title>
+
+<sim:tmpl name="metatags">{META_TAG}
+</sim:tmpl>
+<sim:tmpl name="includedlinks">{LINK_TAG}
+</sim:tmpl>
+<script type="text/javascript">
+<sim:tmpl name="headerscripts">{HEADERJS_SCRIPT}
+</sim:tmpl>
+</script>
+
+<sim:tmpl name="includedscripts">{SCRIPT_TAG}
+</sim:tmpl>
+
+<script>
+
+$(document).ready(function () {
+	$('#nav > li > a').click(function(){
+		if ($(this).attr('class') != 'active'){
+		
+			$('#nav > li > ul').slideUp();
+			$(this).next().slideToggle();
+			$('#nav > li > a').removeClass('active');
+			$(this).addClass('active');
+			//alert($(this).next().prop('tagName'));
+			var ix=$(this).parent().prop('id')
+			$('#nav #'+ix+' ul' ).show();
+		}
+	});
+	$('.mlt').multipleSelect();
+	$('.mltv').multipleSelect({minumimCountSelected:1,width:350});
+	$('#nav #{OPENNAV}_item ul').show();
+	$( ".datepicker" ).datepicker({dateFormat:'dd.mm.yy'});
+	
+	$.widget( "ui.tabs", $.ui.tabs, {
+		options: {
+		  keyboard: true
+		},
+		_tabKeydown: function(e) {
+		  if(this.options.keyboard) {
+			this._super( '_tabKeydown' );
+		  } else {
+			return false;
+		  }
+		}
+	});
+	$('form').attr('autocomplete', 'off');
+});
+dd1=null;
+dd2=null;
+dd3=null;
+tt1=null;
+tt2=null;
+tt3=null;
+dw1=null;
+dw2=null;
+dw3=null;
+dw4=null;
+dw5=null;
+var DDcenter = 0;
+var DDtop = 0;
+
+</script>
+</head>
+<body {BODYACTIONS}>
+<table  height="100%" width="100%" cellspacing="0" cellpadding="0" >
+<tr><td>
+		<div id="zaglavlje_tko">
+		<div id="credentials"><strong>{USER}</strong></div>
+		<a href="index.php?opt=register&amp;act=logout"><div id="odjava"><strong>Odjava</strong></div></a>
+	</div>
+</td></tr>
+	<tr><td id="head" class="panel"> 
+		<div id="zgllogo" oncontextmenu="cCM(0,'mainCM',event)">&nbsp;</div>
+		<ul id="tmblock" class="tp" >
+			<li><a href="index.php?opt=stavka">Stavke</a>
+				<ul>
+				<li><a href="index.php?opt=stavka">Popis svih stavki</a>
+				<li><a href="index.php?opt=tipstavke">Tipovi stavki</a>
+				<li><a href="index.php?opt=kategorijastavke">Kategorije stavki</a>
+				<li><a href="index.php?opt=ponuda">Ponude</a>
+				<li ><a href="index.php?opt=racun">Računi</a>
+				<li ><a href="index.php?opt=racun&act=napomene">Napomene računa</a>
+				
+			</ul>
+			
+			<li><a href="index.php?opt=klijent">Pomoćni alati</a>
+				<ul>
+				<li><a href="index.php?opt=klijent">Klijenti</a>
+				<li><a href="index.php?opt=user">Djelatnici</a>
+				<li><a href="index.php?opt=proizvodjac">Proizvođači</a>
+				<li><a href="index.php?opt=kategorijaslike">Kategorije slika</a></li>
+				<sim:tmpl name="ltools" type="simplecondition" requiredvars="ISADMIN=1">
+				<li><a href="index.php?opt=mail">Mail predlošci</a></li>
+				<li><a href="index.php?opt=specijalniupit">Specijalni upiti</a></li>
+				</sim:tmpl>
+				<li><a href="index.php?opt=configuration">Konfiguracija</a></li>
+				
+			</ul>
+				
+				
+			</li>
+		</ul>
+		<ul id="tmblock" class="tp" style="float:right">
+			<li>[__DEBUG__]</li>
+		</ul>
+		<ul id="tmblock2" class="tp" style="float:right;">
+			<li><a href="index.php?opt=log">Logovi</a></li>
+		</ul>
+		<div class="cleaner"></div>
+	</td></tr>
+	
+	<tr><td id="block" height="100%" valign="top">
+		<table cellspacing="0" cellpadding="0" height="100%" width="100%">
+			
+			<tr>
+			<td id="middle"  valign="top">[____MAINCONTENT____]</td></tr>
+		</table>
+	</td></tr>
+</table>{ADMINBLOCK}
+<script type="text/javascript">
+
+<sim:tmpl name="footerscripts">{FOOTERJS_SCRIPT}
+</sim:tmpl>
+
+	
+</script>
+</body>
+</html>
+</sim:tmpl>

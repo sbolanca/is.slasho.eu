@@ -1,0 +1,27 @@
+<sim:tmpl name="opt_folder">
+					<form id="saveFolderForm" name="saveFolderForm" action="admin.php" method="POST">
+						<input type="hidden" name="opt" value="{FOPT}" />
+						<input type="hidden" name="act" value="fld-save" />
+						<input type="hidden" name="id" value="{ROW_ID}" />
+						<table id="popupdescription" width="430">
+						<tr><td class="bld">Naziv:</td>
+						<td><input name="naziv" size="40" value="{ROW_NAZIV}"></td></tr>
+						<tr><td class="bld" colspan="2">Komentar:</td></tr>
+						<tr><td colspan="2"><textarea name="komentar" style="width:99%;height:50px">{ROW_KOMENTAR}</textarea></td></tr>
+						<tr class="mysukob"><td>Kazalo 1:</td>
+						<td><input name="cls1" size="40" value="{ROW_CLS1}"></td></tr>
+						<tr class="my"><td>Kazalo 2:</td>
+						<td><input name="cls2" size="40" value="{ROW_CLS2}"></td></tr>
+						<tr class="sukob"><td>Kazalo 3:</td>
+						<td><input name="cls3" size="40" value="{ROW_CLS3}"></td></tr>
+						<tr class="own"><td>Kazalo 4:</td>
+						<td><input name="cls4" size="40" value="{ROW_CLS4}"></td></tr>
+						<tr class="pink"><td>Kazalo 5:</td>
+						<td><input name="cls5" size="40" value="{ROW_CLS5}"></td></tr>
+						
+						<tr><td></td>
+						<td><input type="button" class="button" value="SPREMI" onClick="activateCMCommandPOST('{FOPT}','fld-save','saveFolderForm');" /></td></tr>
+						<tr><td>&nbsp;</td></tr>
+						</table>
+					</form>
+</sim:tmpl>

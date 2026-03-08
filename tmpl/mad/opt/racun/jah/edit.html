@@ -1,0 +1,112 @@
+<sim:tmpl name="opt_racun">
+					<form id="racunForm" name="racunForm" action="admin.php" method="POST">
+						<input type="hidden" name="opt" value="racun" />
+						<input type="hidden" name="act" value="save" />
+						<input type="hidden" name="id" value="{ROW_ID}" />
+						<input type="hidden" name="klijentID" value="{ROW_KLIJENTID}" />
+						<table class="etbl" style="width:100%">
+						<tr>
+							<th>Naziv:</th>
+							<td colspan="3"><input name="naziv" value="{ROW_NAZIV}" style="width:314px"/></td>
+							
+							
+							
+						
+							
+							<th >Adresa:</th>
+							<td><textarea name="adresa" style="width:100%;height:22px">{ROW_ADRESA}</textarea>
+							
+							</td>
+						
+						</tr>
+						
+						<tr>
+							<th style="width:90px">Broj računa:</th>
+							<td style="width:100px"><input class="numeric" style="font-size:11px;font-weight:bold;text-align:right;width:55px" name="code" value="{ROW_C0}" /><b>{DELIM}{ROW_C1}{DELIM}{ROW_C2}</b></td>
+							
+							<th style="width:80px">OIB:</th>
+							<td><input class="center numeric"  name="oib" value="{ROW_OIB}" style="width:90px"/></td>
+							<th >Sjedište:</th>
+							<td><textarea name="sjediste" style="width:100%;height:22px">{ROW_SJEDISTE}</textarea>
+							
+							</td>
+						</tr>
+						<tr>
+							<th>Isporuka:</th>
+							<td><input placeholder="datum" id="dats" class="center numeric"  name="datum_isporuke" value="{ROW_DATUM_ISPORUKE}" style="width:90px"/></td>
+
+							<th>Dospijeće:</th>
+							<td><input placeholder="datum" id="datd" class="center numeric"  name="datum_dospijeca" value="{ROW_DATUM_DOSPIJECA}" style="width:90px"/></td>
+
+							<th>Izdavanje:</th>
+							<td><input placeholder="datum" id="dati" name="datum_izdavanja" value="{ROW_DATUM_IZDAVANJA}"  style="width:75px"/>
+							 &nbsp;<input placeholder="vrijeme" name="vrijeme_izdavanja" value="{ROW_VRIJEME_IZDAVANJA}"  style="width:60px"/>
+							</td>
+						</tr>
+						
+						
+						
+						<tr>
+							<th rowspan="5" valign="top">Opis:</th>
+							<td colspan="3"  rowspan="5"><textarea  name="opis" style="font-size:11px;width:100%;height:125px"/>{ROW_OPIS}</textarea></td>
+						</tr>
+						
+						
+						<tr>
+							<th>Način pl.:</th>
+							<td ><select class="sinput" style="width:145px;padding:2px" name="nacin_placanja">
+								<option value="transakcijski račun" {NPSELTR}>transakcijski račun</option>
+								<option value="gotovina" {NPSELGO}>gotovina</option>
+							</select></td>
+							
+						</tr>
+						<tr>
+							<th onDblClick="$('#usrSelBox').prop('disabled',false)">Operater:</th>
+							<td ><select id="usrSelBox" name="userID" disabled >
+									<option value="0"></option>
+									<sim:tmpl name="opt_r_o">
+									<option value="{ROW_ID}" {ROW_SEL}>{ROW_NAME}</option>
+									</sim:tmpl></select>
+							</td>	
+						</tr>
+						<tr><th>osnovica:</th><td id="osnFld" style="text-align:right" class="blue bld">{ROW_OSNOVICA}</td></tr>
+						<tr><th>pdv:</th><td id="pdvFld" style="text-align:right" class="ljub bld">{ROW_PDV}</td></tr>
+						<tr>
+							<th >Napomena:</th>
+							<td colspan="3"><select  name="napomenaID"  >
+								<option value="0"></option>
+									<sim:tmpl name="opt_r_n">
+									<option value="{ROW_ID}" {ROW_SEL}>{ROW_NAZIV}</option>
+									</sim:tmpl></select>
+							</td>	
+							
+							<th>ukupno:</th>
+							<td id="iznFld" style="text-align:right" class="red bld">{ROW_IZNOS}</td></tr>
+						</table>
+						</form>
+						
+						<div id="gridboxs" width="900" height="200" style="{HIDE};width:900px;height:200px;background-color:white;"></div>
+						
+						
+						<div style="padding:10px" class="bggrey sml">
+							<input type="button" class="button" value="Dodaj novu stavku" onClick="aCMC({ROW_ID},'racun','stv-new')" style="margin-right:20px"/>
+							<span class="right"><input type="button" class="button bld red" value="Spremi račun"  onClick="activateCMCommandPOST('racun','save','racunForm');"/></span>
+							<span class="right" style="margin-right:80px">
+								<form id="racunSNewForm" name="racunSNewForm" action="admin.php" method="POST">
+								<input type="hidden" name="opt" value="racun" />
+								<input type="hidden" name="act" value="stv-insert" />
+								<input type="hidden" name="id" value="{ROW_ID}" />
+									Dodaj stavke iz:
+									
+									<select style="width:315px" class="rfmltv sukob" multiple name="fld[]"><sim:tmpl name="opt_f">
+										<option value="{ROW_ID}" {ROW_SEL}>{ROW_NAZIV} [{ROW_CNT}]</option>
+										</sim:tmpl>
+									</select>
+									<input type="button" class="button" value="Dodaj odabrano" onClick="activateCMCommandPOST('racun','stv-insert','racunSNewForm');" style="margin-right:20px"/>
+								</form>
+							</span>
+							
+							<div class="cleaner"></div>
+						</div>
+					
+</sim:tmpl>

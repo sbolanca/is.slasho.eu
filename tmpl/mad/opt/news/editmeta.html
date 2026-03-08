@@ -1,0 +1,17 @@
+<sim:tmpl name="opt_news">
+					<sim:tmpl name="opt_news_content">	
+					<h1>{ROW_TITLE} - [Metatags]</h1>
+					<form id="newsMetaForm" name="newsMetaForm" action="index.php" method="POST">
+						<input type="hidden" name="opt" value="news" />
+						<input type="hidden" name="act" value="savemeta" />
+						<input type="hidden" name="id" value="{ROW_ID}" />
+						<input type="hidden" name="langID" value="{ROW_LANGID}" />
+						<input type="hidden" name="galleryID" value="{ROW_GALLERYID}" />
+						Opis (metatag: description):<br/>
+						<textarea name="description" style="width:400px; height:100px;">{ROW_DESCRIPTION}</textarea><br/>
+						Ključne riječi (metatag: keywords):<br/>
+						<textarea name="keywords" id="cont" style="width:400px; height:50px;">{ROW_KEYWORDS}</textarea><br/>
+						<input type="button" class="button" value="submit" onClick="activateCMCommandPOST('news','savemeta','newsMetaForm');" />
+					</form>
+					</sim:tmpl>							
+</sim:tmpl>

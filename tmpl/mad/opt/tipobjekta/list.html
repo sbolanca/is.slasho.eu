@@ -1,0 +1,58 @@
+<sim:tmpl name="opt_tipobjekta">
+<table width="100%" height="100%" cellpadding="0" cellspacing="0">
+<tr>
+<td id="lijevo" class="panel">
+		{ACCORDIAN}
+	</td>
+	<td>
+		<table width="100%" height="100%" cellpadding="0" cellspacing="0">
+			<tr>
+				<td class="panel h1">
+					<table width="100%"><tr>
+					<td><h1 ><span id="title">{TITLE}</span> <span style="float:right;" class="sml"><input style="font-size:10px" type="button" value="Dodaj novi tip objekta" onClick="aCMC(0,'tipobjekta','edit','mode=new')"/></span></h1></td>
+					
+						<td><span class="xls" title="Download Excel" onClick="xls()"/></td>
+						
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr><td height="100%" oncontextmenu="cCM(0,'CM_opt_tipobjekta_TBL',event)"><div id="gridbox" width="100%" height="100%" style="background-color:white;" ></div></td></tr>
+			<tr><td class="panel h1">
+				<div class="divleft">Pronađeno <strong><span id="cnt">{CNT}</span></strong> zapisa</div>
+				<div id="so_content" class="divleft so">{SEARCHOPTIONS}</div>
+				<div class="cleaner"></div>
+			</td></tr>
+		</table>
+	</td>
+</tr>
+</table>
+<script>
+
+
+
+	tbl_tipobjekta = new dhtmlXGridObject('gridbox');
+	tbl_tipobjekta.setImagePath("js/codebase/imgs/");
+	function Init_tbl_tipobjekta(cnt) {
+		setHeaderTable("tbl_tipobjekta");
+		tbl_tipobjekta.setInitWidths(setTableCols("tbl_tipobjekta","W"));
+		tbl_tipobjekta.setColAlign(setTableCols("tbl_tipobjekta","A"));
+		tbl_tipobjekta.setColTypes(setTableCols("tbl_tipobjekta","T"));
+	   // tbl_arh.enableDragAndDrop(true);
+		tbl_tipobjekta.enableMultiselect(true);
+		tbl_tipobjekta.attachEvent("onRightClick",tipobjekta_cm);
+		tbl_tipobjekta.attachEvent("onRowSelect",stdRowSelected);
+		tbl_tipobjekta.init();
+
+		loadTable(tbl_tipobjekta,"opt=tipobjekta&act=list",cnt,true);
+		
+	}  
+	function tipobjekta_cm(i,c,e) {doOnTblCM(i,c,e,tbl_tipobjekta,'CM_opt_tipobjekta_list'); }	
+	Init_tbl_tipobjekta({CNT});
+
+
+
+</script>
+			
+
+</sim:tmpl>

@@ -1,0 +1,31 @@
+<sim:tmpl name="opt_folder">
+					
+					<form id="folderForm" name="folderForm" action="index.php" method="POST">
+						<input type="hidden" name="opt" value="{FOPT}" />
+						<input type="hidden" name="act" value="fld-sharing" />
+						<input type="hidden" name="id" value="{ID}" />
+						<input type="hidden" name="sharing" value="{SHARING}" />
+						<input type="hidden" name="dataSaved" value="1" />
+						<table id="popupdescription" style="font-size:10px;width:400px">
+						<sim:tmpl name="opt_folder_item0" type="simplecondition" requiredvars="ROW_ID">						
+						<tr>
+							<td align="right" width="10"><input type="checkbox" id="varr_{ROW_ID}" name="vARR[]" value="{ROW_ID}" checked/></td>
+							<td {ROW_CLASS} ><label for="varr_{ROW_ID}" >{ROW_TITLE}</label></td>
+						</tr>
+						</sim:tmpl>
+						<tr><td colspan="3"><div style="height:400px;overflow:auto;background-color:#eee"><table width="100%">
+						<sim:tmpl name="opt_folder_item" type="simplecondition" requiredvars="ROW_ID">						
+						<tr>
+							<td align="right" width="10"><input type="checkbox" id="varr_{ROW_ID}" name="vARR[]" value="{ROW_ID}"/></td>
+							<td ><label for="varr_{ROW_ID}" >{ROW_TITLE}</label></td>
+						</tr>
+						</sim:tmpl></table></div></td></tr>
+						<tr><td></td>
+						<td align="right"><input type="button" value="Spremi" onClick="activateCMCommandPOST('{FOPT}','fld-sharing','folderForm');"/>&nbsp;&nbsp;</td>
+						</tr>
+						<tr><td >&nbsp;</td></tr>
+						</table>
+						
+					</form>
+									
+</sim:tmpl>

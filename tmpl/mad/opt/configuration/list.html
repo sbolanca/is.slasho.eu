@@ -1,0 +1,62 @@
+<sim:tmpl name="opt_configuration">
+<table width="100%" height="100%" cellpadding="0" cellspacing="0">
+<tr>
+<td id="lijevo" class="panel">
+		{ACCORDIAN}
+	</td>
+	<td>
+		<table width="100%" height="100%" cellpadding="0" cellspacing="0">
+			<tr>
+				<td class="panel h1" style="background-color:#f2e3fa">
+					<table width="100%"><tr>
+					<td><h1 id="title">Konfiguracija</h1></td>
+					</tr></table>
+					
+				</td>
+			</tr>
+			<tr><td height="100%" valign="top">
+				<div style="float:left">
+				<table  class="etbl">
+					<tr><th >Naziv_tvrtke:</th><td class="ptr brd" onClick="aCMC(0,'configuration','edit','type=naziv_tvrtke&condpageopt=no&size=40')"><span class="blue" id="naziv_tvrtke">{C_NAZIV_TVRTKE}</span></td></tr>
+					<tr><th >Puni naziv tvrtke:</th><td class="ptr brd" onClick="aCMC(0,'configuration','edit','type=puni_naziv_tvrtke&condpageopt=no&size=40')"><span class="blue" id="puni_naziv_tvrtke">{C_PUNI_NAZIV_TVRTKE}</span></td></tr>
+					<tr><th >Podnaziv:</th><td class="ptr brd" onClick="aCMC(0,'configuration','edit','type=podnaziv&condpageopt=no&size=40')"><span class="blue" id="podnaziv">{C_PODNAZIV}</span></td></tr>
+					<tr><th >Adresa:</th><td class="ptr brd" onClick="aCMC(0,'configuration','edit','type=adresa&condpageopt=no&size=40')"><span class="blue" id="adresa">{C_ADRESA}</span></td></tr>
+					<tr><th >PBR i mjesto:</th><td class="ptr brd" onClick="aCMC(0,'configuration','edit','type=mjesto&condpageopt=no&size=40')"><span class="blue" id="mjesto">{C_MJESTO}</span></td></tr>
+					<tr><th >OIB:</th><td class="ptr brd" onClick="aCMC(0,'configuration','edit','type=OIB&condpageopt=no&numeric=1&size=15')"><span class="blue" id="OIB">{C_OIB}</span></td></tr>
+					<tr><th >Sudski registar:</th><td class="ptr brd" onClick="aCMC(0,'configuration','edit','type=sudreg&condpageopt=no&size=40')"><span class="blue" id="sudreg">{C_SUDREG}</span></td></tr>
+					<tr><th >MBS:</th><td class="ptr brd" onClick="aCMC(0,'configuration','edit','type=MBS&condpageopt=no&numeric=1&size=15')"><span class="blue" id="MBS">{C_MBS}</span></td></tr>
+					<tr><th >MB:</th><td class="ptr brd" onClick="aCMC(0,'configuration','edit','type=MB&condpageopt=no&numeric=1&size=15')"><span class="blue" id="MB">{C_MB}</span></td></tr>
+					<tr><th >IBAN:</th><td class="ptr brd" onClick="aCMC(0,'configuration','edit','type=IBAN&condpageopt=no&size=40')"><span class="blue" id="IBAN">{C_IBAN}</span></td></tr>
+					<tr><th >Banka:</th><td class="ptr brd" onClick="aCMC(0,'configuration','edit','type=banka&condpageopt=no&size=40')"><span class="blue" id="banka">{C_BANKA}</span></td></tr>
+					<tr><th >SWIFT:</th><td class="ptr brd" onClick="aCMC(0,'configuration','edit','type=SWIFT&condpageopt=no&size=10')"><span class="blue" id="SWIFT">{C_SWIFT}</span></td></tr>
+					<tr><th >Odgovorna osoba:</th><td class="ptr brd" onClick="aCMC(0,'configuration','edit','type=potpisnik&condpageopt=no&size=40')"><span class="blue" id="potpisnik">{C_POTPISNIK}</span></td></tr>
+					<tr><th >Email:</th><td class="ptr brd" onClick="aCMC(0,'configuration','edit','type=email&condpageopt=no&size=40')"><span class="blue" id="email">{C_EMAIL}</span></td></tr>
+					<tr><th >Telefon:</th><td class="ptr brd" onClick="aCMC(0,'configuration','edit','type=telefon&condpageopt=no&size=40')"><span class="blue" id="telefon">{C_TELEFON}</span></td></tr>
+				</table>
+				</div>
+				<div style="float:left">
+				<table  class="etbl">
+					<tr><th >ID foldera redovnih stavki:</th><td class="ptr brd" onClick="aCMC(0,'configuration','edit','type=RedovneStavkeFolderID&condpageopt=no&numeric=1&size=10')"><span class="green" id="RedovneStavkeFolderID">{C_REDOVNESTAVKEFOLDERID}</span></td></tr>
+					<tr><th >Dospijeće računa:</th><td class="ptr brd" onClick="aCMC(0,'configuration','edit','type=RacunDospijece&condpageopt=no&numeric=1&size=6')"><span class="ljub" id="RacunDospijece">{C_RACUNDOSPIJECE}</span> dana</td></tr>
+					<tr><th >Valjanost ponude:</th><td class="ptr brd" onClick="aCMC(0,'configuration','edit','type=PonudaDospijece&condpageopt=no&numeric=1&size=6')"><span class="ljub" id="PonudaDospijece">{C_PONUDADOSPIJECE}</span> dana</td></tr>
+					<tr><th >slijedeći broj računa:</th><td class="ptr brd" onClick="aCMC(0,'configuration','edit','type=next_racun&condpageopt=no&numeric=1&size=6')"><span class="green" id="next_racun">{C_NEXT_RACUN}</span></td></tr>
+					<tr><th >slijedeći broj ponude:</th><td class="ptr brd" onClick="aCMC(0,'configuration','edit','type=next_ponuda&condpageopt=no&numeric=1&size=6')"><span class="green" id="next_ponuda">{C_NEXT_PONUDA}</span></td></tr>
+					<tr><th >Broj znamenki u broju ponude:</th><td class="ptr brd" onClick="aCMC(0,'configuration','edit','type=ponuda_digits&condpageopt=no&numeric=1&size=6')"><span class="blue" id="ponuda_digits">{C_PONUDA_DIGITS}</span></td></tr>
+					<tr><th >Delimiter u broju računa:</th><td class="ptr brd" onClick="aCMC(0,'configuration','edit','type=RacunDelimiter&condpageopt=no&size=1')"><span class="blue" id="RacunDelimiter">{C_RACUNDELIMITER}</span></td></tr>
+					<tr><th >Model u pozivu na broj:</th><td class="ptr brd" onClick="aCMC(0,'configuration','edit','type=RacunModel&condpageopt=no&size=2')"><span class="blue" id="RacunModel">{C_RACUNMODEL}</span></td></tr>
+					<tr><th >Default PDV:</th><td class="ptr brd" onClick="aCMC(0,'configuration','edit','type=pdv&condpageopt=no&numeric=1&size=20')"><span class="red" id="pdv">{C_PDV}</span></td></tr>
+					<tr><th >RacunTmpID:</th><td class="ptr brd" onClick="aCMC(0,'configuration','edit','type=RacunTmpID&condpageopt=no&numeric=1&size=10')"><span class="redfull" id="RacunTmpID">{C_RACUNTMPID}</span></td></tr>
+					<tr><th >PonudaTmpID:</th><td class="ptr brd" onClick="aCMC(0,'configuration','edit','type=PonudaTmpID&condpageopt=no&numeric=1&size=10')"><span class="redfull" id="PonudaTmpID">{C_PONUDATMPID}</span></td></tr>
+					<tr><th >U sustavu PDV-a:</th><td class="ptr brd" onClick="aCMC(0,'configuration','edit','type=UPDV&condpageopt=no&numeric=1&size=2')"><span class="blue" id="UPDV">{C_UPDV}</span></td></tr>
+					<tr><th >ID defaultne napomene računa:</th><td class="ptr brd" onClick="aCMC(0,'configuration','edit','type=RacunNapomenaID&condpageopt=no&numeric=1&size=5')"><span class="blue" id="RacunNapomenaID">{C_RACUNNAPOMENAID}</span></td></tr>
+				</table>
+				</div>
+			</td></tr>
+			
+		</table>
+	</td>
+</tr>
+</table>
+
+
+</sim:tmpl>

@@ -1,0 +1,49 @@
+<sim:tmpl name="opt_admin">
+						
+						<table id="popupdescription" style="width:600px;">
+							<tr>
+								<td><b>Prepoznati tip</b></th>
+								<td><b>Datoteka</b></th>
+								<td></td>
+							</tr>
+						<sim:tmpl name="opt_a_file" type="condition" conditionvar="ROW_TYPE">
+						<sim:sub condition="__empty"> 
+							<tr>
+								<td colspan="3">Nema datoteka za obradu</td>
+							</tr>
+						</sim:sub>
+						<sim:sub condition="unknown"> 
+							<tr>
+								<td class="blue">{ROW_TYPE}</td>
+								<td>{ROW_FILE}</td>
+								<td align="right"><input type="button" value="Pregledaj početak datoteke" onClick="activateCMCommand('admin','imp-read','type={ROW_TYPE}&folder={FOLDER}&file={ROW_FILE}');"/></td>
+							</tr>
+						</sim:sub>
+						<sim:sub condition="default"> 
+							<tr>
+								<td>{ROW_TYPE}</td>
+								<td>{ROW_FILE}</td>
+								<td align="right"><input id="impbtnstart_{ROW_ID}" class="impbtnstart" type="button" value="Pokreni import" onClick="startImport({ROW_ID},'{ROW_TYPE}','{FOLDER}','{ROW_FILE}')"/></td>
+							</tr>
+							<tr class="imr_{ROW_ID}" style="display:none"><td class="blue starttime"></td><td >&nbsp;</td><td align="right" class="endtime blue"></td></tr>
+							<tr class="imr_{ROW_ID}" style="display:none">
+								<td colspan="3">
+										<div id="progresswindow">					
+										<div class="progressbar"></div>
+										<div class="progressvalue"></div>
+									</div>
+										
+								</td>
+							</tr>
+							<tr class="imr_{ROW_ID}" style="display:none"><td>Ukupno obrađeno zapisa: <span class="green impprocessed bld"></span></td><td align="center">Ažurirano: <span class="green impupdated bld"></span></td><td align="right" >Dodano: <span class="green impinserted bld"></span></td></tr>
+							
+						</sim:sub>
+						</sim:tmpl>
+						<tr>
+								<td colspan="3">&nbsp;</td>
+							</tr>
+						
+					
+						</table>
+						
+</sim:tmpl>

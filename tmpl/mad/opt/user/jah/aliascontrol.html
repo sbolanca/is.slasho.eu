@@ -1,0 +1,41 @@
+<sim:tmpl name="opt_user">
+	<div class="bgwhite">
+						<table id="atable"  width="100%" class="itbl" cellpadding="0" cellspacing="0" {ONTABLOAD}>
+						<thead>
+						<tr>
+							<th style="width:50px">ID</th>
+							<th style="width:300px">Alias</th>
+							<th style="width:50px">IzvodjacID</th>
+							<th style="width:100px;text-align:center">#Sudjelovanja</th>
+						</tr>
+						</thead>
+						<tbody>
+						<sim:tmpl name="opt_user_a" type="simplecondition" requiredvars="ROW_ID">						
+						<tr class="{ROW_CLS}"  {ROW_CM} {ROW_TAGID}>
+							<td >{ROW_ID}</td>
+							<td >{ROW_NAZIV}</td>
+							<td >{ROW_IZVODJACID}</td>
+							<td style="text-align:center">{ROW_CNT}</td>
+							
+							
+						</tr>
+						</sim:tmpl>
+						</tbody>
+						</table>
+					</div>
+						<form id="aliasCForm" name="aliasCForm" action="admin.php" method="POST" onSubmit="activateCMCommandPOST('user','alx-add','aliasCForm'); return false">
+						<input type="hidden" name="opt" value="user" />
+						<input type="hidden" name="act" value="alc-add" />
+						<input type="hidden" id="aliasACFld"  name="id" value="" />
+						<input type="hidden" name="userID" value="{ROW_ID}" />
+
+						<table style="margin-top:13px;width:100%">
+							<tr>
+								<td>Novi alias:</td>
+								<td><input id="aliasAC" name="naziv" value="" style="width:270px"/>
+								<td><input type="submit" value="Dodaj" /></td>
+							</tr>
+						</table>
+					</form>
+					
+</sim:tmpl>	

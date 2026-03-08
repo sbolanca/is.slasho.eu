@@ -1,0 +1,63 @@
+<sim:tmpl name="opt_specijalniupit">
+					<form id="specijalniupitForm" name="specijalniupitForm" action="admin.php" method="POST">
+						<input type="hidden" name="opt" value="specijalniupit" />
+						<input type="hidden" name="act" value="save" />
+						<input type="hidden" name="id" value="{ROW_ID}" />
+						<table class="etbl" style="width:100%">
+						<tr>
+							<th >Tip:</th>
+							<td><select name="qopt"><sim:tmpl name="opt_su_o">
+								<option value="{ROW_OPT}" {ROW_SEL}>{ROW_OPT}</option>
+								</sim:tmpl>
+							</select>
+							</td>
+						</tr>
+						<tr>
+							<th >Naziv:</th>
+							<td><input type="text" name="naziv" value="{ROW_NAZIV}" size="40" />
+							
+							</td>
+						</tr>
+						<tr>
+							<th >Opis:</th>
+							<td><textarea style="width:100%;height:90px" name="opis" >{ROW_OPIS}</textarea>
+							
+							</td>
+						</tr>
+						<tr>
+							<th colspan="2" style="text-align:left">UPIT (INNER JOIN):</th>
+						</tr>
+						<tr>	<td colspan="2"><textarea style="width:100%;height:200px" name="upit" >{ROW_UPIT}</textarea>
+							
+							</td>
+						</tr>
+						<tr>
+							<th >Veza (za INNER JOIN):</th>
+							<td><input type="text" name="veza" value="{ROW_VEZA}" size="40" />
+							
+							</td>
+						</tr>
+						<tr >
+							<th colspan="2" style="text-align:left">LEFT JOIN (automatski dodaje GROUP BY):</th>
+						</tr>
+						<tr >	<td colspan="2"><textarea style="width:100%;height:50px" name="leftjoin" >{ROW_LEFTJOIN}</textarea>
+							
+							</td>
+						</tr>
+						<tr>
+							<th colspan="2" style="text-align:left">FILTER (WHERE):</th>
+						</tr>
+						<tr>	<td colspan="2"><textarea style="width:100%;height:50px" name="uvjet" >{ROW_UVJET}</textarea>
+							
+							</td>
+						</tr>
+						
+						
+						<tr>
+							<th ></th>
+
+						
+						<th><input type="button" class="button" value="SPREMI" onClick="activateCMCommandPOST('specijalniupit','save','specijalniupitForm');" /></th></tr>
+						</table>
+					</form>
+</sim:tmpl>

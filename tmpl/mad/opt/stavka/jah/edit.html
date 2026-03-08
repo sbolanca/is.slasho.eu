@@ -1,0 +1,77 @@
+<sim:tmpl name="opt_stavka">
+					<form id="stavkaForm" name="stavkaForm" action="admin.php" method="POST">
+						<input type="hidden" name="opt" value="stavka" />
+						<input type="hidden" name="act" value="save" />
+						<input type="hidden" name="id" value="{ROW_ID}" />
+						<table class="etbl" style="width:100%">
+						<tr>
+							<th >Tip:</th>
+							<td><select name="tipID"><sim:tmpl name="opt_t">
+								<option value="{ROW_ID}" {ROW_SEL}>{ROW_NAZIV}</option>
+								</sim:tmpl>
+							</select>
+							</td>
+						</tr>
+						<tr>
+							<th >Kategorija:</th>
+							<td><select name="kategorijaID"><sim:tmpl name="opt_k">
+								<option value="{ROW_ID}" {ROW_SEL}>{ROW_NAZIV}</option>
+								</sim:tmpl>
+							</select>
+							</td>
+						</tr>
+						<tr>
+							<th >Kod:</th>
+							<td><input class="decimal" type="text" name="code" value="{ROW_CODE}" size="20" />
+							
+							</td>
+						</tr>
+						<tr>
+							<th >Opis stavke:</th>
+							<td><textarea name="naziv" style="width:430px;height:100px">{ROW_NAZIV}</textarea>
+							
+							</td>
+						</tr>
+						<tr>
+							<th >Mjera:</th>
+							<td><input id="mjeraFld" type="text" name="mjera" value="{ROW_MJERA}" size="10" />
+							<input class="sml" type="button" value="m²" onClick="$('#mjeraFld').val(this.value)"/>
+							<input class="sml" type="button" value="kom" onClick="$('#mjeraFld').val(this.value)"/>
+							<input class="sml" type="button" value="m" onClick="$('#mjeraFld').val(this.value)"/>
+							<input class="sml" type="button" value="m³" onClick="$('#mjeraFld').val(this.value)"/>
+							<input class="sml" type="button" value="usl" onClick="$('#mjeraFld').val(this.value)"/>
+							<input class="sml" type="button" value="kg" onClick="$('#mjeraFld').val(this.value)"/>
+							<input class="sml" type="button" value="sat" onClick="$('#mjeraFld').val(this.value)"/>
+							<input class="sml" type="button" value="lit." onClick="$('#mjeraFld').val(this.value)"/>
+							<input class="sml" type="button" value="km" onClick="$('#mjeraFld').val(this.value)"/>
+							</td>
+						</tr>
+						<tr>
+							<th >Iznos:</th>
+							<td><input class="decimal" type="text" name="iznos" value="{ROW_IZNOS}" size="20" /> €
+							
+							</td>
+						</tr>
+						<tr>
+							<th >Stopa PDV-a:</th>
+							<td><input class="decimal" type="text" name="stopa_pdv" value="{ROW_STOPA_PDV}" size="3" /> %
+							
+							</td>
+						</tr>
+						<tr>
+							<th><label for="mateChk">Materijalna stavka:</label></th>
+							<td><input type="checkbox" name="materijal" id="mateChk" value="1" {CHKM1}/>
+							
+							</td>
+						</tr>
+						
+						
+						
+						<tr>
+							<th ></th>
+
+						
+						<th><input type="button" class="button" value="SPREMI" onClick="activateCMCommandPOST('stavka','save','stavkaForm');" /></th></tr>
+						</table>
+					</form>
+</sim:tmpl>

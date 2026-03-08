@@ -1,0 +1,43 @@
+<sim:tmpl name="opt_news_subgroup">
+<ul id="gm{ID}">
+<sim:tmpl name="opt_news_subgroup_sub">
+<li id="mm_{ZONE_ID}" ><a href="index.php?opt=news&amp;act=mlist&amp;id={GR_ID}">{GR_TITLE}</a></li>
+</sim:tmpl>
+</ul>
+</sim:tmpl>
+<sim:tmpl name="opt_news">
+<div id="content_menu"><ul id="mm">
+	  <sim:tmpl name="opt_news_hmenu" >	
+         <li><a href="index.php?opt=news&amp;act=mlist&amp;id={GR_ID}">{GR_TITLE}</a>
+		 	{GR_SUB}
+		</li>
+       </sim:tmpl>
+      </ul> 
+	  </div>
+	  	  <div id="contenttext" {CM_GROUP}>							
+					<sim:tmpl name="opt_news_content">
+					<h1>{ROW_TITLE}</h1>
+					
+	 
+						{ROW_DESCRIPTION}
+						</sim:tmpl>
+					</div>
+				<div id="contentlist" >
+			<sim:tmpl name="opt_news_contentlist" type="condition" conditionvar="count">	
+			<sim:sub condition="0"> 
+				<div {NEWS_EMPTY}></div>
+			</sim:sub>		
+			
+			<sim:sub condition="default"> 
+				<div class="gitemg{ROW_PUBLISHED}" {ROW_CM} {ROW_TAGID}>
+					<a href="index.php?opt=news&amp;act=mlist&amp;id={ROW_ID}" title="{ROW_TITLE}"><img src="files/Image/{ROW_IMAGE}" />{ROW_TITLE}</a></div> 
+				   
+				 </sim:sub>		
+			 </sim:tmpl>
+			 </div>	
+			 <div class="cleaner"></div>
+			<hr/>
+			  <div><a href="index.php?opt=news&amp;act=archive&amp;id={ROW_ID}">{_NEWS_ARCHIVE}...</a></div>
+			
+			
+</sim:tmpl>

@@ -1,0 +1,34 @@
+<sim:tmpl name="opt_admin">
+					<form id="uploadFileForm" name="uploadFileForm" action="/{MAINPAGE}" method="POST">
+						<input type="hidden" name="opt" value="admin" />
+						<input type="hidden" name="act" value="imp-save" />
+						<input type="hidden" name="type" value="{TYPE}" />
+						<input type="hidden" class="uplurlfield" name="url" value="" />
+						<input type="hidden" class="uplnamefield" name="name" value="" />
+						
+						<table id="popupdescription" style="width:600px;height:170px">
+							<tr><td colspan="2"><strong>Odaberi ZIP ili RAR datoteku (radi manjeg prometa).</strong></td></tr>
+							<tr>
+								<td>Odaberi datoteku:</td>
+								<td><input title="Nova datoteka" class="uplfield" name="files[]" type="file" data-url="jq/upload/server/php/" /></td>
+							</tr>
+								
+							<tr>
+								<td></td>
+								<td class="uploadpreview"></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>
+									<div id="progresswindow" style="display:none">
+										<div class="progressbar"></div>
+									</div>
+									<input style="display:none" type="button" class="initsubmitbtn" value="Pokreni import" onClick="activateCMCommandPOST('admin','imp-save','uploadFileForm');" />
+								</td>
+						
+						
+					
+						</table>
+						
+					</form>
+</sim:tmpl>

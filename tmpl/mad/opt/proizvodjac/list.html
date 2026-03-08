@@ -1,0 +1,58 @@
+<sim:tmpl name="opt_proizvodjac">
+<table width="100%" height="100%" cellpadding="0" cellspacing="0">
+<tr>
+<td id="lijevo" class="panel">
+		{ACCORDIAN}
+	</td>
+	<td>
+		<table width="100%" height="100%" cellpadding="0" cellspacing="0">
+			<tr>
+				<td class="panel h1">
+					<table width="100%"><tr>
+					<td><h1 ><span id="title">{TITLE}</span> <span style="float:right;" class="sml"><input style="font-size:10px" type="button" value="Dodaj novog proizvođača" onClick="aCMC(0,'proizvodjac','edit','mode=new')"/></span></h1></td>
+					
+						<td><span class="xls" title="Download Excel" onClick="xls()"/></td>
+						
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr><td height="100%" oncontextmenu="cCM(0,'CM_opt_proizvodjac_TBL',event)"><div id="gridbox" width="100%" height="100%" style="background-color:white;" ></div></td></tr>
+			<tr><td class="panel h1">
+				<div class="divleft">Pronađeno <strong><span id="cnt">{CNT}</span></strong> zapisa</div>
+				<div id="so_content" class="divleft so">{SEARCHOPTIONS}</div>
+				<div class="cleaner"></div>
+			</td></tr>
+		</table>
+	</td>
+</tr>
+</table>
+<script>
+
+
+
+	tbl_proizvodjac = new dhtmlXGridObject('gridbox');
+	tbl_proizvodjac.setImagePath("js/codebase/imgs/");
+	function Init_tbl_proizvodjac(cnt) {
+		setHeaderTable("tbl_proizvodjac");
+		tbl_proizvodjac.setInitWidths(setTableCols("tbl_proizvodjac","W"));
+		tbl_proizvodjac.setColAlign(setTableCols("tbl_proizvodjac","A"));
+		tbl_proizvodjac.setColTypes(setTableCols("tbl_proizvodjac","T"));
+	   // tbl_arh.enableDragAndDrop(true);
+		tbl_proizvodjac.enableMultiselect(true);
+		tbl_proizvodjac.attachEvent("onRightClick",proizvodjac_cm);
+		tbl_proizvodjac.attachEvent("onRowSelect",stdRowSelected);
+		tbl_proizvodjac.init();
+
+		loadTable(tbl_proizvodjac,"opt=proizvodjac&act=list",cnt,true);
+		
+	}  
+	function proizvodjac_cm(i,c,e) {doOnTblCM(i,c,e,tbl_proizvodjac,'CM_opt_proizvodjac_list'); }	
+	Init_tbl_proizvodjac({CNT});
+
+
+
+</script>
+			
+
+</sim:tmpl>

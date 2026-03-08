@@ -1,0 +1,25 @@
+<sim:tmpl name="opt_user">
+						<table id="atable" width="100%" class="itbl" cellpadding="0" cellspacing="0" {ONTABLOAD}>
+						<thead>
+						<tr>
+							<th style="width:50px">ID</th>
+							<th style="width:300px">Alias <input style="margin-left:50px" type="button" value="Admin" onClick="aCMC({ID},'alias','edit');"/></span></th>
+							<th style="width:100px;text-align:center">Sudjelovanja</th>
+							<th style="width:100px;text-align:center">Vid.sudj.</th>
+						</tr>
+						</thead>
+						<tbody>
+						<sim:tmpl name="opt_user_a" type="simplecondition" requiredvars="ROW_ID">						
+						<tr class="{ROW_CLS}"  {ROW_CM} {ROW_TAGID}>
+							<td >{ROW_ID}</td>
+							<td >{ROW_NAZIV}</td>
+							<td style="text-align:center">{ROW_CNT}</td>
+							<td style="text-align:center">{ROW_VCNT}</td>
+							
+							
+						</tr>
+						</sim:tmpl>
+						</tbody>
+						</table>
+					
+</sim:tmpl>	

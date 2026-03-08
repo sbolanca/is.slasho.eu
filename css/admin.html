@@ -1,0 +1,86 @@
+<div class="hiddendiv"><iframe name="ifrm"  style="display:none"></iframe></div>
+<div id="contextmenu" class="hiddendiv"></div>
+<div id="subcontextmenu" class="hiddendiv"></div>
+<div id="dialogmessage"  class="dialog" style="display:none;"></div>
+<div id="dialogconfirm" class="dialog" style="display:none;"></div>
+<div id="dialogwindow1" class="dialog" style="display:none;"></div>
+<div id="dialogwindow2" class="dialog" style="display:none;"></div>
+<div id="dialogwindow3" class="dialog" style="display:none;"></div>
+<div id="dialogwindow4" class="dialog" style="display:none;"></div>
+<div id="dialogwindow5" class="dialog" style="display:none;"></div>
+<div id="dialog1" title="Dialog"  style="display:none">
+	<div id="tabovi1">
+		<ul id="tabs1">
+		</ul>
+		<div class="cleaner"></div>
+		<div id="dcontent1"></div>
+	</div>
+	<div id="dfooter1" class="dialogFooter"></div>
+</div>
+<div id="dialog2" title="Dialog"  style="display:none">
+	<div id="tabovi2">
+		<ul id="tabs2">
+		</ul>
+		<div class="cleaner"></div>
+		<div id="dcontent2"></div>
+	</div>
+	<div id="dfooter2" class="dialogFooter"></div>
+</div>
+<div id="dialog3" title="Dialog"  style="display:none">
+	<div id="tabovi3">
+		<ul id="tabs3">
+		</ul>
+		<div class="cleaner"></div>
+		<div id="dcontent3"></div>
+	</div>
+	<div id="dfooter3" class="dialogFooter"></div>
+</div>
+<div id="editbox" class="hiddendiv">
+	<div class="popuptrack" id="editdrag"><div id="popuptitle" ></div>
+		<div class="popupclosebtn" onClick="hideStandardPopup('editbox','ed_content');"></div>
+		<div class="cleaner"></div>
+	</div>
+	<div id="etabs" class="tabs"></div><div class="cleaner"></div>
+	<div id="ed_content" class="areabox"></div>
+</div>
+<div id="editbox2" class="hiddendiv">
+		<div class="popuptrack" id="editdrag2"><div id="popuptitle2" ></div>
+			<div class="popupclosebtn" onClick="hideStandardPopup('editbox2','ed_content2');"></div>
+			<div class="cleaner"></div>
+		</div>
+		<div id="etabs2" class="tabs"></div><div class="cleaner"></div>
+		<div id="ed_content2" class="areabox"></div>
+</div>
+<div id="editbox3" class="hiddendiv">
+	
+		<div class="popuptrack" id="editdrag3"><div id="popuptitle3" ></div>
+			<div class="popupclosebtn"  onClick="hideStandardPopup('editbox3','ed_content3');"></div>
+			<div class="cleaner"></div>
+		</div>
+		<div id="etabs3" class="tabs"></div><div class="cleaner"></div>
+		<div id="ed_content3" class="areabox"></div>
+	
+
+</div>
+<div id="formwindow" class="hiddendiv">
+		<div class="popuptrack" id="formdrag"><div id="adminformtitle" ></div>
+			<div class="popupclosebtn" onClick="hideStandardPopup('formwindow');"></div>
+			<div class="cleaner"></div>
+		</div>
+		<div id="adminformx"><div id="adminformtext"></div><div id="adminformcontent"></div></div>
+	</div>
+</div>
+<div id="helpWindow" class="hiddendiv"></div>
+<div id="detailsWindow" class="hiddendiv"><table cellpadding="0" cellspacing="0"><tr><td bgcolor="#aaaaaa" align="right" id="dragDW"><div class="popupclosebtn" onClick="hideStandardPopup('detailsWindow');"></div></td></tr><tr><td id="dWContent"></td></tr></table></div>
+<div id="search_suggest" class="hiddendiv"></div>
+<div id="debugger" class="hiddendiv">
+	<div class="popuptrack" id="debugdrag" style="width:600px"><div id="popuptitle" >DEBUGGER</div>
+		<div class="popupclosebtn" onClick="hideStandardPopup('debugger');"></div>
+		<div class="cleaner"></div>
+	</div>
+	<textarea id="debugger_content" wrap="off"></textarea>
+</div>
+<img id="okalert" src="/images/ok.png"/>
+<script type="text/javascript">
+$( ".hiddendiv" ).draggable({cursor: "move", handle: ".popuptrack",opacity: 0.5 });
+</script>

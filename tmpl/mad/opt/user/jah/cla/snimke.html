@@ -1,0 +1,28 @@
+<sim:tmpl name="opt_user">
+						<table id="stable" width="100%" class="itbl sml" cellpadding="0" cellspacing="0" {ONTABLOAD}>
+						<thead>
+						<tr>
+							<th ></th>
+							<th style="width:50px">#</th>
+							<th style="width:80px">HUZIP šifra</th>
+							<th style="width:320px">Naziv</th>
+							<th style="width:315px">Izvođač</th>
+							<th style="text-align:center;width:85px">Godina</th>
+						</tr>
+						</thead>
+						<tbody>
+						<sim:tmpl name="opt_user_s" type="simplecondition" requiredvars="ROW_ID">						
+						<tr class="{ROW_CLS}"  {ROW_CM} {ROW_TAGID}>
+							<td class="th">{ROW_IX}</td>
+							<td >{ROW_ID}</td>
+							<td >{ROW_HUZIP}</td>
+							<td >{ROW_NAZIV}</td>
+							<td >{ROW_IZVODJAC}</td>
+							<td style="text-align:center">{ROW_GODINA}</td>
+							
+						</tr>
+						</sim:tmpl>
+						</tbody>
+						</table>
+					
+</sim:tmpl>	

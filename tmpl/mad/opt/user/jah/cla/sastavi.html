@@ -1,0 +1,23 @@
+<sim:tmpl name="opt_user">
+						<table id="stable" width="100%" class="itbl" cellpadding="0" cellspacing="0" {ONTABLOAD}>
+						<thead>
+						<tr>
+							<th style="width:500px">Sastav</th>
+							<th style="width:175px">Početak</th>
+							<th style="width:175px">Završetak</th>
+						</tr>
+						</thead>
+						<tbody>
+						<sim:tmpl name="opt_user_ss" type="simplecondition" requiredvars="ROW_ID">						
+						<tr class="{ROW_CLS}"  {ROW_CM} {ROW_TAGID}>
+							<td >{ROW_SASTAV}</td>
+							<td ><sim:var name="ROW_POCETAK"   modifier="dateformat" format="%d.%m.%Y"/></td>
+							<td ><sim:var name="ROW_ZAVRSETAK"   modifier="dateformat" format="%d.%m.%Y"/></td>
+							
+							
+						</tr>
+						</sim:tmpl>
+						</tbody>
+						</table>
+					
+</sim:tmpl>	

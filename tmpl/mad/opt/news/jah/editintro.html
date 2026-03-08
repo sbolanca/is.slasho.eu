@@ -1,0 +1,14 @@
+<sim:tmpl name="opt_news">
+					<sim:tmpl name="opt_news_content">	
+					<form id="newsIntroForm" name="newsIntroForm" action="index.php" method="POST" onSubmit="return submitFCKForm('newsIntroForm','intro','intro','news','saveintro');">
+						<input type="hidden" name="opt" value="news" />
+						<input type="hidden" name="act" value="saveintro" />
+						<input type="hidden" name="id" value="{ROW_ID}" />
+						<input type="hidden" name="langID" value="{ROW_LANGID}" />
+						<textarea name="intro" id="intro" style="width:320px;height:150px;">{ROW_INTRO}</textarea>
+							
+						
+						
+					</form>
+					</sim:tmpl>							
+</sim:tmpl>

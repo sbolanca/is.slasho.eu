@@ -1,0 +1,61 @@
+<sim:tmpl name="opt_mail">
+					<form id="mailSForm" name="mailSForm" action="admin.php" method="POST">
+						<input type="hidden" name="opt" value="mail" />
+						<input type="hidden" name="act" value="send" />
+						<input type="hidden" name="html" value="{ROW_HTML}" />
+						<input type="hidden" name="ids" id="smids" value="{IDS}" />
+						<table class="etbl" style="width:100%">
+						<tr>
+							<th >Broj korisnika za slanje:</th><td> <input id="ucntBtn" type="button" value="{CNT}" onClick="aCMCp({ROW_ID},'mail','users','ids='+$('#smids').val())"/></td>
+						
+						</tr>
+						<tr>
+							<th >Predložak:</th>
+							<td><select name="id" id="mTempSel" onChange="aCMCp($(this).val(),'mail','mail','ids='+$('#smids').val())">
+							<option value="0" >- bez predloška -</option>
+							<sim:tmpl name="opt_mail_t">
+								<option value="{ROW_ID}" {ROW_SEL}>{ROW_TITLE}</option>
+							</sim:tmpl>
+							</td>
+						</tr>
+						<tr>
+							<th >Reply to:</th>
+							<td><input id="emfrom" type="text" name="emfrom" value="{ROW_EMFROM}" size="30" />
+								<input type="button" value="{MYEMAIL}" onClick="$('#mailSForm #emfromname').val('{MYNAME}');$('#mailSForm #emfrom').val('{MYEMAIL}')"/>
+							</td>
+						</tr>
+						<tr>
+							<th >Naziv pošiljatelja:</th>
+							<td><input id="emfromname" type="text" name="emfromname" value="{ROW_EMFROMNAME}" size="30" />
+							</td>
+						</tr>
+						<tr>
+							<th >Naslov maila:</th>
+							<td><input type="text" id="subject" name="subject" value="{ROW_SUBJECT}" size="65" onClick="if(event.ctrlKey) aCMC(0,'mail','userfield','form=mailSForm&fld=subject&pos='+this.selectionStart);"/>
+							
+							</td>
+						</tr>
+						<tr>
+						
+						<tr>
+							<th colspan="2" style="text-align:left">Sadržaj mail poruke:</th>
+						</tr>
+						<tr>
+							<td colspan="2"><textarea name="body" id="body" style="width:100%;height:300px" onClick="if(event.ctrlKey) aCMC(0,'mail','userfield','form=mailSForm&fld=body&pos='+this.selectionStart);">{ROW_BODY}</textarea></td>
+							
+						
+						</tr>
+						<tr>
+							<th ><label for="chkhtml">HTML:</label></th>
+							<td><input type="checkbox" id="chkhtml" name="html" value="1" {CHKHTML1}/>
+							
+							</td>
+						</tr>
+						<tr>
+							<td ><input type="button" class="button" value="Pošalji testno na moju adresu" onClick="activateCMCommandPOST('mail','send','mailSForm','test=1');" /></td>
+
+						
+						<td align="right" > <input type="button" class="button" value="POŠALJI ODABRANIM KORISNICIMA!" onClick="canRefresh=false;activateCMCommandPOST('mail','send','mailSForm');" /></td></tr>
+						</table>
+					</form>
+</sim:tmpl>

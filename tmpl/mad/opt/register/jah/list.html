@@ -1,0 +1,27 @@
+<sim:tmpl name="opt_register">
+					<div id="_tmplist" style="width:500px;">
+					<table width="100%">
+					<tr><td>{_A_USER_L_ACT}</td>
+						<td>{_A_USER_L_UNAME}</td>
+						<td>{_A_USER_L_NAME}</td>
+						<td>{_A_USER_L_EMAIL}</td>
+						<td>{_A_USER_L_PHONE}</td>
+						<td>{_A_USER_L_COUNTRY}</td>
+						<td>{_A_USER_L_UEML}</td>
+						<td></td>
+					</tr>
+						<sim:tmpl name="opt_register_item">	
+						<tr id="us{ROW_ID}" class="usl" oncontextmenu="cCM({ROW_ID},CM_opt_reg_list,event);">
+							<td><img id="uim{ROW_ID}" src="images/act{ROW_ACTIVE}.gif" /></td>
+							<td><a href="index.php?opt=register&amp;id={ROW_ID}">{ROW_USERNAME}</a></td>
+							<td>{ROW_NAME}</td>
+							<td>{ROW_EMAIL}</td>
+							<td>{ROW_PHONE}</td>
+							<td>{ROW_COUNTRY}</td>
+							<td><img src="images/act{ROW_EMLCONTACT}.gif" /></td>
+							<td><a href="index.php?opt=property&amp;act=slist&amp;id={ROW_ID}"><img src="images/doc.gif" border="0" /></a>&nbsp;</td>
+
+						</sim:tmpl>
+					</table>			
+					</div>
+</sim:tmpl>

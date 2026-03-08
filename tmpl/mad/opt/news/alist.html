@@ -1,0 +1,19 @@
+<sim:tmpl name="opt_news">
+				<div id="contentlist" >
+			<sim:tmpl name="opt_news_contentlist" type="condition" conditionvar="count">	
+			<sim:sub condition="0"> 
+				<div ></div>
+			</sim:sub>		
+			
+			<sim:sub condition="default"> 
+				  <div class="nbox{ROW_PUBLISHED}" style="clear:both" {ROW_TAGID} {ROW_CM}>
+					<span class="nnns">{ROW_FULLDATE} :: {ROW_MENU}</span>										
+									<h2>{ROW_TITLE}</h2>
+									<img src="files/Image/{ROW_IMAGE}"/> {ROW_INTRO} 
+							<div class="cleaner"></div>
+					<div class="nar"><a href="index.php?opt=news&amp;id={ROW_ID}">{_MORE} »</a></div>
+					</div>	
+				 </sim:sub>		
+			 </sim:tmpl>
+</div>				
+</sim:tmpl>

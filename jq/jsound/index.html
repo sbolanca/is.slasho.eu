@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>JSound, a simple jQuery plugin for playing sounds on any html tag element </title>
+<script language="javascript" src="jquery18.js"></script>
+<script language="javascript" src="jsound.js"></script>
+
+<style type="text/css">
+body{ 
+	padding:24px; background-image:url(nat.jpg); background-repeat:no-repeat; background-size:100% 100%; 
+	background-attachment:fixed; color:#fff;
+	text-shadow:1px 1px 1px #000;
+}
+.button {
+	-moz-box-shadow:inset 0px 1px 0px 0px #357ab3;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #357ab3;
+	box-shadow:inset 0px 1px 0px 0px #357ab3;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #14569c), color-stop(1, #8cb2d4) );
+	background:-moz-linear-gradient( center top, #14569c 5%, #8cb2d4 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#14569c', endColorstr='#8cb2d4');
+	background-color:#14569c;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #cdcecf;
+	display:inline-block;
+	color:#f0f6ff;
+	font-family:arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 39px;
+	text-decoration:none;
+	text-shadow:2px 1px 3px #415863;
+}.button:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #8cb2d4), color-stop(1, #14569c) );
+	background:-moz-linear-gradient( center top, #8cb2d4 5%, #14569c 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#8cb2d4', endColorstr='#14569c');
+	background-color:#8cb2d4;
+}.button:active {
+	position:relative;
+	top:1px;
+}
+
+.code{ font-family:"Courier New", Courier, monospace; font-size:12px; color:#FF99FF; }
+.theElem { color:#FF9900; }
+input{ 
+	border:1px solid #3366CC;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+}
+input:focus{
+	border: 1px solid #949494;
+	-moz-box-shadow:
+		0px 1px 6px rgba(000,000,000,0.5),
+		inset 0px 0px 6px rgba(255,255,255,1);
+	-webkit-box-shadow:
+		0px 1px 6px rgba(000,000,000,0.5),
+		inset 0px 0px 6px rgba(255,255,255,1);
+	box-shadow:
+		0px 1px 6px rgba(000,000,000,0.5),
+		inset 0px 0px 6px rgba(255,255,255,1);
+	text-shadow:
+		0px -1px 0px rgba(000,000,000,0.2),
+		0px 1px 0px rgba(255,255,255,1);
+}
+
+.comment{ color:#666; }
+h2 {
+        color: #fff;
+        text-shadow: 0px 1px 0px #999, 0px 2px 0px #888, 0px 3px 0px #777, 0px 4px 0px #666, 0px 5px 0px #555, 0px 6px 0px #444, 0px 7px 0px #333, 0px 8px 7px #001135;
+        font: 40px 'ChunkFiveRegular';
+}
+
+</style>
+</head>
+
+<body>
+<h2>JSound, a simple jQuery plugin for playing sounds on any html tag element </h2>
+<p startSound="countryday" loopSound="true">&nbsp;</p>
+<p><a class="button" href="#" hoverSound="beep">hoverSound</a> <span class="code">&lt;a  href=&quot;#&quot; <span class="theElem">hoverSound=&quot;beep&quot;</span>&gt;hoverSound&lt;/a&gt;</span></p>
+<p><a class="button" href="#" leaveSound="select">leaveSound</a> <span class="code">&lt;a  href=&quot;#&quot; <span class="theElem">leaveSound=&quot;beep&quot;</span>&gt;hoverSound&lt;/a&gt;</span></p>
+<p><a class="button" href="#" clickSound="page">clickSound</a> <span class="code">&lt;a  href=&quot;#&quot; <span class="theElem">clickSound=&quot;beep&quot;</span>&gt;hoverSound&lt;/a&gt;</span></p>
+<p><a class="button" href="#" moveSound="rattle">moveSound</a> <span class="code">&lt;a  href=&quot;#&quot; <span class="theElem">moveSound=&quot;beep&quot;</span>&gt;hoverSound&lt;/a&gt;</span></p>
+<p><a class="button" href="#" hoverSound="beep" leaveSound="select" clickSound="page">hoverSound, leaveSound AND clickSound</a> <span class="code">&lt;a  href=&quot;#&quot; <span class="theElem">hoverSound=&quot;beep&quot; leaveSound=&quot;beep&quot; clickSound=&quot;beep&quot;</span>&gt;hoverSound&lt;/a&gt;</span></p>
+Add the tag elements, that should response:
+<p>
+  <input type="text" name="textfield" focusInSound="synth" focusOutSound="synth2" />
+<span class="code">&lt;input type=&quot;text&quot; name=&quot;textfield&quot; <span class="theElem">focusInSound=&quot;synth&quot; focusOutSound=&quot;synth2&quot;</span> /&gt;</span></p>
+
+To stop
+ all sounds call the function stopSounds()
+<p><a class="button" href="#" onclick="stopSounds();" hoverSound="beep">stop all sounds</a> <span class="code"> &lt;a class=&quot;button&quot; href=&quot;#&quot; <span class="theElem">onclick=&quot;stopSounds();&quot;</span>&gt;stop all sounds&lt;/a&gt;</span></p>
+
+<p>To use sound for all anchor tags in your page: Open asound.js, set the value of allElems variable to TRUE and define the file of aHover, aLeave or aClick</p>
+<p class="code">soundElem = 'a';<br />
+  allElems = true;<br />
+  aHover = 'myHoverSound';<br />
+  aLeave = 
+ 'myLeaveSound';<br />
+ aClick = 'myClickSound';</p>
+ <p>All Attributes for the specified elements:</p>
+ <ol class="theElem">
+   <li>startSound <span class="comment">// starts sound when page is complete loaded</span> </li>
+   <li>loopSound <span class="comment">// additional to startSound</span> </li>
+   <li>hoverSound </li>
+   <li>leaveSound</li>
+   <li>clickSound</li>
+   <li>moveSound</li>
+   <li>focusInSound</li>
+   <li>focusOutSound </li>
+ </ol>
+ <p align="center">JSound is produced by: <a href="http://havalite.com">Havalite CMS </a></p>
+</body>
+</html>

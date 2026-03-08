@@ -1,0 +1,31 @@
+<sim:tmpl name="opt_user"><div class="bgwhite">
+						<table id="astable" width="100%" class="itbl" style="margin-bottom:10px;width: 100%;table-layout: fixed; border-collapse: collapse;" cellpadding="0" cellspacing="0" {ONTABLOAD}>
+						<thead>
+						<tr style="display: block;position: relative;">
+							<th style="width:50px">#</th>
+							<th style="width:50px">ID</th>
+							<th style="width:250px">Naziv <input style="margin-left:50px" type="button" value="Prikaži {ALLTITLE}" onClick="aCMC(0,'user','izv-list','all={ALL}&year={YEAR}');"/></span></th>
+							<th style="width:100px;text-align:center">#uloga</th>
+							<th style="width:100px;text-align:center">Iznos</th>
+							<th style="width:130px;">PDF</th>
+							<th style="width:100px;">HTML</th>
+						</tr>
+						</thead>
+						<tbody  style="display: block; overflow: auto; height:486px;width:100%">
+						<sim:tmpl name="opt_user_u" type="simplecondition" requiredvars="ROW_ID">						
+						<tr class="{ROW_CLS}"  {ROW_CM} {ROW_TAGID}>
+							<td style="width:50px">{ROW_RBR}</td>
+							<td style="width:50px">{ROW_ID}</td>
+							<td style="width:250px">{ROW_NAME}</td>
+							<td style="width:100px;text-align:center">{ROW_CNT}</td>
+							<td style="width:100px;text-align:center">{ROW_IZNOS}</td>
+							<td id="pdf_{ROW_ID}" nxt="{ROW_NXT}" style="width:130px;" class="ptr red" onClick="aCMC({ROW_ID},'user','gizv-show',(event.ctrlKey?'&nxt={ROW_NXT}':''))" >{ROW_PDF}</td>
+							<td style="width:100px;" class="ptr green" onClick="new_tab('rplc2.php?id={ROW_ID}&scr=opt/user/video_izvjestaj_html')">HTML</td>
+							
+							
+						</tr>
+						</sim:tmpl>
+						</tbody>
+						</table>
+					</div>
+</sim:tmpl>	

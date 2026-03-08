@@ -1,0 +1,69 @@
+<sim:tmpl name="opt_log">
+
+	 <table  id="logtable" width="800">
+       <tr>
+         <td >Korisnik:</td>
+         <td><strong>{ROW_USER}</strong> {ROW_PARENTID}</td>
+       </tr>
+	   
+	    <tr>
+         <td >Vrijeme akcije:</td>
+         <td><strong>{ROW_CREATED}</strong></td>
+       </tr>
+	    <tr>
+         <td >Akcija:</td>
+         <td><strong>{ROW_TITLE}</strong></td>
+       </tr>
+	   <tr>
+         <td >Subjekt:</td>
+         <td><strong>{ROW_SUBJECT}</strong></td>
+       </tr>
+	   <tr>
+         <td >Index:</td>
+         <td><strong>{ROW_DBINDEX}</strong></td>
+       </tr>
+	    <tr>
+         <td >OPT:</td>
+         <td>{ROW_OPT}</td>
+       </tr>
+	    <tr>
+         <td >ACT:</td>
+         <td>{ROW_ACT}</td>
+       </tr>
+	   <tr>
+         <td >Path:</td>
+         <td>{ROW_ACTIONPATH}</td>
+       </tr>
+	    <tr>
+         <td >IP:</td>
+         <td>{ROW_IP}</td>
+       </tr>
+	   <sim:tmpl name="opt_log_det" type="simplecondition" requiredvars="opt_log.ROW_DETAILS" varscope="opt_log">
+	   <tr><td colspan="2" class="bld">Detalji:</td></tr>
+	   <tr>
+         <td colspan="2" style="background-color:#FFFFFF;">
+		 <div style="padding:6px 4px;width:788px;max-height:200px;overflow:auto;font-family:'Courier'">
+		 {ROW_DETAILS}
+		 </div>
+		 </td>
+       </tr>
+	   </sim:tmpl>
+	   <sim:tmpl name="opt_log_lc" type="simplecondition" requiredvars="opt_log_l.ROW_ID" varscope="opt_log_l">
+	   <tr><td colspan="2" class="bld">Pridružene akcije:</td></tr>
+	   <tr><td colspan="2" > <div style="width:796px;max-height:200px;overflow:auto">
+			<table width="100%" >
+			<sim:tmpl name="opt_log_l" type="simplecondition" requiredvars="ROW_ID">						
+						<tr class="own" {ROW_CM} {ROW_TAGID}>
+							<td >{ROW_TITLE}</td>
+							<td >{ROW_SUBJECT}</td>
+							<td >{ROW_SUBJECTID}</td>
+							
+						</tr>
+						</sim:tmpl>
+			</table></div>
+		</td></tr>
+     	</sim:tmpl>
+	  
+     </table>
+
+</sim:tmpl>

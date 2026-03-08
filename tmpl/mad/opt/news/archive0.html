@@ -1,0 +1,15 @@
+<sim:tmpl name="opt_news">
+				<div id="contenttext" class="ctxsimple">
+				<span class="nns">{_NEWS_ARCHIVE}</span>		
+				<h1>{TITLE}</h1>
+				<sim:tmpl name="opt_news_content" type="condition" conditionvar="ROW_N">
+					<sim:sub condition="default"> 
+						<div class="arh"><a href="index.php?opt=news&amp;act=archive&amp;year={ROW_YEAR}&amp;month={ROW_MON}&amp;id={ID}">{ROW_MONTH}</a></div>
+					</sim:sub>	
+					<sim:sub condition="1"> 
+						<div><a href="index.php?opt=news&amp;act=archive&amp;year={ROW_YEAR}&amp;id={ID}"><b>{ROW_YEAR}</b></a></div>
+						<div class="arh"><a href="index.php?opt=news&amp;act=archive&amp;year={ROW_YEAR}&amp;month={ROW_MON}&amp;id={ID}">{ROW_MONTH}</a></div>
+					</sim:sub>					
+				</sim:tmpl>
+				</div>				
+</sim:tmpl>

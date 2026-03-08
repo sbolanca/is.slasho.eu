@@ -1,0 +1,35 @@
+<sim:tmpl name="opt_user">
+
+	
+	<table width="100%" class="itbl" cellpadding="0" cellspacing="0" style="border:10px solid #eee;">
+	<tr >
+			<td class="sn">Naziv banke:</td>
+			<td class="sv">{ROW_NAZIV_BANKE}</td>
+		</tr>
+		<tr >
+			<td class="sn">IBAN:</td>
+			<td class="sv">{ROW_IBAN}</td>
+		</tr>
+		<tr >
+			<td class="sn">Porezni status:</td>
+			<td class="sv">
+				<div title="Upisan u Registar poreznih obveznika">
+					<input type="checkbox" {CHK1OZNAKA_POREZA} DISABLED> Registrirana djelatnost
+				</div>
+				<div title="Nema registriranu djelatnost">
+					<input type="checkbox" {CHK4OZNAKA_POREZA} DISABLED> Upisan u registar obveznika pdv-a
+				</div>
+				<div>
+					<input type="checkbox" {CHK2OZNAKA_POREZA} DISABLED> Ne vodi poslovne knjige
+				</div>
+			</td>
+		</tr>
+		
+	</table>
+	
+	
+
+
+       
+			
+</sim:tmpl>

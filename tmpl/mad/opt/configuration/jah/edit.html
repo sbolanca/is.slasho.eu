@@ -1,0 +1,30 @@
+<sim:tmpl name="opt_configuration">
+					<form id="confEditForm" name="confEditForm" action="admin.php" method="POST" onSubmit="activateCMCommandPOST('configuration','save','confEditForm');return false;">
+						<input type="hidden" name="opt" value="configuration" />
+						<input type="hidden" name="act" value="save" />
+						<input type="hidden" name="numeric" value="{NUMERIC}" />
+						<input type="hidden" name="decimal" value="{DECIMAL}" />
+						<input type="hidden" name="type" value="{ROW_TYPE}" />
+						<input type="hidden" name="execjs" value="{EXECJS}" />
+						<input type="hidden" name="condpageopt" value="{CONDPAGEOPT}" />
+						<table class="etbl" style="width:100%">
+						<tr>
+							<th >Tip:</th>
+							<td>{ROW_TYPE}
+							
+							</td>
+						</tr>
+						<tr>
+							<th >Vrijednost:</th>
+							<td><input class="{N} {D}" type="text" name="value" value="{ROW_VALUE}" size="{SIZE}" />
+							
+							</td>
+						</tr>
+						<tr>
+							<th ></th>
+
+						
+						<td ><input type="submit" class="button" value="SPREMI"  /></td></tr>
+						</table>
+					</form>
+</sim:tmpl>

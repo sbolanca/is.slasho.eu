@@ -1,0 +1,87 @@
+﻿<sim:tmpl name="opt_xls">
+						
+						<table  id="popupdescription" style="width:720px">
+						<tr>
+							<td align="right">Naziv:</td>
+							<td><strong>{ROW_NAZIV}</strong></td>
+							<td align="right">Datum prijave:</td>
+							<td class="{CLASS}">{ROW_UPLOADED}</td>
+						</tr>
+						<tr>
+							<td align="right">Izvođač:</td>
+							<td><strong>{ROW_IZVODJAC}</strong></td>
+							<td align="right">Prijavio:</td>
+							<td class="{CLASS}">{ROW_USER}</td>
+						</tr>
+						<tr>
+							<td align="right">Izdavač:</td>
+							<td><strong>{ROW_IZDAVAC}</strong></td>
+							<td align="right">Datum potvrde:</td>
+							<td  class="{CLASS}">{ROW_APPROVED}</td>
+						</tr>
+						<tr>
+							<td align="right">Žanr:</td>
+							<td><strong>{ROW_ZANR}</strong></td>
+							<td align="right">Potvrdio:</td>
+							<td class="{CLASS}">{ROW_APP_USER}</td>
+						</tr>
+						<tr>
+							<td align="right">Vrsta fonograma:</td>
+							<td><strong>{ROW_NOSAC}</strong></td>
+							<td align="right">Uvršteno u bazu:</td>
+							<td class="{CLASS}">{ROW_INSERTED}</td>
+						</tr>
+						<tr>
+							<td align="right">Šifra:</td>
+							<td><strong>{ROW_SIFRA}</strong></td>
+							<td align="right">Obradio:</td>
+							<td class="{CLASS}">{ROW_INS_USER}</td>
+						</tr>
+						<tr>
+							<td align="right">Barcode:</td>
+							<td><strong>{ROW_BARCODE}</strong></td>
+							<td align="right">Originalna XLS datoteka:</td>
+							<td class="{CLASS}"><a href="files/File/xls/{ROW_FILE}" target="_blank">{ROW_ORIGINAL_FILENAME}</a></td>
+						</tr>
+						<tr>
+							<td align="right">Kataloški broj:</td>
+							<td><strong>{ROW_KATBROJ}</strong></td>
+							<td></td>
+							<td>{WORKBUTTON}</td>
+						</tr>
+						<tr>
+							<td colspan="4">
+								<sim:tmpl name="opt_xls_table">
+				<div class="dlisth" {CM_TABLEHEADER} id="tblhead" style="color:#990000">
+					<div class="rn" >#</div>
+					<div style="width:200px" >Naziv djela</div>
+					<div style="width:180px" >Izvođač</div>
+					<div style="width:60px" >ISRC</div>
+					<div style="width:150px" >Autori</div>
+					<div style="width:45px" >Traj.</div>
+					<div style="width:30px" >God.</div>
+				</div>
+				<div style="height:444px; overflow:auto;">
+				<div class="dlist" id="lista_snimki">
+				<sim:tmpl name="opt_xls_r"  type="simpleCondition" requiredVars="ROW_ID">
+				<div {ROW_CM} {ROW_TAGID} class="tr{ROW_PAIR}0" >
+					<div class="rn" onClick="shd('xs_{ROW_ID}');">{ROW_RBR}</div>
+					<div style="width:200px">{ROW_NAZIV}</div>
+					<div style="width:180px">{ROW_IZVODJAC}</div>
+					<div style="width:60px">{ROW_ISRC}</div>
+					<div style="width:150px; color:#999999;">{ROW_AUTORI}</div>
+					<div style="width:45px;text-align:center">{ROW_TRAJANJE}</div>
+					<div style="width:30px;text-align:center">{ROW_GODINA}</div>
+				</div>
+				</sim:tmpl>
+				</div>
+				</div>
+				</sim:tmpl>
+							</td>
+						</tr>
+						
+							
+						</table>
+						
+
+</sim:tmpl>

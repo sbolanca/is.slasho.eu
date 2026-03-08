@@ -1,0 +1,27 @@
+﻿<sim:tmpl name="opt_user">
+						
+		<table id="itable" width="100%" class="itbl sml" cellpadding="0" cellspacing="0" {ONTABLOAD}>
+						<tbody>
+						<tr>
+							<th style="width:20px">#</th>
+							<th style="width:110px">Datum</th>
+							<th style="width:150px">Korisnik</th>
+							<th style="width:190px">Akcija</th>
+							<th style="width:450px">Subjekt</th>
+						</tr>
+						<sim:tmpl name="opt_user_l" type="simplecondition" requiredvars="ROW_ID">						
+						<tr class="{ROW_CLS}" {ROW_CM} {ROW_TAGID}>
+							<td >{ROW_RBR}.</td>
+							<td ><sim:var name="ROW_CREATED"   modifier="dateformat" format="%d.%m.%Y %H:%M"/></td>
+							<td >{ROW_USER}</td>
+							<td >{ROW_TITLE}</td>
+							<td >{ROW_SUBJECT}</td>
+							
+						</tr>
+						</sim:tmpl>
+						</tbody>
+						</table>
+						
+						
+
+</sim:tmpl>

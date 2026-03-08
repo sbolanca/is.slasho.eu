@@ -1,0 +1,58 @@
+<sim:tmpl name="opt_kategorijastavke">
+<table width="100%" height="100%" cellpadding="0" cellspacing="0">
+<tr>
+<td id="lijevo" class="panel">
+		{ACCORDIAN}
+	</td>
+	<td>
+		<table width="100%" height="100%" cellpadding="0" cellspacing="0">
+			<tr>
+				<td class="panel h1">
+					<table width="100%"><tr>
+					<td><h1 ><span id="title">{TITLE}</span> <span style="float:right;" class="sml"><input style="font-size:10px" type="button" value="Dodaj novu kategoriju stavke" onClick="aCMC(0,'kategorijastavke','edit','mode=new')"/></span></h1></td>
+					
+						<td><span class="xls" title="Download Excel" onClick="xls()"/></td>
+						
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr><td height="100%" oncontextmenu="cCM(0,'CM_opt_kategorijastavke_TBL',event)"><div id="gridbox" width="100%" height="100%" style="background-color:white;" ></div></td></tr>
+			<tr><td class="panel h1">
+				<div class="divleft">Pronađeno <strong><span id="cnt">{CNT}</span></strong> zapisa</div>
+				<div id="so_content" class="divleft so">{SEARCHOPTIONS}</div>
+				<div class="cleaner"></div>
+			</td></tr>
+		</table>
+	</td>
+</tr>
+</table>
+<script>
+
+
+
+	tbl_kategorijastavke = new dhtmlXGridObject('gridbox');
+	tbl_kategorijastavke.setImagePath("js/codebase/imgs/");
+	function Init_tbl_kategorijastavke(cnt) {
+		setHeaderTable("tbl_kategorijastavke");
+		tbl_kategorijastavke.setInitWidths(setTableCols("tbl_kategorijastavke","W"));
+		tbl_kategorijastavke.setColAlign(setTableCols("tbl_kategorijastavke","A"));
+		tbl_kategorijastavke.setColTypes(setTableCols("tbl_kategorijastavke","T"));
+	   // tbl_arh.enableDragAndDrop(true);
+		tbl_kategorijastavke.enableMultiselect(true);
+		tbl_kategorijastavke.attachEvent("onRightClick",kategorijastavke_cm);
+		tbl_kategorijastavke.attachEvent("onRowSelect",stdRowSelected);
+		tbl_kategorijastavke.init();
+
+		loadTable(tbl_kategorijastavke,"opt=kategorijastavke&act=list",cnt,true);
+		
+	}  
+	function kategorijastavke_cm(i,c,e) {doOnTblCM(i,c,e,tbl_kategorijastavke,'CM_opt_kategorijastavke_list'); }	
+	Init_tbl_kategorijastavke({CNT});
+
+
+
+</script>
+			
+
+</sim:tmpl>

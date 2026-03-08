@@ -1,0 +1,26 @@
+<sim:tmpl name="opt_news">
+	<div id="homeord">
+					<sim:tmpl name="opt_news_content" type="condition" conditionvar="row_image">	
+					<sim:sub condition="blank.jpg">
+					<div class="ho{ROW_CT}{ROW_PUBLISHED}" {ROW_CM} {ROW_TAGID}>
+						<div class="hot">
+							<span class="nnns">{ROW_FULLDATE} :: {ROW_MENU}</span><br/>
+						{ROW_TITLE}
+						</div>
+						<div class="cleaner"></div>
+					</div>
+					</sim:sub>
+					<sim:sub condition="default">
+					<div class="ho{ROW_CT}{ROW_PUBLISHED}" {ROW_CM} {ROW_TAGID}>
+						<div class="hot">
+							<span class="nnns">{ROW_FULLDATE} :: {ROW_MENU}</span><br/>
+						{ROW_TITLE}
+						</div>
+						<img src="files/Image/{ROW_IMAGE}" />
+						<div class="cleaner"></div>
+					</div>
+
+					</sim:sub>
+					</sim:tmpl>	
+	</div>						
+</sim:tmpl>

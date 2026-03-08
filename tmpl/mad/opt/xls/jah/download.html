@@ -1,0 +1,33 @@
+﻿<sim:tmpl name="opt_xls">
+				<form id="sfForm" name="sfForm" action="{SCRIPT}" method="POST" target="ifrm" style="padding:0;margin:0" onSubmit="hideStandardPopup('editbox');">
+						<input type="hidden" name="cnt" value="{CNT}" />
+						<input type="hidden" name="pagetype" value="{PAGETYPE}" />
+						<input type="hidden" name="sql" value="{SQL}" />
+						<input type="hidden" name="title" value="{TITLE}" />
+						<input type="hidden" name="filename" value="{FILENAME}" />
+						<input type="hidden" name="diskografID" value="{DISKOGRAFID}" />
+						<input type="hidden" name="myID" value="{MYID}" />
+						<table  id="popupdescription" style="width:400px">
+						<tr><td colspan="2">
+						<div id="sukforum" style="height:200px;overflow:auto;"><table>
+						
+						<sim:tmpl name="opt_xls_o" type="condition" conditionvar="PAGES">
+						<sim:sub condition="1">
+						<tr>
+							<td align="right"><input type="hidden" name="rbr" value="0" /></td>
+							<td>{TITLE}</td>
+						</tr></sim:sub>	
+						<sim:sub condition="default">
+						<tr>
+							<td align="right"><input type="radio" name="rbr" value="{R_RBR}" id="rbr{R_RBR}" {R_SELECTED}/></td>
+							<td><label for="rbr{R_RBR}">{R_TITLE}</label></td>
+						</tr></sim:sub>	
+						</sim:tmpl>
+						</table></div>
+						</td></tr>
+						<tr><td></td><td height="30"><input type="submit" value="Download"/></td></tr>
+						</table>
+						
+				</form>
+
+</sim:tmpl>

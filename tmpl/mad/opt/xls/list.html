@@ -1,0 +1,82 @@
+<sim:tmpl name="opt_xls">
+<table width="100%" height="100%" cellpadding="0" cellspacing="0">
+<tr><td ><h1 id="panelh1">{TITLE} {ALPHA}<span id="xls"><img src="/images/xlsup.gif" alt="Upload Excel datoteke" 
+onClick="if (workDiskograf) activateCMCommand('xls','upl-form')"/></span></h1>
+<form style="margin:0;padding:0" action="index.php?opt=xls&act=search" method="POST">
+<table id="panelh1" width="100%"><tr>
+	<td width="120">Pronađeno <strong>{CNT}</strong> zapisa</td>
+	<td width="50" align="right">album:</td>
+	<td width="130"><input class="sinput2"  style="width:130px" name="album" value="{ALBUM}"/></td>
+	<td width="50" align="right">izvođač:</td>
+	<td  width="130"><input class="sinput2" style="width:130px" name="izvodjac" value="{IZVODJAC}"/></td>
+	<td width="55" align="right">diskograf:</td>
+	<td width="130"><select name="diskografID"  class="sinput2" style="width:130px;" {DIS}>
+	<option value="0">--- svi diskografi ---</option>
+		<sim:tmpl name="opt_xls_do">
+						<option value="{OPTD_VALUE}" {OPTD_SEL}>{OPTD_TEXT}</option>
+						</sim:tmpl>
+	</select></td>
+	<td width="50" align="right">korisnik:</td>
+	
+	<td width="130"><select name="userID"  class="sinput2" style="width:130px;" {DIS}>
+	<option value="0">--- svi korisnici ---</option>
+		<sim:tmpl name="opt_xls_uo">
+						<option value="{OPTU_VALUE}" {OPTU_SEL}>{OPTU_TEXT}</option>
+						</sim:tmpl>
+	</select></td>
+	
+	<td><input class="sinput2" style="width:40px" type="submit" value="traži"/></td>
+</tr></table>
+<div id="panelh1">
+<table width="100%" cellspacing="0"><tr>
+	<td width="10" style="background-color:#fff" align="right"><input type="checkbox" id="flt0" name="filter[]" value="0" {SELF0}/></td>
+	<td width="200" style="background-color:#fff" ><label for="flt0">Nove prijave (nepotvrđene, u pripremi)</label></td>
+	<td width="10" class="sukob" align="right"><input type="checkbox" id="flt1" name="filter[]" value="1" {SELF1}/></td>
+	<td width="200" class="sukob" ><label for="flt1">Potvrđene prijave (prijava je poslana)</label></td>
+	<td width="10" class="my" align="right"><input type="checkbox" id="flt2" name="filter[]" value="2" {SELF2}/></td>
+	<td width="220" class="my" ><label for="flt2">Importirane prijave (podaci su registrirani)</label></td>
+	<td width="10" class="mysukob" align="right"><input type="checkbox" id="flt3" name="filter[]" value="3" {SELF3}/></td>
+	<td width="200" class="mysukob" ><label for="flt3">Obrađene prijave (spajanje završeno)</label></td>
+	<td></td>
+	</tr></table>
+</div></form>
+</td></tr>
+<tr><td height="100%"><div id="gridbox" width="100%" height="100%" style="background-color:white;"></div></td></tr>
+<tr><td  style="height:12px;padding:0;" id="panelh1"><table id="alphanum"><tr>
+<sim:tmpl name="opt_xls_alphanum">
+<td><a href="{A_LINK}">{A_ALPHA}</a></td></sim:tmpl>
+</tr></table></td></tr>
+
+</table>
+<script>
+
+
+
+	tbl_xls = new dhtmlXGridObject('gridbox');
+	tbl_xls.setImagePath("js/codebase/imgs/");
+	tbl_xls.setHeader("Šifra,Naziv,Izvođač,Prijavio,Diskograf,Datum prijave,Br.dj.");
+	tbl_xls.setInitWidths("40,300,200,90,150,100,40");
+	tbl_xls.setColAlign("left,left,left,left,left,center,center");
+	if (isSuper) tbl_xls.setColTypes("ro,ed,ed,ro,ro,ro,ro");
+	else tbl_xls.setColTypes("ro,ro,ro,ro,ro,ro,ro");
+	tbl_xls.setColSorting("str,str,str,str,str,str,int");
+	//tbl_xls.setColumnColor("#fff0ff,#fff0ff,#fff0ff,#fff0ff,#fff0ff,#fff0ff");
+    
+	if (isAdmin) tbl_xls.setOnRightClick(xls_cm);
+	tbl_xls.setOnRowSelectHandler(stdRowSelected);
+	if (isSuper) tbl_xls.setOnEditCellHandler(tbl_xlsEdit);
+	//tbl_snimka.setSkin('light'); 
+	
+	
+	
+	tbl_xls.init();
+   // tbl_xls.enableSmartRendering(true,{CNT});
+    
+	{LOADTABLEDATA}
+	
+
+
+</script>
+			
+
+</sim:tmpl>

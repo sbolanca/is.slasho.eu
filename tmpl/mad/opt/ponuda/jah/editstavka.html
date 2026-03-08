@@ -1,0 +1,60 @@
+<sim:tmpl name="opt_ponuda">
+				<form id="ponudaStavkaForm" name="ponudaStavkaForm" action="index.php" method="POST">
+						<input type="hidden" name="opt" value="ponuda" />
+						<input type="hidden" name="act" value="stv-save" />
+						<input type="hidden" name="id" value="{ROW_ID}" />
+						<input type="hidden" name="ponudaID" value="{ROW_PONUDAID}" />
+						<table class="etbl" style="width:100%">					
+						
+						<tr>
+							<th style="width:150px">Redni broj:</th>
+							<td ><input class="numeric" style="width:35px;text-align:center" name="ordering" value="{ROW_ORDERING}" /></td>
+						</tr>
+						<tr>
+							<th>Opis:</th>
+							<td ><textarea name="opis" style="width:100%;height:75px">{ROW_OPIS}</textarea></td>
+						</tr>
+						<tr>
+							<th>Mjera:</th>
+							<td ><input  style="text-align:center;width:50px" name="mjera" value="{ROW_MJERA}" size="5"/></td>
+						</tr>
+						<tr>
+							<th>Količina:</th>
+							<td><input id="rsi_k" style="text-align:center;width:50px" class="decimal" name="kolicina" value="{ROW_KOLICINA}" onChange="calcStavka('ponudaStavkaForm')"/></td>
+						</tr>
+						<tr>
+						<tr>
+							<th>Stopa PDV:</th>
+							<td ><input id="rsi_s" class="numeric" style="text-align:center;width:50px" name="stopa_pdv" value="{ROW_STOPA_PDV}" onChange="calcStavka('ponudaStavkaForm')"/> %</td>
+						</tr>
+						<tr>
+							<th>Jedinična cijena:</th>
+							<td ><input id="rsi_c" class="decimal" style="text-align:right;width:100px" name="cijena" value="{ROW_CIJENA}" onChange="calcStavka('ponudaStavkaForm')"/> €</td>
+						</tr>
+						<tr>
+							<th>Popust:</th>
+							<td ><input id="rsi_p" style="text-align:center;width:50px" class="numeric" name="popust" value="{ROW_POPUST}" onChange="calcStavka('ponudaStavkaForm')"/> %</td>
+						</tr>
+						<tr>
+							<th>Osnovica (€):</th>
+							<td style="font-weight:bold;color:red" id="rso">{ROW_OSNOVICA}</td>
+						</tr>
+						<tr>
+							<th>PDV (€):</th>
+							<td style="font-weight:bold;color:red" id="rsp">{ROW_PDV}</td>
+						</tr>
+						<tr>
+							<th>Iznos (€):</th>
+							<td style="font-weight:bold;color:red" id="rsi">{ROW_IZNOS}</td>
+						</tr>
+
+						
+						
+						
+						<tr>
+							<th></th>
+							<th style="text-align:right"><input type="button" class="button" value="Spremi"  onClick="activateCMCommandPOST('ponuda','stv-save','ponudaStavkaForm');"/></th>
+						</tr>
+						</table>
+					</form>
+</sim:tmpl>

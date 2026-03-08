@@ -1,0 +1,24 @@
+<sim:tmpl name="opt_content">
+					<sim:tmpl name="opt_content_gallery">
+					<div id="gallery">
+						<sim:tmpl name="opt_content_gallery_item">
+						<div class="gitem"><img  width="129" src="files/Image/{GROW_IMAGE}"/></div>
+						</sim:tmpl>
+					</div>
+					</sim:tmpl>
+					<div id="contenttext" class="ctxphoto">
+					<sim:tmpl name="opt_content_content">	
+					<form id="contentForm" name="contentForm" action="index.php" method="POST" onSubmit="return submitFCKForm('contentForm','content','cont','content','save');">
+						<input type="hidden" name="opt" value="content" />
+						<input type="hidden" name="act" value="save" />
+						<input type="hidden" name="id" value="{ROW_ID}" />
+						<input type="hidden" name="langID" value="{ROW_LANGID}" />
+						<input type="hidden" name="galleryID" value="{ROW_GALLERYID}" />
+						<input type="text" name="title" value="{ROW_TITLE}"  size="50"/><br/>
+						<input type="text" name="menu" value="{ROW_MENU}"/> (heading alias)<br/>
+						<textarea name="content" id="cont" >{ROW_CONTENT}</textarea><br/>
+						<input type="button" class="button" value="submit"  />
+					</form>
+					</sim:tmpl>							
+					</div>
+</sim:tmpl>

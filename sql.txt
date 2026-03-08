@@ -1,0 +1,6 @@
+SELECT s.*, k.naziv as kategorija,t.naziv as tip
+ FROM stavka as s  
+ LEFT JOIN kategorijastavke AS k ON k.id=s.kategorijaID 
+ LEFT JOIN tipstavke AS t ON t.id=s.tipID 
+ GROUP BY s.id  ORDER BY k.naziv,s.id 
+ LIMIT 0,100

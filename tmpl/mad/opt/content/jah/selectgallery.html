@@ -1,0 +1,24 @@
+<sim:tmpl name="opt_content">
+					<sim:tmpl name="opt_content_gallery">	
+					<form id="contentGalleryForm" name="contentGalleryForm" action="index.php" method="POST">
+						<input type="hidden" name="opt" value="content" />
+						<input type="hidden" name="act" value="setgallery" />
+						<input type="hidden" name="id" value="{CONTENTID}" />
+						<div id="_tmpgallerylist" style="width:320px;">
+						<div style="float:left; width:180px;">
+						<select name="galleryID" size="20" style="width:180px;"
+							onChange="g_Send('opt=content&act=getgalleryexample&id='+document.contentGalleryForm.galleryID.options[document.contentGalleryForm.galleryID.selectedIndex].value);">
+							<sim:tmpl name="opt_content_gallery_option">	
+							<option value="{ROW_ID}" {ROW_SELECTED}>{ROW_TITLE}</option>
+							</sim:tmpl>		
+							</select>
+							<input type="button" class="button" value="submit" onClick="activateCMCommandPOST('content','setgallery','contentGalleryForm');" /> 		
+						</div>
+						<div id="_galleryexample" style="width:130px; height:250px; float:right; overflow:auto;" >
+							</div>
+						
+						</div>
+						
+					</form>
+					</sim:tmpl>							
+</sim:tmpl>

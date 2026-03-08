@@ -1,0 +1,24 @@
+﻿<sim:tmpl name="opt_xls">
+				<form id="sfForm" name="sfForm" action="index.php?opt=xls&act=upload" method="POST"  enctype="multipart/form-data">
+						<input type="hidden" name="diskografID" value="{DISKOGRAFID}" />
+						<input type="hidden" name="myID" value="{MYID}" />
+						
+						
+						<table  id="popupdescription" style="width:500px">
+						<tr>
+							<td align="right">Tip Excel datoteke</td>
+							<td><select name="typeID">
+							<sim:tmpl name="opt_xls_t">
+							<option value="{ROW_ID}">{ROW_TITLE}</option>
+							</sim:tmpl>
+							</select></td>
+						</tr>
+						<tr><td  align="right">Datoteka:</td>
+						<td><input type="file" name="xlsfile" size="40"/></td>
+						</tr>
+						<tr><td></td><td height="30"><input type="submit" value="Upload"/></td></tr>
+						</table>
+						
+				</form>
+
+</sim:tmpl>

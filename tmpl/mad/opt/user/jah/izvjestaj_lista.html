@@ -1,0 +1,35 @@
+<sim:tmpl name="opt_user"><div class="bgwhite">
+						<table id="astable" width="100%" class="itbl" style="margin-bottom:10px;width: 100%;table-layout: fixed; border-collapse: collapse;" cellpadding="0" cellspacing="0" {ONTABLOAD}>
+						<thead>
+						<tr style="display: block;position: relative;">
+							<th style="width:50px">#</th>
+							<th style="width:50px">ID</th>
+							<th style="width:220px">Naziv 
+								<input style="float:right" type="button" value="Prikaži {ALLTITLE}" oncontextmenu="cCM(0,'CM_opt_user_pdflist',event)" onClick="aCMC(0,'user','izv-list','all={ALL}&year={YEAR}');"/>
+							</th>
+							<th style="width:100px;text-align:center">Zapisa</th>
+							<th style="width:100px;text-align:right">Iznos</th>
+							<th style="width:100px;text-align:right">Netto</th>
+							<th style="width:110px;">PDF</th>
+							<th style="width:50px;">HTML</th>
+						</tr>
+						</thead>
+						<tbody  style="display: block; overflow: auto; height:486px;width:100%">
+						<sim:tmpl name="opt_user_u" type="simplecondition" requiredvars="ROW_ID">						
+						<tr class="{ROW_CLS} ovr"  {ROW_CM} {ROW_TAGID} id="ril_{ROW_ID}">
+							<td style="width:50px">{ROW_RBR}</td>
+							<td style="width:50px">{ROW_ID}</td>
+							<td style="width:220px">{ROW_NAME}</td>
+							<td style="width:100px;text-align:center">{ROW_CNT}</td>
+							<td style="width:100px;text-align:right">{ROW_IZNOS}</td>
+							<td style="width:100px;text-align:right">{ROW_NETTO}</td>
+							<td id="pdf_{ROW_ID}" nxt="{ROW_NXT}" style="width:110px;" class="ptr red"  onClick="aCMC({ROW_ID},'user','izv-show','year={YEAR}'+(event.ctrlKey?'&nxt={ROW_NXT}':''))" >{ROW_PDF}</td>
+							<td style="width:50px;" class="ptr green" onClick="$('#ril_{ROW_ID}').addClass('my');new_tab('rplc2.php?id={ROW_ID}&year={YEAR}&scr=opt/user/izvjestaj_html')">HTML</td>
+							
+							
+						</tr>
+						</sim:tmpl>
+						</tbody>
+						</table>
+					</div>
+</sim:tmpl>	

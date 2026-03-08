@@ -1,0 +1,65 @@
+<sim:tmpl name="opt_register">
+<div id="contenttext" >		
+<h1>MOJ PROFIL</h1>
+	<form action="index.php" method="post" name="reg_form" id="reg_form">
+	 <input type="hidden" name="opt" value="register"/>
+	 <input type="hidden" name="act" value="save"/>
+	 <input type="hidden" name="id" value="{ROW_ID}"/>
+     <table id="rez" width="100%">
+       <tr>
+         <td width="150">{_USER_NAME}</td>
+         <td><input type="text" name="name" value="{ROW_NAME}"/></td>
+       </tr>
+	    <tr>
+         <td>{_USER_EMAIL}</td>
+         <td><input type="text" name="email" value="{ROW_EMAIL}"/></td>
+       </tr>
+	    <tr>
+         <td>{_USER_PHONE}</td>
+         <td><input type="text" name="phone" value="{ROW_PHONE}"/></td>
+       </tr>
+		<tr><td colspan="2" class="hr"></td></tr>
+	    
+     	<tr>
+         <td>{_USER_USERNAME}</td>
+         <td><input type="text" name="username" value="{ROW_USERNAME}"/></td>
+       </tr>
+     	<tr>
+         <td>{_USER_PASSWORD}</td>
+         <td><input type="password" name="password" /></td>
+       </tr>
+       <tr>
+         <td>{_USER_PASSWORD_COMFIRM}</td>
+         <td><input type="password" name="passwordc" /> </td>
+       </tr>
+	   <tr><td colspan="2" class="hr"></td></tr>
+	    <tr>
+         <td>Starost aktualnih podataka</td>
+         <td><input name="aktualno"  value="{ROW_AKTUALNO}" size="5"/> dana</td>
+       </tr>
+	    <tr>
+         <td>Učestalost slanja obavijesti</td>
+           <td><select name="mailfreq" >
+		 <option value="hourly">svaki sat</option>
+		 <option value="daily" {SELFDAILY}>dnevno</option>
+		 <option value="twoweekly" {SELFTWOWEEKLY}>dva puta tjedno</option>
+		 <option value="weekly" {SELFWEEKLY}>tjedno</option>
+		 <option value="monthly" {SELFMONTHLY}>mjesečno</option>
+		 <option value="nomail" {SELFNOMAIL}>- ne primam obavjesti -</option></select></td>
+       </tr>
+	    <tr>
+         <td>Boje:</td>
+         <td><select name="colorset" >
+		 <option value="">nenametljive</option>
+		 <option value="strong" {SELSTRONG}>srednje jake</option>
+		 <option value="daltonist" {SELDALTONIST}>intenzivne</option></select></td>
+       </tr>
+	   <tr><td colspan="2" class="hr"></td></tr>
+        <tr>
+         <td></td>
+         <td><input type="button" value="SPREMI" class="sbmt" onClick="testRegForm()"/></td>
+       </tr>
+     </table>
+        </form>
+	</div>
+</sim:tmpl>

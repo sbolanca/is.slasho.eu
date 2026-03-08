@@ -1,0 +1,36 @@
+<sim:tmpl name="opt_news">
+ <div id="contenttext"  {CM_GROUP}>							
+					<sim:tmpl name="opt_news_content">
+					<h1>[{ROW_TITLE}]</h1>
+						{ROW_DESCRIPTION}
+					</sim:tmpl>					
+	</div>
+	<div id="contentlist" >
+			<sim:tmpl name="opt_news_contentlist" type="condition" conditionvar="count">	
+			<sim:sub condition="0"> 
+				<div {NEWS_EMPTY}>>Dodaj novo</div>
+			</sim:sub>		
+			
+			<sim:sub condition="default"> 
+				
+				  
+				  <div class="nbox" {ROW_TAGID} {ROW_CM}>
+						<div class="ncm" >
+							<div class="nimg"><div>{ROW_FULLDATE}</div>
+							<img src="files/Image/{ROW_IMAGE}"/></div>
+							<div class="nc">
+								<span class="nnns">{ROW_MENU}</span>								
+								<h2>{ROW_TITLE}</h2>
+								{ROW_INTRO} 
+							</div>
+							<div class="cleaner"></div>
+						</div>
+						<div class="nar"><a href="index.php?opt=news&amp;id={ROW_ID}">{_MORE} »</a></div>
+					</div>
+					<div class="cleaner"></div>
+				  
+				 </sim:sub>		
+			 </sim:tmpl>
+</div>				
+</sim:tmpl>
+

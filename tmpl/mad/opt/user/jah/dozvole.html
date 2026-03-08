@@ -1,0 +1,31 @@
+<sim:tmpl name="opt_user">
+
+	<form id="userPForm" name="userPForm" action="index.php" method="POST">
+	 <input type="hidden" name="opt" value="user"/>
+	 <input type="hidden" name="act" value="dozvolesave"/>
+	 <input type="hidden" name="id" value="{ROW_ID}"/>
+ 	 <input type="hidden" name="username" value="{ROW_USERNAME}"/>
+	 <div id="popupdescription" style="width:300px;height:300px;overflow:auto">
+     <table   width="250">
+       <sim:tmpl name="opt_user_p" type="simplecondition" requiredvars="ROW_OPT">
+	   <tr>
+         <td >{ROW_OPT}</td>
+         <td><select name="o_{ROW_OPT}">
+				<option value=""></option>
+				<option value="view" {ROW_VIEW}>view</option>
+				<option value="edit" {ROW_EDIT}>edit</option>
+			</select>
+		 </td>
+       </tr>
+	   </sim:tmpl>
+	   <tr><td colspan="2" class="hr"></td></tr>
+        <tr>
+         <td></td>
+         <td><input type="button" value="Spremi" onClick="activateCMCommandPOST('user','dozvolesave','userPForm');"/></td>
+       </tr>
+	   <tr><td>&nbsp;</td></tr>
+     </table>
+	 </div>
+        </form>
+
+</sim:tmpl>

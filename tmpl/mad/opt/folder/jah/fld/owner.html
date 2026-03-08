@@ -1,0 +1,23 @@
+<sim:tmpl name="opt_folder">
+					
+					<form id="folderOForm" name="folderOForm" action="index.php" method="POST">
+						<input type="hidden" name="opt" value="{FOPT}" />
+						<input type="hidden" name="act" value="fld-ownersave" />
+						<input type="hidden" name="id" value="{ROW_ID}" />
+						<table id="popupdescription" style="font-size:10px;width:400px">
+						<tr><td colspan="3"><div style="height:400px;overflow:auto;background-color:#eee"><table width="100%">
+						<sim:tmpl name="opt_folder_item" type="simplecondition" requiredvars="ROW_ID">						
+						<tr>
+							<td align="right" width="10"><input type="radio" id="or_{ROW_ID}" name="userID" value="{ROW_ID}" {ROW_SEL}/></td>
+							<td ><label for="or_{ROW_ID}" >{ROW_NAME}</label></td>
+						</tr>
+						</sim:tmpl></table></div></td></tr>
+						<tr><td></td>
+						<td align="right"><input type="button" value="Spremi" onClick="activateCMCommandPOST('{FOPT}','fld-ownersave','folderOForm');"/>&nbsp;&nbsp;</td>
+						</tr>
+						<tr><td >&nbsp;</td></tr>
+						</table>
+						
+					</form>
+									
+</sim:tmpl>

@@ -1,0 +1,25 @@
+<sim:tmpl name="fld_rad" type="condition" conditionvar="fld_size">
+<sim:sub condition="1"> 
+						<tr >
+							<td class="a_bd" nowrap colspan="2"><b>{FLD_TITLE}:</b></td>
+							<td class="a_bd" align="right"><img src="images/help.gif" onMouseOver="showHelp('{FLD_COMMENT}',event);" onMouseOut="hideHelp();"/></td>
+						</tr>
+						<sim:tmpl name="fld_rad_option1">
+					<tr>
+					<td align="right"><input type="radio" id="RAD{OPT_NAME}_{OPT_VALUE}" name="RAD{OPT_NAME}" value="{OPT_VALUE}" {OPT_SEL}/></td>
+					<td colspan="2"><label for="RAD{OPT_NAME}_{OPT_VALUE}">{OPT_TEXT}</label></td>
+						</tr>	
+					</sim:tmpl>	
+</sim:sub>
+<sim:sub condition="default">		
+						<tr>
+							<td class="a_bd" nowrap colspan="2"><b>{FLD_TITLE}:</b></td>
+							<td class="a_bd"  align="right"><img src="images/help.gif" onMouseOver="showHelp('{FLD_COMMENT}',event);" onMouseOut="hideHelp();"/></td>
+						</tr>
+						
+					<tr >
+					<td colspan="3"><sim:tmpl name="fld_rad_option0"><div nowrap class="a_chck"><label for="RAD{OPT_NAME}_{OPT_VALUE}"><input type="radio" id="RAD{OPT_NAME}_{OPT_VALUE}" name="RAD{OPT_NAME}" value="{OPT_VALUE}" {OPT_SEL}/>
+					{OPT_TEXT}</label></div></sim:tmpl></td>
+						</tr>													
+</sim:sub>
+</sim:tmpl>

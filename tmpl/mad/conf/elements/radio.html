@@ -1,0 +1,26 @@
+<sim:tmpl name="conf_radio_v">
+						<tr>
+							<td valign="top" align="right" style="padding-top:5px">{CONF_LABEL}</td>
+							<td><table>
+							<sim:tmpl name="conf_radio_option_v"><tr><td align="right">
+							<input type="radio" id="rad_{OPT_NAME}_{OPT_VALUE}" name="{OPT_NAME}" value="{OPT_VALUE}" {OPT_SEL} ondblclick="this.checked=false"/></td> 
+					<td><label for="rad_{OPT_NAME}_{OPT_VALUE}">{OPT_TEXT}</label>&nbsp;</td></tr>
+					</sim:tmpl></table></td>
+					<td valign="top" ><img src="/images/help.gif" onMouseOver="showHelp('{CONF_DESCRIPTION}',event);" onMouseOut="hideHelp();"/></td>
+
+						</tr>	
+																	
+</sim:tmpl>
+<sim:tmpl name="conf_radio_h">
+						<tr>
+							<td align="right">{CONF_LABEL}</td>
+							<td><table><tr>
+							<sim:tmpl name="conf_radio_option_h"><td align="right">
+							<input type="radio" id="rad_{OPT_NAME}_{OPT_VALUE}" name="{OPT_NAME}" value="{OPT_VALUE}" {OPT_SEL} ondblclick="this.checked=false"//></td> 
+					<td><label for="rad_{OPT_NAME}_{OPT_VALUE}">{OPT_TEXT}</label>&nbsp;</td>
+					</sim:tmpl></tr></table></td>
+					<td><img src="/images/help.gif" onMouseOver="showHelp('{CONF_DESCRIPTION}',event);" onMouseOut="hideHelp();"/></td>
+
+						</tr>	
+														
+</sim:tmpl>

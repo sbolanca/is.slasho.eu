@@ -1,0 +1,23 @@
+<sim:tmpl name="conf_radio_v">
+						<tr>
+							<td align="right">{CONF_LABEL}</td><td></td>
+						</tr>
+						<sim:tmpl name="conf_radio_option_v">
+					<tr>
+					<td align="right"><input type="radio" name="{OPT_NAME}" value="{OPT_VALUE}" {OPT_SEL}/></td>
+					<td>{OPT_TEXT}</td>
+						</tr>	
+					</sim:tmpl>
+																	
+</sim:tmpl>
+<sim:tmpl name="conf_radio_h">
+						<tr>
+							<td align="right">{CONF_LABEL}</td>
+							<td>
+							<sim:tmpl name="conf_radio_option_h">
+							<input type="radio" name="{OPT_NAME}" value="{OPT_VALUE}" {OPT_SEL}/> 
+					{OPT_TEXT}
+					</sim:tmpl></td>
+						</tr>	
+														
+</sim:tmpl>

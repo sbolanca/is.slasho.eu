@@ -1,0 +1,66 @@
+<sim:tmpl name="opt_log">
+
+	 <div  id="optact" style="width:415px;height:400px;">
+       <ul style="width:370px;height:450px;overflow:auto;padding:10px 0" id="optactul">
+		   <li><strong onClick="logOA('login')">LOGIN</strong>
+		   		<ul>
+					<li onClick="logOA('login|ok')">Uspjeli login</li>
+					<li onClick="logOA('login|failed')">Neuspjeli login</li>
+					<li onClick="logOA('login|logout')">Logout</li>
+				</ul>
+		   </li>
+		   <li><strong onClick="logOA('album')">ALBUMI</strong>
+		   		<ul>
+					<li onClick="logOA('album|alb-saveintro')">Izmjena albuma</li>
+					<li onClick="logOA('album|download')">XLS download liste albuma</li>
+				</ul>
+		   </li>
+		   <li><strong onClick="logOA('snimka')">SNIMKE</strong>
+		   		<ul>
+					<li onClick="logOA('snimka|sni-showforum')">Pregled snimke</li>
+					<li onClick="logOA('snimka|sni-sukob')">Prijava sukoba</li>
+					<li onClick="logOA('snimka|sni-sukobcancel')">Otkazivanje sukoba</li>
+					<li onClick="logOA('snimka|sni-mark')">Označavanje vlasništva nad snimkom</li>
+					<li onClick="logOA('snimka|sni-resetowner')">Otkazivanje vlasništva nad snimkom</li>
+					<li onClick="logOA('snimka|sni-mergego')">Spajanje snimki</li>
+					<li onClick="logOA('snimka|download')">XLS download liste snimki</li>
+				</ul>
+		   </li>
+		   <li><strong onClick="logOA('zahtjev')">ZAHTJEVI</strong>
+		   		<ul>
+					<li onClick="logOA('zahtjev|view')">Pregled zahtjeva</li>
+					<li onClick="logOA('zahtjev|zah-del')">Zahtjev za brisanjem snimke</li>
+					<li onClick="logOA('zahtjev|zah-editsave')">Zahtjev za izmjenom snimke</li>
+					<li onClick="logOA('zahtjev|zah-join')">Dodavanje snimke u zahtjev za spajanjem</li>
+					<li onClick="logOA('zahtjev|zah-newjoin')">Novi zahtjev za spajanjem</li>
+					<li onClick="logOA('zahtjev|save')">Opći zahtjev</li>
+					<li onClick="logOA('zahtjev|delete')">Brisanje zahtjeva</li>
+					<li onClick="logOA('zahtjev|status')">Prijava / odgovor / arhiviranje zahtjeva</li>
+					<li onClick="logOA('zahtjev|addmsg')">Upis poruke u zahtjev</li>
+				</ul>
+		   </li>
+		   <li><strong onClick="logOA('xls')">XLS PRIJAVE</strong>
+		   		<ul>
+					<li onClick="logOA('xls|upload')">Upload XLS albuma</li>
+					<li onClick="logOA('xls|alb-view')">Pregled uploadanog albuma</li>
+					<li onClick="logOA('xls|alb-approve')">Prijava uploadanog albuma</li>
+					<li onClick="logOA('xls|alb-delete')">Brisanje uploadanog albuma</li>
+					<li onClick="logOA('xls|alb-import')">Uvrštavanje uploadanog albuma u bazu</li>
+					<li onClick="logOA('xls|sni-mergego')">Spajanje XLS snimki</li>
+				</ul>
+		   </li>
+		   <li><strong onClick="logOA('user')">KORISNICI</strong>
+		   		<ul>
+					<li onClick="logOA('user|activate')">Aktiviranje / deaktiviranje korisnika</li>
+					<li onClick="logOA('user|delete')">Brisanje korisnika</li>
+					<li onClick="logOA('user|save')">Dodavanje novog korisnika / izmjena podataka</li>
+					<li onClick="logOA('user|savepassword')">Promjena korisničke lozinke</li>
+				</ul>
+		   </li>
+			<li><strong onClick="logOA('register|save')">KORISNIČKI PROFIL - izmjena</strong>
+
+	   </ul>
+	  
+     </div>
+
+</sim:tmpl>

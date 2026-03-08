@@ -1,0 +1,48 @@
+<sim:tmpl name="opt_user">
+
+	<form id="userGenForm" name="userGenForm" action="index.php" method="POST">
+	 <input type="hidden" name="opt" value="user"/>
+	 <input type="hidden" name="year" value="{YEAR}"/>
+	 <input type="hidden" name="act" value="izv-generateallgo"/>
+	 <table  id="popupdescription" >
+       <tr>
+         <td width="150">Šifra naloga</td>
+         <td><input type="text" name="nalog" size="10" value=""/></td>
+       </tr>
+	   <tr>
+         <td width="150">broj zapisa</td>
+         <td><input type="text" name="limit" size="10" value=""/></td>
+       </tr>
+	   <tr>
+         <td width="150">Filter članova:</td>
+         <td><select name="type">
+			<option value="0">sve</option>
+			<option value="1">za slanje poštom</option>
+			<option value="2">za online</option>
+		 </select></td>
+       </tr>
+	    <tr>
+         <td width="150" align="right"><input type="checkbox" id="chkpun" value="1" name="punomoc"/></td>
+         <td><label for="chkpun">samo oni bez potpisane punomoći ili ind./kol. prava</label></td>
+       </tr>
+	   <tr>
+         <td width="150" align="right"><input type="checkbox" id="chkzastup" value="1" name="zastup"/></td>
+         <td><label for="chkzastup">samo zastupnici</label></td>
+       </tr>
+	   <tr>
+         <td width="150" align="right"><input type="checkbox" id="chknaslj" value="1" name="naslj"/></td>
+         <td><label for="chknaslj">samo nasljednici</label></td>
+       </tr>
+	   <tr>
+         <td width="150" align="right"><input type="checkbox" id="chkrazlika" value="1" name="razlika"/></td>
+         <td><label for="chkrazlika">sa razlikom u obračunu</label></td>
+       </tr>
+	  <tr>
+	    <tr>
+         <td></td>
+         <td><input type="button" value="Generiraj izvještaj" onClick="canRefresh=false;activateCMCommandPOST('user','izv-generateallgo','userGenForm');"/></td>
+       </tr>
+     </table>
+        </form>
+
+</sim:tmpl>

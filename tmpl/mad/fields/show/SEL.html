@@ -1,0 +1,24 @@
+<sim:tmpl name="fld_sel" type="condition" conditionvar="fld_size">
+<sim:sub condition="default"> 
+	<tr >
+							<td class="a_bd" nowrap><b>{FLD_TITLE}:</b></td>
+							<td class="a_bd"><select name="SEL{FLD_ID}">
+							<sim:tmpl name="fld_sel_option0">
+							<option value="{OPT_VALUE}" {OPT_SEL}>{OPT_TEXT}</option>
+					</sim:tmpl></select></td>
+					<td class="a_bd" align="right"><img src="images/help.gif" onMouseOver="showHelp('{FLD_COMMENT}',event);" onMouseOut="hideHelp();"/></td>
+						
+						</tr>	
+</sim:sub>
+<sim:sub condition="1"> 
+						<tr >
+							<td class="a_bd" valign="top"><b>{FLD_TITLE}:</b></td>
+							<td class="a_bd"><select name="SEL{FLD_ID}" size="{FLD_OPTCNT}">
+							<sim:tmpl name="fld_sel_option1">
+							<option value="{OPT_VALUE}" {OPT_SEL}>{OPT_TEXT}</option>
+					</sim:tmpl></select></td>
+					<td class="a_bd" align="right"><img src="images/help.gif" onMouseOver="showHelp('{FLD_COMMENT}',event);" onMouseOut="hideHelp();"/></td>
+						
+						</tr>	
+</sim:sub>															
+</sim:tmpl>

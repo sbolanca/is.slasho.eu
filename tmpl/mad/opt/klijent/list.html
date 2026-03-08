@@ -1,0 +1,58 @@
+<sim:tmpl name="opt_klijent">
+<table width="100%" height="100%" cellpadding="0" cellspacing="0">
+<tr>
+<td id="lijevo" class="panel">
+		{ACCORDIAN}
+	</td>
+	<td>
+		<table width="100%" height="100%" cellpadding="0" cellspacing="0">
+			<tr>
+				<td class="panel h1">
+					<table width="100%"><tr>
+					<td><h1 ><span id="title">{TITLE}</span> <span style="float:right;" class="sml"><input style="font-size:10px" type="button" value="Dodaj novog klijenta" onClick="aCMC(0,'klijent','edit','mode=new')"/></span></h1></td>
+					
+						<td><span class="xls" title="Download Excel" onClick="xls()"/></td>
+						
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr><td height="100%" oncontextmenu="cCM(0,'CM_opt_klijent_TBL',event)"><div id="gridbox" width="100%" height="100%" style="background-color:white;" ></div></td></tr>
+			<tr><td class="panel h1">
+				<div class="divleft">Pronađeno <strong><span id="cnt">{CNT}</span></strong> zapisa</div>
+				<div id="so_content" class="divleft so">{SEARCHOPTIONS}</div>
+				<div class="cleaner"></div>
+			</td></tr>
+		</table>
+	</td>
+</tr>
+</table>
+<script>
+
+
+
+	tbl_klijent = new dhtmlXGridObject('gridbox');
+	tbl_klijent.setImagePath("js/codebase/imgs/");
+	function Init_tbl_klijent(cnt) {
+		setHeaderTable("tbl_klijent");
+		tbl_klijent.setInitWidths(setTableCols("tbl_klijent","W"));
+		tbl_klijent.setColAlign(setTableCols("tbl_klijent","A"));
+		tbl_klijent.setColTypes(setTableCols("tbl_klijent","T"));
+	   // tbl_arh.enableDragAndDrop(true);
+		tbl_klijent.enableMultiselect(true);
+		tbl_klijent.attachEvent("onRightClick",klijent_cm);
+		tbl_klijent.attachEvent("onRowSelect",stdRowSelected);
+		tbl_klijent.init();
+
+		loadTable(tbl_klijent,"opt=klijent&act=list",cnt,true);
+		
+	}  
+	function klijent_cm(i,c,e) {doOnTblCM(i,c,e,tbl_klijent,'CM_opt_klijent_list'); }	
+	Init_tbl_klijent({CNT});
+
+
+
+</script>
+			
+
+</sim:tmpl>

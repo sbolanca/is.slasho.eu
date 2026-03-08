@@ -1,0 +1,23 @@
+<sim:tmpl name="mod_debug">
+
+<div class="lmtitle">DEBUG</div>
+  	<form style="margin:0;" id="reg" method="post" action="index.php">
+	<input type="hidden" name="changedebug" value="1"/>
+	<input type="hidden" name="lang" value="{LANG}"/>
+	<input type="hidden" name="retrn" value="{CURRENTPAGE}"/>
+	
+	<table>
+		
+						<tr>
+							<td align="right">alert JAH url:</td>
+							<td ><input type="checkbox" name="jah_debug0" value="1" {JDB0}/></td>
+						</tr>
+						<tr>
+							<td align="right">alert JAH response:</td>
+							<td ><input type="checkbox" name="jah_debug1" value="1" {JDB1}/></td>
+						</tr>
+						<tr><td align="right" colspan="2"><input type="submit" class="button" value="GO"/></td></tr>
+						</table>
+    </form>
+
+</sim:tmpl>

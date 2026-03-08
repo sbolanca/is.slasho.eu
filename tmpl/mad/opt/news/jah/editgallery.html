@@ -1,0 +1,26 @@
+<sim:tmpl name="opt_news">
+					<sim:tmpl name="opt_news_gallery">	
+					<form id="newsGalleryForm" name="newsGalleryForm" action="index.php" method="POST">
+						<input type="hidden" name="opt" value="news" />
+						<input type="hidden" name="act" value="{ACT}" />
+						<input type="hidden" name="id" value="{ROW_ID}" />
+						<input type="hidden" name="contentid" value="{CONTENTID}" />
+						<input type="hidden" name="langID" value="{ROW_LANGID}" />
+						<table id="_tmpgallerydescription" style="width:250px;">
+						  <tr>
+							<td align="right">{_A_NEWS_G_TITLE}:</td>
+							<td><input type="text" name="title" value="{ROW_TITLE}" style="width:200px;" />
+							</td>
+						  </tr>
+						  <tr>
+							<td  align="right">{_A_NEWS_G_DESC}:</td>
+							<td><textarea name="description" style="width:200px; height:50px;">{ROW_DESCRIPTION}</textarea><br/></td>
+						  </tr>
+						   <tr>
+							<td ></td>
+							<td><input type="button" class="button" value="{_A_NEWS_G_SUBMIT}" onClick="{SUBMITACTION}" /></td>
+						  </tr>
+						</table>
+					</form>
+					</sim:tmpl>							
+</sim:tmpl>

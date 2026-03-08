@@ -1,0 +1,61 @@
+<sim:tmpl name="opt_racun">
+<table width="100%" height="100%" cellpadding="0" cellspacing="0">
+<tr>
+<td id="lijevo" class="panel">
+		{ACCORDIAN}
+	</td>
+	<td>
+		<table width="100%" height="100%" cellpadding="0" cellspacing="0">
+			<tr>
+				<td class="panel h1">
+					<table width="100%"><tr>
+					<td><h1 ><span id="title">{TITLE}</span> <span style="float:right;" class="sml">
+						<input style="font-size:10px" type="button" value="Dodaj novu napomenu" onClick="aCMC(0,'racun','nap-edit','mode=new')"/>
+						<span class="xls" title="Download Excel" onClick="xls('napomene')"/>
+						</span></h1></td>
+					
+						
+						
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr><td height="100%" oncontextmenu="cCM(0,'CM_opt_racun_TBL',event)"><div id="gridbox" width="100%" height="100%" style="background-color:white;" ></div></td></tr>
+			<tr><td class="panel h1">
+				<div class="divleft">Pronađeno <strong><span id="cnt">{CNT}</span></strong> zapisa</div>
+				<div id="so_content" class="divleft so">{SEARCHOPTIONS}</div>
+				<div class="cleaner"></div>
+			</td></tr>
+		</table>
+	</td>
+</tr>
+</table>
+<script>
+
+
+
+	tbl_racunnapomena = new dhtmlXGridObject('gridbox');
+	tbl_racunnapomena.setImagePath("js/codebase/imgs/");
+	function Init_tbl_racunnapomena(cnt) {
+		setHeaderTable("tbl_racunnapomena");
+		tbl_racunnapomena.setInitWidths(setTableCols("tbl_racunnapomena","W"));
+		tbl_racunnapomena.setColAlign(setTableCols("tbl_racunnapomena","A"));
+		tbl_racunnapomena.setColTypes(setTableCols("tbl_racunnapomena","T"));
+	   // tbl_arh.enableDragAndDrop(true);
+		tbl_racunnapomena.enableMultiselect(true);
+		tbl_racunnapomena.attachEvent("onRightClick",racun_cm);
+		tbl_racunnapomena.attachEvent("onRowSelect",stdRowSelected);
+		tbl_racunnapomena.init();
+
+		loadTable(tbl_racunnapomena,"opt=racun&act=napomene",cnt,true);
+		
+	}  
+	function racun_cm(i,c,e) {doOnTblCM(i,c,e,tbl_racunnapomena,'CM_opt_racunnapomena_list'); }	
+	Init_tbl_racunnapomena({CNT});
+
+
+
+</script>
+			
+
+</sim:tmpl>

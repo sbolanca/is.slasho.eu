@@ -1,0 +1,30 @@
+<sim:tmpl name="opt_mail">
+						<div class="bgwhite">
+						<table class="itbl" id="msenttbl" style="font-size:9px;width: 100%;table-layout: fixed; border-collapse: collapse;" cellpadding="0" cellspacing="0">
+						<thead >
+							<tr style="display: block;position: relative;">
+								<th style="width:125px">Datum</th>
+								<th style="width:140px">Pošiljatelj</th>
+								<th style="width:50px;text-align:right">ID</th>
+								<th style="width:200px">Primatelj</th>
+								<th style="width:170px">Email</th>
+								<th style="width:259px">Subject</th>
+							</th>
+						</thead>
+						<tbody style="display: block; overflow: auto; height:450px;width:100%">
+						<sim:tmpl name="opt_mail_l">
+						<tr id="sntm_{ROW_ID}" class="{ROW_CLS}" oncontextmenu="aCMC({ROW_ID},'mail','flipfailed')" onDblClick="aCMC({ROW_ID},'mail','view')">
+							<td style="width:125px"><sim:var name="ROW_SENT_DATE"   modifier="dateformat" format="%d.%m.%Y %H:%M:%S"/></td>
+							<td class="green" style="width:140px">{ROW_SENDER}</td>
+							<td style="width:50px;text-align:right">{ROW_USERID}</td>
+							<td class="blue" style="width:200px">{ROW_NAZIV}</td>
+							<td style="width:170px">{ROW_EMAIL}</td>
+							<td style="width:259px">{ROW_SUBJECT}</td>
+							
+						</tr>
+						</sim:tmpl>
+						<tbody>
+						</table>
+						</div>
+						
+</sim:tmpl>

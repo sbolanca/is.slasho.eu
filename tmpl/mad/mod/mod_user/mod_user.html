@@ -1,0 +1,69 @@
+<sim:tmpl name="mod_user">
+
+<ul id="nav">
+		<li id="user_item"><a>Korisnici<span class="qspec" onClick="getSQ('user')">!?</span></a>
+			<ul>
+			<form name="searchForm"  id="searchForm" action="{USERLINK}" style="padding:0px; margin:0px;" method="POST" >
+				<input type="hidden" name="opt" value="user"/>
+				<input type="hidden" name="act" value="list"/>
+				<input type="hidden" name="exact" value="0"/>
+				<input type="hidden" class="reset" name="pagetype" value="{USER_PAGETYPE}"/>
+				<input type="hidden" class="reset" id="usrPTField" name="" value=""/>
+			
+				<li class="pad">
+					Traži po <strong>šifri:</strong><br/>
+					<input class="sinput2" type="text" name="sifra" size="12" value="{SIFRA}" /><br/>
+					Traži po <strong>imenu:</strong><br/>
+					<input class="sinput2" type="text" name="naziv" size="12" value="{PREZIME}" /><br/>
+					Traži po <strong>emailu:</strong><br/>
+					<input class="sinput2" type="text" name="email" size="12" value="{EMAIL}" /><br/>
+				</li>
+				
+				<li class="pad">
+					<div class="kileft">Filter:</div>
+					<div class="kiright">
+						<select class="mlt" name="filter[]" multiple style="width:134px;z-index:10000">
+							<option value="active" {VCLAN}>aktiviran</option>
+							<option value="admin" {VAGENCIJAID}>administrator</option>
+							<option value="super" {VHGU}>superadmin</option>
+							
+						</select>
+					</div>
+					
+				</li>
+				<li class="pad">Sortiraj po: <select class="ssel" name="ord" style="width:117px;">
+					<option value="pre" {NAZIVX}>prezimenu, imenu</option>
+					<option value="ime" {NAZIVX}>imenu, prezimenu</option>
+					<option value="sif" {IZVX}>šifri</option>
+					</select>
+				</li>
+				<sim:tmpl name="mod_user_del" type="condition" conditionvar="ISSUPER">
+				<sim:sub condition="1"> 
+				<li class="pad">
+					<div class="kileft">Prikaz:</div>
+					<div class="kiright">
+						<select class="ssel bgpink" name="deleted" style="width:134px">
+							<option value="0" {DELA0X}>normalno</option>
+							<option value="1" {DELA1X}>izbrisano</option>
+							<option value="2" {DELA2X}>sve</option>
+						</select>
+					</div>
+					
+				</li>
+				</sim:sub>
+				<sim:sub condition="default">
+				</sim:sub>
+				</sim:tmpl>
+				<li class="pad">
+					<input type="submit" value="Traži" class="sinput" style="width:104px;float:left"/>	
+					<input type="button" value="Reset" class="sinput" style="width:50px; float:right" onClick="resetSrc()"/>
+					<div class="cleaner"></div>
+				</li>
+				</form>
+			</ul>
+			
+		</li>
+		
+		
+	</ul>
+</sim:tmpl>

@@ -1,0 +1,16 @@
+<sim:tmpl name="opt_content_menu">
+				<table>
+					<tr>
+					<td>Choose content:</td>
+					<td>
+					<select name="dbindex" size="1">
+						<option value="0">[--create new--]</option>					
+					<sim:tmpl name="opt_content_menu_item"><option value="{IT_ID}" {IT_SELECTED}>{IT_TITLE}</option>
+					</sim:tmpl>
+					</select>
+					<input type="hidden" name="type" value="show"/>
+					<input type="hidden" name="mact" value="show"/>
+					</td>
+					</tr>
+					</table>		
+</sim:tmpl>

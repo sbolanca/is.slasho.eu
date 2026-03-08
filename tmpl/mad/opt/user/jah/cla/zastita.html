@@ -1,0 +1,64 @@
+<sim:tmpl name="opt_user">
+
+	
+	<table width="100%"  class="itbl" cellpadding="0" cellspacing="0"  style="border:10px solid #eee">
+
+		<tr title="Datum prvog potpisa punomoći">
+			<td class="sn">Datum učlanjenja:</td>
+			<td class="sv"><sim:var name="ROW_DATUM_UCLANJENJA"   modifier="dateformat" format="%d.%m.%Y"/></td>
+		</tr>
+		<tr title="Vrsta potpisane punomoći">
+			<td class="sn">Punomoć:</td>
+			<td class="sv">{ROW_PUNOMOC}</td>
+		</tr>
+		<tr title="International Peformer Number (jedinstveni međunarodni identifikator izvođača pojedinca)">
+			<td class="sn">IPN:</td>
+			<td class="sv">{ROW_IPN}</td>
+		</tr>
+		<tr>
+			<td class="sn">Mandat:</td>
+			<td class="sv">
+				<div title="SCAPR World Wide mandat">
+					<input type="checkbox" {CHKWWVRSTA} DISABLED> Cijeli svijet
+				</div>
+				<div title="SCAPR World Wide Minus mandat">
+					<input type="checkbox" {CHKWWMVRSTA} DISABLED> Cijeli svijet minus
+				</div>
+				<div title="SCAPR Regional mandat">
+					<input type="checkbox" {CHKRVRSTA} DISABLED> Regionalni
+				</div>
+				<div title="SCAPR Regional Plus mandat">
+					<input type="checkbox" {CHKRPVRSTA} DISABLED> Regionalni plus
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td class="sn" >Područja zaštite:</td>
+			<td class="sv">
+				<div>
+					<input type="checkbox" {CHK1PRAVA_KOLEKTIVNA} DISABLED> Radiofuzijsko emitiranje 
+				</div>
+				<div>
+					<input type="checkbox" {CHK1PRAVA_KOLEKTIVNA} DISABLED> Radiofuzijsko reemitiranje
+				</div>
+				<div>
+					<input type="checkbox" {CHK1PRAVA_KOLEKTIVNA} DISABLED> Priopćavanje javnosti
+				</div>
+				<div>
+					<input type="checkbox" {CHK1PRAVA_KOLEKTIVNA} DISABLED> Stavljanje na raspolaganje javnosti
+				</div>
+				<div>
+					<input type="checkbox" {CHK1PRAVA_KOLEKTIVNA} DISABLED> Privatno kopiranje
+				</div>
+				<div title="Jukebox i Dj">
+					<input type="checkbox" {CHK1PRAVA_INDIVIDUALNA} DISABLED> Reproduciranje
+				</div>
+			</td>
+		</tr>
+	</table>
+	
+
+
+       
+			
+</sim:tmpl>

@@ -1,0 +1,200 @@
+<sim:tmpl name="opt_user">
+
+	<div  id="popupdescription" style="width:781px;height:560px;overflow:auto">
+
+	
+	<div id="osobnipodaci" class="opkontejner">
+	<fieldset>
+				  <legend>Osobni podaci</legend>
+	
+	<table>
+		<tr class="osobni_podaci">
+			<td class="stavka_naziv">HUZIP id:</td>
+			<td class="stavka_vrijednost">{ROW_ID}</td>
+		</tr>
+		<tr class="osobni_podaci tooltipt" title="Matični broj građana">
+			<td class="stavka_naziv">MBG:</td>
+			<td class="stavka_vrijednost">{ROW_MBG}</td>
+		</tr>
+		<tr class="osobni_podaci tooltipt" title="Osobni identifikacijski broj">
+			<td class="stavka_naziv">OIB:</td>
+			<td class="stavka_vrijednost">{ROW_OIB}</td>
+		</tr>
+		<tr class="osobni_podaci">
+			<td class="stavka_naziv">Ime:</td>
+			<td class="stavka_vrijednost">{ROW_IME}</td>
+		</tr>
+		<tr class="osobni_podaci">
+			<td class="stavka_naziv">Prezime:</td>
+			<td class="stavka_vrijednost">{ROW_PREZIME}</td>
+		</tr>
+		<tr class="osobni_podaci">
+			<td class="stavka_naziv">Datum rođenja:</td>
+			<td class="stavka_vrijednost">{ROW_FDATUM}</td>
+		</tr>
+		<tr class="osobni_podaci">
+			<td class="stavka_naziv">Država rođenja:</td>
+			<td class="stavka_vrijednost">{ROW_NAZIV1}</td>
+		</tr>
+		<tr class="osobni_podaci" >
+			<td class="stavka_naziv">Državljanstvo:</td>
+			<td class="stavka_vrijednost">{ROW_NAZIV2}</td>
+		</tr>
+		<tr class="osobni_podaci">
+			<td class="stavka_naziv">Članstvo u <br />strukovnoj udruzi:</td>
+			<td class="stavka_vrijednost">
+				<div class="tooltipb" style="margin-bottom: 2px;" title="Hrvatska glazbena udruga">
+					<input type="checkbox" {CHK1HGU} DISABLED/> HGU
+				</div>
+				<div class="tooltipb" style="margin-bottom: 2px;" title="Hrvatska udruga orkestralnih i komornih umjetnika ">
+					<input type="checkbox" {CHK1HUOKU} DISABLED/> HUOKU
+				</div>
+				<div class="tooltipb" style="margin-bottom: 2px;" title="Hrvatsko društvo glazbenih umjetnika">
+					<input type="checkbox" {CHK1HDGU} DISABLED/> HDGU
+				</div>
+				<div class="tooltipb" style="margin-bottom: 2px;" title="Hrvatsko društvo dramskih umjetnika">
+					<input type="checkbox" {CHK1HDDU} DISABLED/> HDDU
+				</div>
+				<div class="tooltipb" style="margin-bottom: 2px;" title="Hrvatsko društvo profesionalnih baletnih umjetnika">
+					<input type="checkbox" {CHK1HDBU} DISABLED/> HDPBU
+				</div>
+				<div class="tooltipb" style="margin-bottom: 2px;" title="Hrvatsko društvo filmskih djelatnika">
+					<input type="checkbox" {CHK1HDFD} DISABLED/> HDFD
+				</div>
+			</td>
+		</tr>
+	</table>
+	</fieldset>
+</div>
+
+<div id="podacizazastitu"   class="opkontejner">
+<fieldset>
+				  <legend>Podaci za zaštitu</legend>
+	<table>
+		<tr class="osobni_podaci tooltipt" title="Datum prvog potpisa punomoći">
+			<td class="stavka_naziv">Datum učlanjenja:</td>
+			<td class="stavka_vrijednost">{ROW_DATUM_UCLANJENJA}</td>
+		</tr>
+		<tr class="osobni_podaci tooltipt" title="Vrsta potpisane punomoći">
+			<td class="stavka_naziv">Punomoć:</td>
+			<td class="stavka_vrijednost">{ROW_PUNOMOC}</td>
+		</tr>
+		<tr class="osobni_podaci tooltipt" title="International Peformer Number (jedinstveni međunarodni identifikator izvođača pojedinca)">
+			<td class="stavka_naziv">IPN:</td>
+			<td class="stavka_vrijednost">{ROW_IPN}</td>
+		</tr>
+		<tr class="osobni_podaci">
+			<td class="stavka_naziv">Mandat:</td>
+			<td class="stavka_vrijednost">
+				<div class="tooltipb" style="margin-bottom: 5px;" title="SCAPR World Wide mandat">
+					<input type="checkbox" {CHKWWVRSTA} DISABLED> Cijeli svijet
+				</div>
+				<div class="tooltipb" style="margin-bottom: 5px;" title="SCAPR World Wide Minus mandat">
+					<input type="checkbox" {CHKWWMVRSTA} DISABLED> Cijeli svijet minus
+				</div>
+				<div class="tooltipb" style="margin-bottom: 5px;" title="SCAPR Regional mandat">
+					<input type="checkbox" {CHKRVRSTA} DISABLED> Regionalni
+				</div>
+				<div class="tooltipb" title="SCAPR Regional Plus mandat">
+					<input type="checkbox" {CHKRPVRSTA} DISABLED> Regionalni plus
+				</div>
+			</td>
+		</tr>
+		<tr class="osobni_podaci">
+			<td class="stavka_naziv" style="vertical-align:top">Područja zaštite:</td>
+			<td class="stavka_vrijednost">
+				<div style="margin-bottom: 5px;">
+					<input type="checkbox" {CHK1PRAVA_KOLEKTIVNA} DISABLED> Radiofuzijsko emitiranje 
+				</div>
+				<div style="margin-bottom: 5px;">
+					<input type="checkbox" {CHK1PRAVA_KOLEKTIVNA} DISABLED> Radiofuzijsko reemitiranje
+				</div>
+				<div style="margin-bottom: 5px;">
+					<input type="checkbox" {CHK1PRAVA_KOLEKTIVNA} DISABLED> Priopćavanje javnosti
+				</div>
+				<div style="margin-bottom: 5px;">
+					<input type="checkbox" {CHK1PRAVA_KOLEKTIVNA} DISABLED> Stavljanje na raspolaganje javnosti
+				</div>
+				<div style="margin-bottom: 5px;">
+					<input type="checkbox" {CHK1PRAVA_KOLEKTIVNA} DISABLED> Privatno kopiranje
+				</div>
+				<div class="tooltipb" title="Jukebox i Dj">
+					<input type="checkbox" {CHK1PRAVA_INDIVIDUALNA} DISABLED> Reproduciranje
+				</div>
+			</td>
+		</tr>
+	</table>
+</fieldset>
+</div>
+<div id="kontaktpodaci"  class="opkontejner">
+<fieldset>
+				  <legend>Kontakt podaci</legend>
+	<table id="table_osobni_podaci">
+		<tr class="osobni_podaci">
+			<td class="stavka_naziv">E-pošta:</td>
+			<td class="stavka_vrijednost">{ROW_EMAIL}</td>
+		</tr>
+		<tr class="osobni_podaci">
+			<td class="stavka_naziv">Mobitel:</td>
+			<td class="stavka_vrijednost">{ROW_MOBITEL}</td>
+		</tr>
+		<tr class="osobni_podaci">
+			<td class="stavka_naziv">Telefon:</td>
+			<td class="stavka_vrijednost">{ROW_TELEFON}</td>
+		</tr>
+		<tr class="osobni_podaci tooltipt" title="Ako su adresa boravišta i prebivališta različite, prednost ima adresa boravišta">
+			<td class="stavka_naziv">Adresa boravišta:</td>
+			<td class="stavka_vrijednost">
+				<div style="margin-bottom: 5px;">{ROW_ADRESA_BORAVKA}</div>
+				<div style="margin-bottom: 5px;">{ROW_MJESTO_BORAVKA}</div>
+				<div>{ROW_NAZIV3}</div>
+			</td>
+		</tr>
+		<tr class="osobni_podaci">
+			<td class="stavka_naziv">Adresa za poštu:</td>
+			<td class="stavka_vrijednost">
+				<div style="margin-bottom: 5px;">{ROW_ADRESA_ZA_POSTU}</div>
+				<div style="margin-bottom: 5px;">{ROW_MJESTO_ZA_POSTU}</div>
+				<div>{ROW_NAZIV4}</div>
+			</td>
+		</tr>
+		
+	</table>
+	
+	
+</fieldset>
+</div>
+<div id="racunovodstvenipodaci"  class="opkontejner">
+<fieldset>
+				  <legend>Računovodstveni podaci</legend>
+	<table>
+		<tr class="osobni_podaci">
+			<td class="stavka_naziv">Naziv banke:</td>
+			<td class="stavka_vrijednost">{ROW_NAZIV_BANKE}</td>
+		</tr>
+		<tr class="osobni_podaci">
+			<td class="stavka_naziv">IBAN:</td>
+			<td class="stavka_vrijednost">{ROW_IBAN}</td>
+		</tr>
+		<tr class="osobni_podaci" >
+			<td class="stavka_naziv">Porezni status:</td>
+			<td class="stavka_vrijednost">
+				<div class="tooltipb" style="margin-bottom: 5px;" title="Upisan u Registar poreznih obveznika">
+					<input type="checkbox" {CHK1OZNAKA_POREZA} DISABLED> Registrirana djelatnost
+				</div>
+				<div class="tooltipb" style="margin-bottom: 5px;" title="Nema registriranu djelatnost">
+					<input type="checkbox" {CHK4OZNAKA_POREZA} DISABLED> Upisan u registar obveznika pdv-a
+				</div>
+				<div>
+					<input type="checkbox" {CHK2OZNAKA_POREZA} DISABLED> Ne vodi poslovne knjige
+				</div>
+			</td>
+		</tr>
+	</table>
+</fieldset>
+</div>
+
+       
+</div>
+			
+</sim:tmpl>

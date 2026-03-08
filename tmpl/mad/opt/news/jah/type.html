@@ -1,0 +1,18 @@
+<sim:tmpl name="opt_news">
+					<sim:tmpl name="opt_news_content">	
+					<form id="newsTypeForm" name="newsTypeForm" action="index.php" method="POST">
+						<input type="hidden" name="opt" value="news" />
+						<input type="hidden" name="act" value="savetype" />
+						<input type="hidden" name="id" value="{ROW_ID}" />
+						<input type="hidden" name="class" value="{CLASS}" />
+						<table width="150"><tr>
+						<td>{_A_NEWS_T_STYPE}:</td>
+						<td><SELECT name="type">
+							<option value="" {S_N}>{_A_NEWS_T_NORMAL}</option>
+							<option value="g" {S_G}>{_A_NEWS_T_GALLERY}</option>
+						</SELECT></td>
+						</tr></table>
+						<input type="button" class="button" value="{_A_NEWS_T_SUBMIT}" onClick="activateCMCommandPOST('news','savetype','newsTypeForm');" />
+					</form>
+					</sim:tmpl>							
+</sim:tmpl>

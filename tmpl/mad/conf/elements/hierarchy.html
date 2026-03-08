@@ -1,0 +1,10 @@
+<sim:tmpl name="conf_hierarchy">
+						
+						
+								<tr>
+					<td  align="right">{CONF_LABEL} <input type="hidden" id="hfld{CONF_NAME}_ID" name="{CONF_NAME}" value="{CONF_VALUE}" /></td>
+					<td class="hydiv"  id="hfld{CONF_NAME}_title" onClick="openHierarchy('{OPT}','{ACT}','hfld{CONF_NAME}','{CONF_LABEL}','Odaberi:','nije određeno','{CONF_ADDITIONAL}')">{VALUEPRINT}</td>
+					<td><img src="/images/help.gif" onMouseOver="showHelp('{CONF_DESCRIPTION}',event);" onMouseOut="hideHelp();"/></td>
+
+					</tr>						
+</sim:tmpl>

@@ -1,0 +1,57 @@
+<sim:tmpl name="opt_log">
+<table width="100%" height="100%" cellpadding="0" cellspacing="0">
+<tr>
+<td id="lijevo" class="panel">
+		{ACCORDIAN}
+	</td>
+	<td>
+		<table width="100%" height="100%" cellpadding="0" cellspacing="0">
+			<tr>
+				<td class="panel h1">
+					<table width="100%"><tr>
+					<td><h1 id="title">{TITLE}</h1></td>
+					
+						<td></td>
+						
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr><td height="100%" oncontextmenu="cCM(0,'CM_opt_log_TBL',event)"><div id="gridbox" width="100%" height="100%" style="background-color:white;" ></div></td></tr>
+			<tr><td class="panel h1">
+				<div class="divleft">Pronađeno <strong><span id="cnt">{CNT}</span></strong> zapisa</div>
+				<div id="so_content" class="divleft so">{SEARCHOPTIONS}</div>
+				<div class="cleaner"></div>
+			</td></tr>
+		</table>
+	</td>
+</tr>
+</table>
+<script>
+
+
+
+	tbl_log = new dhtmlXGridObject('gridbox');
+	tbl_log.setImagePath("js/codebase/imgs/");
+	function Init_tbl_log(cnt) {
+		setHeaderTable("tbl_log");
+		tbl_log.setInitWidths(setTableCols("tbl_log","W"));
+		tbl_log.setColAlign(setTableCols("tbl_log","A"));
+		tbl_log.setColTypes(setTableCols("tbl_log","T"));
+	   // tbl_arh.enableDragAndDrop(true);
+		tbl_log.enableMultiselect(true);
+		tbl_log.attachEvent("onRightClick",log_cm);
+		tbl_log.attachEvent("onRowSelect",stdRowSelected);
+		tbl_log.init();
+		loadTable(tbl_log,"opt=log&act=list",cnt,true);
+		
+	}  
+	function log_cm(i,c,e) {doOnTblCM(i,c,e,tbl_log,'CM_opt_log'); }	
+	Init_tbl_log({CNT});
+
+	
+
+</script>
+			
+
+</sim:tmpl>

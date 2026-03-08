@@ -1,0 +1,320 @@
+<sim:tmpl name="mod_stavka">
+
+<ul id="nav">
+		
+		
+		<li id="stavka_item"><a>Stavke<span class="qspec" onClick="getSQ('stavka')">!?</span></a>
+			<ul>
+			<form name="searchSForm"  id="searchSForm" action="{STAVKALINK}" style="padding:0px; margin:0px;" method="POST" >
+				<input type="hidden" name="opt" value="stavka"/>
+				<input type="hidden" name="act" value="list"/>
+				<input type="hidden" name="exact" value="0"/>
+				<input type="hidden" name="pagetype" value="{STAVKA_PAGETYPE}"/>
+				<input type="hidden" class="reset" id="staPTField" name="" value=""/>
+				
+				
+				<li class="pad">
+					Traži po <strong>šifri:</strong><br/>
+					<input class="sinput2" type="text" name="sifra" size="12" value="{SIFRA_SDEG}" /><br/>
+					Traži po <strong>kodu:</strong><br/>
+					<input class="sinput2" type="text" name="code" size="12" value="{SIFRA_SDEG}" /><br/>
+					Traži po <strong>nazivu:</strong><br/>
+					<input class="sinput2" type="text" name="stavka" size="12" value="{INSTRUMENT}" /><br/>
+					Traži po <strong>mjernoj jedinici:</strong><br/>
+					<input class="sinput2" type="text" name="mjera" size="12" value="{INSTRUMENT}" /><br/>
+				</li>
+				
+				<li class="pad">
+					<div class="kileft" style="width:145px"><label for="matChk">Materijalna stavka:</label></div>
+					<div class="kiright" style="width:30px;text-align:right">
+						<input type="checkbox" name="materijal" id="matChk" value="1" />
+					</div>
+					
+				</li>
+				<li class="pad">
+					<div class="kileft">Tip:</div>
+					<div class="kiright">
+						<select class="mltv" name="tip[]" multiple style="width:134px">
+							<sim:tmpl name="mod_stavka_t">
+							<option value="{ROW_ID}" >{ROW_NAZIV}</option>
+							</sim:tmpl>
+						</select>
+					</div>
+					
+				</li>
+				
+				<li class="pad">
+					<div class="kileft">Kateg.:</div>
+					<div class="kiright">
+						<select class="mltv" name="kat[]" multiple style="width:134px">
+							<sim:tmpl name="mod_stavka_k">
+							<option value="{ROW_ID}" >{ROW_NAZIV}</option>
+							</sim:tmpl>
+						</select>
+					</div>
+					
+				</li>
+				<li class="pad hide" style="{SHOWSTAVKAFFILTER}">
+					<div class="kileft">Filter:</div>
+					<div class="kiright">
+						<select class="ssel" name="ffilter"  style="width:134px">
+							<option value="-1" ></option>
+							<option value="0" >bez markera</option>
+							<option class="blue" value="1" >{FF_1}</option>
+							<option class="green" value="2" >{FF_2}</option>
+							<option class="red" value="3" >{FF_3}</option>
+							<option class="brown" value="4" >{FF_4}</option>
+							<option class="ljub" value="5" >{FF_5}</option>
+						</select>
+					</div>
+					
+					
+				</li>
+				<li class="pad">Sortiraj po: <select class="ssel" name="ord" style="width:117px;">
+					<option value="kat" {NAZIVA}>kategoriji</option>
+					<option value="tip" {NAZIVA}>tipu</option>
+					<option value="sif" {NAZIVA}>šifri</option>
+					<option value="code" {NAZIVA}>kodu</option>
+					<option value="naziv" {NAZIVS}>nazivu</option>
+					<option value="mje" {NAZIVA}>mjeri</option>
+					<option value="iznd" {ACTX}>iznosu ↑</option>
+					<option value="izna" {ACTX}>iznosu ↓</option>
+					</select>
+				</li>
+				
+				<li class="pad">
+					<input type="submit" value="Traži" class="sinput" style="width:104px;float:left"/>	
+					<input type="button" value="Reset" class="sinput" style="width:50px; float:right" oncontextmenu="alert($('#staPTField').prop('name')+'='+$('#staPTField').val())" onClick="resetSrc('searchSForm')"/>
+					<div class="cleaner"></div>
+				</li>
+				</form>
+			</ul>
+		</li>
+		<li id="tipstavke_item"><a>Tipovi stavki<span class="qspec" onClick="getSQ('tipstavke')">!?</span></a>
+			<ul>
+			<form name="searchTForm"  id="searchTForm" action="{TIPSTAVKELINK}" style="padding:0px; margin:0px;" method="POST" >
+				<input type="hidden" name="opt" value="tipstavke"/>
+				<input type="hidden" name="act" value="list"/>
+				<input type="hidden" name="exact" value="0"/>
+				<input type="hidden" name="pagetype" value="{TIPSTAVKE_PAGETYPE}"/>
+
+				
+					
+				<li class="pad">
+					Traži po <strong>šifri:</strong><br/>
+					<input class="sinput2" type="text" name="sifra" size="12" value="{SIFRA_SDEG}" /><br/>
+					Traži po <strong>nazivu:</strong><br/>
+					<input class="sinput2" type="text" name="tipstavke" size="12" value="{INSTRUMENT}" /><br/>
+					</li>
+				
+				
+				
+				<li class="pad">Sortiraj po: <select class="ssel" name="ord" style="width:117px;">
+					<option value="naziv" {NAZIVS}>nazivu</option>
+					<option value="sif" {NAZIVA}>šifri</option>
+					</select>
+				</li>
+				
+				<li class="pad">
+					<input type="submit" value="Traži" class="sinput" style="width:104px;float:left"/>	
+					<input type="button" value="Reset" class="sinput" style="width:50px; float:right" onClick="resetSrc('searchTForm')"/>
+					<div class="cleaner"></div>
+				</li>
+				</form>
+			</ul>
+		</li>
+		<li id="kategorijastavke_item"><a>Kategorije (grupe) stavki<span class="qspec" onClick="getSQ('kategorijastavke')">!?</span></a>
+			<ul>
+			<form name="searchKForm"  id="searchKForm" action="{KATEGORIJASTAVKELINK}" style="padding:0px; margin:0px;" method="POST" >
+				<input type="hidden" name="opt" value="kategorijastavke"/>
+				<input type="hidden" name="act" value="list"/>
+				<input type="hidden" name="exact" value="0"/>
+				<input type="hidden" name="pagetype" value="{KATEGORIJASTAVKE_PAGETYPE}"/>
+
+				
+					
+				<li class="pad">
+					Traži po <strong>šifri:</strong><br/>
+					<input class="sinput2" type="text" name="sifra" size="12" value="{SIFRA_SDEG}" /><br/>
+					Traži po <strong>nazivu:</strong><br/>
+					<input class="sinput2" type="text" name="kategorijastavke" size="12" value="{INSTRUMENT}" /><br/>
+					</li>
+				
+				
+				
+				<li class="pad">Sortiraj po: <select class="ssel" name="ord" style="width:117px;">
+					<option value="naziv" {NAZIVS}>nazivu</option>
+					<option value="sif" {NAZIVA}>šifri</option>
+					</select>
+				</li>
+				
+				<li class="pad">
+					<input type="submit" value="Traži" class="sinput" style="width:104px;float:left"/>	
+					<input type="button" value="Reset" class="sinput" style="width:50px; float:right" onClick="resetSrc('searchKForm')"/>
+					<div class="cleaner"></div>
+				</li>
+				</form>
+			</ul>
+		</li>
+		<li id="ponuda_item"><a>Ponude<span class="qspec" onClick="getSQ('ponuda')">!?</span></a>
+			<ul>
+			<form name="searchPForm"  id="searchPForm" action="{PONUDALINK}" style="padding:0px; margin:0px;" method="POST" >
+				<input type="hidden" name="opt" value="ponuda"/>
+				<input type="hidden" name="act" value="list"/>
+				<input type="hidden" name="exact" value="0"/>
+				<input type="hidden" name="pagetype" value="{PONUDA_PAGETYPE}"/>
+
+				
+					
+				<li class="pad">
+					Traži po <strong>šifri:</strong><br/>
+					<input class="sinput2" type="text" name="ponuda" size="12" value="" /><br/>
+					Traži po <strong>nazivu:</strong><br/>
+					<input class="sinput2" type="text" name="naziv" size="12" value="" /><br/>
+					Traži po <strong>oib-u:</strong><br/>
+					<input class="sinput2" type="text" name="oib" size="12" value="" /><br/>
+				</li>
+				<li class="pad">
+					<div class="kileft">Klijent:</div>
+					<div class="kiright">
+						<select class="mlt" name="klijent[]" multiple style="width:134px">
+							<sim:tmpl name="mod_stavka_l">
+							<option value="{ROW_ID}" >{ROW_NAZIV}</option>
+							</sim:tmpl>
+						</select>
+					</div>
+					
+				</li>
+				<li class="pad">
+					<div class="kileft">Status:</div>
+					<div class="kiright">
+						<select class="ssel" name="status" style="width:134px">
+								<option value="-1" {TSEL1}></option>
+								<option value="0" {TSEL1}>- bez statusa -</option>
+								<option class="own" value="1" {TSEL1}>U PRIPREMI</option>
+								<option class="my" value="2" {TSEL2}>PROVEDENO</option>
+								<option class="mysukob" value="3" {TSEL3}>ARHIVIRANO</option>
+								<option class="sukob" value="4" {TSEL4}>PROBLEM</option>
+						</select>
+					</div>
+					
+				</li>
+				<li class="pad">
+					<div class="kileft">Djelatn.:</div>
+					<div class="kiright">
+						<select class="mlt" name="user[]" multiple style="width:134px">
+							<sim:tmpl name="mod_stavka_u">
+							<option value="{ROW_ID}" >{ROW_NAME}</option>
+							</sim:tmpl>
+						</select>
+					</div>
+					
+				</li>
+				
+				<li class="pad">Sortiraj po: <select class="ssel" name="ord" style="width:117px;">
+					<option value="id" {NAZIVA}>ID</option>
+					<option value="sif" {NAZIVA}>šifri računa</option>
+					<option value="naziv" {NAZIVS}>nazivu</option>
+					<option value="izn" {NAZIVS}>iznosu</option>
+					</select>
+				</li>
+				
+				<li class="pad">
+					<input type="submit" value="Traži" class="sinput" style="width:104px;float:left"/>	
+					<input type="button" value="Reset" class="sinput" style="width:50px; float:right" onClick="resetSrc('searchPForm')"/>
+					<div class="cleaner"></div>
+				</li>
+				</form>
+			</ul>
+		</li>
+		<li  id="racun_item"><a>Računi<span class="qspec" onClick="getSQ('racun')">!?</span></a>
+			<ul>
+			<form name="searchRForm"  id="searchRForm" action="{RACUNLINK}" style="padding:0px; margin:0px;" method="POST" >
+				<input type="hidden" name="opt" value="racun"/>
+				<input type="hidden" name="act" value="list"/>
+				<input type="hidden" name="exact" value="0"/>
+				<input type="hidden" name="pagetype" value="{RACUN_PAGETYPE}"/>
+
+				
+				<li class="pad">
+					<div class="kileft">Godina:</div>
+					<div class="kiright">
+						
+						<select class="ssel ryear sukob noreset" name="obrgod" style="width:56px;;font-weight:bold;color:#00b">
+							<sim:tmpl name="mod_y0" type="simplecondition" requiredvars="ROW_VALUE">
+							<option value="{ROW_VALUE}" {ROW_SEL}>{ROW_VALUE}</option>
+							</sim:tmpl>
+						</select>
+					</div>
+				</li>	
+				<li class="pad">
+					Traži po <strong>ID:</strong><br/>
+					<input class="sinput2"  type="text" name="sif" size="12" value="{VID_NAZIV}" id="racIDField" onDblClick="addSelectedToSrcField(tbl_racun,'racIDField')"/><br/>
+					
+					Traži po <strong>šifri:</strong><br/>
+					<input class="sinput2" type="text" name="racun" size="12" value="" /><br/>
+					Traži po <strong>nazivu:</strong><br/>
+					<input class="sinput2" type="text" name="naziv" size="12" value="" /><br/>
+					Traži po <strong>oib-u:</strong><br/>
+					<input class="sinput2" type="text" name="oib" size="12" value="" /><br/>
+				</li>
+				<li class="pad">
+					<div class="kileft">Klijent:</div>
+					<div class="kiright">
+						<select class="mlt" name="klijent[]" multiple style="width:134px">
+							<sim:tmpl name="mod_stavka_l2">
+							<option value="{ROW_ID}" >{ROW_NAZIV}</option>
+							</sim:tmpl>
+						</select>
+					</div>
+					
+				</li>
+				<li class="pad">
+					<div class="kileft">Status:</div>
+					<div class="kiright">
+						<select class="ssel" name="status" style="width:134px">
+								<option value="-1" {TSEL1}></option>
+								<option value="0" {TSEL1}>- bez statusa -</option>
+								<option class="own" value="1" {TSEL1}>U PRIPREMI</option>
+								<option class="my" value="2" {TSEL2}>PROVEDENO</option>
+								<option class="mysukob" value="3" {TSEL3}>ARHIVIRANO</option>
+								<option class="sukob" value="4" {TSEL4}>PROBLEM</option>
+						</select>
+					</div>
+					
+				</li>
+				<li class="pad">
+					<div class="kileft">Djelatn.:</div>
+					<div class="kiright">
+						<select class="mlt" name="user[]" multiple style="width:134px">
+							<sim:tmpl name="mod_stavka_u2">
+							<option value="{ROW_ID}" >{ROW_NAME}</option>
+							</sim:tmpl>
+						</select>
+					</div>
+					
+				</li>
+				
+				<li class="pad">Sortiraj po: <select class="ssel" name="ord" style="width:117px;">
+					<option value="id" {NAZIVA}>ID</option>
+					<option value="sif" {NAZIVA}>šifri računa</option>
+					<option value="naziv" {NAZIVS}>nazivu</option>
+					<option value="izn" {NAZIVS}>iznosu</option>
+					<option value="dat" {NAZIVS}>datumu izdavanja</option>
+					<option value="dsp" {NAZIVS}>datumu dospjeća</option>
+					</select>
+				</li>
+				
+				<li class="pad">
+					<input type="submit" value="Traži" class="sinput" style="width:104px;float:left"/>	
+					<input type="button" value="Reset" class="sinput" style="width:50px; float:right" onClick="resetSrc('searchRForm')"/>
+					<div class="cleaner"></div>
+				</li>
+				</form>
+			</ul>
+		</li>
+	</ul>
+	<script>
+</script>
+
+</sim:tmpl>

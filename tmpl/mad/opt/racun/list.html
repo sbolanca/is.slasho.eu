@@ -1,0 +1,71 @@
+<sim:tmpl name="opt_racun">
+<table width="100%" height="100%" cellpadding="0" cellspacing="0">
+<tr>
+<td id="lijevo" class="panel">
+		{ACCORDIAN}
+	</td>
+	<td>
+		<table width="100%" height="100%" cellpadding="0" cellspacing="0">
+			<tr>
+				<td class="panel h1">
+					<table width="100%"><tr>
+					<td><h1 ><span id="title">{TITLE}</span> <span style="float:right;" class="sml">
+						<input style="font-size:10px" type="button" value="Dodaj novi račun" onClick="aCMC(0,'racun','edit','mode=new')"/>
+						<input style="font-size:10px" type="button" value="KAZALO" onClick="$('#kazalo').dialog()"/>
+						<span class="xls" title="Download Excel" onClick="xls()"/>
+						</span></h1></td>
+					
+						<td><div id="kazalo" style="display:none;padding:10px" title="Kazalo">
+								<table width="100%">
+								<tr><td width="200" class="brd own" align="center">u pripremi</td></tr>
+								<tr><td width="200" class="brd my" align="center">provedeno</td></tr>
+								<tr><td width="200" class="brd mysukob" align="center">arhivirano</td></tr>		
+								<tr><td width="200" class="brd sukob" align="center">problem</td></tr>		
+								</table>
+								
+							</div></td>
+						
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr><td height="100%" oncontextmenu="cCM(0,'CM_opt_racun_TBL',event)"><div id="gridbox" width="100%" height="100%" style="background-color:white;" ></div></td></tr>
+			<tr><td class="panel h1">
+				<div class="divleft">Pronađeno <strong><span id="cnt">{CNT}</span></strong> zapisa</div>
+				<div id="so_content" class="divleft so">{SEARCHOPTIONS}</div>
+				<div style="float:right;margin-right:17px">ukupno: <span id="sum" class="bld red">{SUM}</span></div>
+				<div class="cleaner"></div>
+			</td></tr>
+		</table>
+	</td>
+</tr>
+</table>
+<script>
+
+
+
+	tbl_racun = new dhtmlXGridObject('gridbox');
+	tbl_racun.setImagePath("js/codebase/imgs/");
+	function Init_tbl_racun(cnt) {
+		setHeaderTable("tbl_racun");
+		tbl_racun.setInitWidths(setTableCols("tbl_racun","W"));
+		tbl_racun.setColAlign(setTableCols("tbl_racun","A"));
+		tbl_racun.setColTypes(setTableCols("tbl_racun","T"));
+	   // tbl_arh.enableDragAndDrop(true);
+		tbl_racun.enableMultiselect(true);
+		tbl_racun.attachEvent("onRightClick",racun_cm);
+		tbl_racun.attachEvent("onRowSelect",stdRowSelected);
+		tbl_racun.init();
+
+		loadTable(tbl_racun,"opt=racun&act=list",cnt,true);
+		
+	}  
+	function racun_cm(i,c,e) {doOnTblCM(i,c,e,tbl_racun,'CM_opt_racun_list'); }	
+	Init_tbl_racun({CNT});
+
+
+
+</script>
+			
+
+</sim:tmpl>

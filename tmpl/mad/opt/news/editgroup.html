@@ -1,0 +1,18 @@
+<sim:tmpl name="opt_news">
+					<div id="contenttext" class="ctxsimple">
+					<sim:tmpl name="opt_news_content">	
+					<form id="newsForm" name="newsForm" action="index.php" method="POST" onSubmit="return submitFCKForm('newsForm','description','cont','news','savegroup');">
+						<input type="hidden" name="opt" value="news" />
+						<input type="hidden" name="act" value="savegroup" />
+						<input type="hidden" name="id" value="{ROW_ID}" />
+						<input type="hidden" name="langID" value="{ROW_LANGID}" />
+						<input type="text" name="title" value="{ROW_TITLE}" size="50" /><br/>
+						<input type="text" name="menu" value="{ROW_MENU}" /> (menu alias)<br/>
+						<textarea name="description" id="cont">{ROW_DESCRIPTION}</textarea><br/>
+					</form>
+					</sim:tmpl>							
+					</div>
+
+
+
+</sim:tmpl>

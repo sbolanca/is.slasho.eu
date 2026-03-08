@@ -1,0 +1,11 @@
+<sim:tmpl name="conf_multihierarchy">
+						<tr>
+							<td align="right">{CONF_LABEL} <input type="hidden" name="{CONF_NAME}" value="{CONF_VALUE}" id="hfld{CONF_NAME}_ID"/></td>
+							<td width="320" class="hydiv" id="hfld{CONF_NAME}_title" onClick="openMultiHierarchy('{OPT}','{ACT}','{CONF_MAINID}&winlevel={WINLEVEL}&{ADDITIONAL}&fld={CONF_NAME}&sel='+$('#hfld{CONF_NAME}_ID').val())">{VALUEPRINT}</td>
+							<td><img src="/images/help.gif" onMouseOver="showHelp('{CONF_DESCRIPTION}',event);" onMouseOut="hideHelp();"/></td>
+
+						</tr>	
+						
+						
+														
+</sim:tmpl>

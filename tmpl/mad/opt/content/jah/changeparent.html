@@ -1,0 +1,19 @@
+<sim:tmpl name="opt_content">
+					<sim:tmpl name="opt_content_content">	
+					<form id="contentForm" name="contentForm" action="index.php" method="POST">
+						<input type="hidden" name="opt" value="content" />
+						<input type="hidden" name="act" value="saveparent" />
+						<input type="hidden" name="id" value="{ROW_ID}" />
+						<input type="hidden" name="langID" value="{ROW_LANGID}" />
+						<div id="popupdescription" style="width:250px">
+						<select  name="parentID" size="1">
+						<option value="0">- [{_A_CONT_P_NO}] -</option>
+						<sim:tmpl name="opt_content_parent">
+						<option  value="{PAR_ID}" {PAR_SEL}>{PAR_TITLE}</option>
+						</sim:tmpl>	
+						</select><br/>
+						<input type="button" class="button" value="submit" onClick="activateCMCommandPOST('content','saveparent','contentForm');" />
+						</div>
+					</form>
+					</sim:tmpl>							
+</sim:tmpl>

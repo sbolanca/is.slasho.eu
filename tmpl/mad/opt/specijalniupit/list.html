@@ -1,0 +1,58 @@
+<sim:tmpl name="opt_specijalniupit">
+<table width="100%" height="100%" cellpadding="0" cellspacing="0">
+<tr>
+<td id="lijevo" class="panel">
+		{ACCORDIAN}
+	</td>
+	<td>
+		<table width="100%" height="100%" cellpadding="0" cellspacing="0">
+			<tr>
+				<td class="panel h1">
+					<table width="100%"><tr>
+					<td><h1 ><span id="title">{TITLE}</span></h1></td>
+					
+						<td><span class="xls" title="Download Excel" onClick="xls()"/></td>
+						
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr><td height="100%" oncontextmenu="cCM(0,'CM_opt_specijalniupit_TBL',event)"><div id="gridbox" width="100%" height="100%" style="background-color:white;" ></div></td></tr>
+			<tr><td class="panel h1">
+				<div class="divleft">Pronađeno <strong><span id="cnt">{CNT}</span></strong> zapisa</div>
+				<div id="so_content" class="divleft so">{SEARCHOPTIONS}</div>
+				<div class="cleaner"></div>
+			</td></tr>
+		</table>
+	</td>
+</tr>
+</table>
+<script>
+
+
+
+	tbl_specijalniupit = new dhtmlXGridObject('gridbox');
+	tbl_specijalniupit.setImagePath("js/codebase/imgs/");
+	function Init_tbl_specijalniupit(cnt) {
+		setHeaderTable("tbl_specijalniupit");
+		tbl_specijalniupit.setInitWidths(setTableCols("tbl_specijalniupit","W"));
+		tbl_specijalniupit.setColAlign(setTableCols("tbl_specijalniupit","A"));
+		tbl_specijalniupit.setColTypes(setTableCols("tbl_specijalniupit","T"));
+	   // tbl_arh.enableDragAndDrop(true);
+		tbl_specijalniupit.enableMultiselect(true);
+		tbl_specijalniupit.attachEvent("onRightClick",specijalniupit_cm);
+		tbl_specijalniupit.attachEvent("onRowSelect",stdRowSelected);
+		tbl_specijalniupit.init();
+
+		loadTable(tbl_specijalniupit,"opt=specijalniupit&act=list",cnt,true);
+		
+	}  
+	function specijalniupit_cm(i,c,e) {doOnTblCM(i,c,e,tbl_specijalniupit,'CM_opt_specijalniupit_list'); }	
+	Init_tbl_specijalniupit({CNT});
+
+
+
+</script>
+			
+
+</sim:tmpl>

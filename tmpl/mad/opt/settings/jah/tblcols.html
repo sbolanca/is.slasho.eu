@@ -1,0 +1,17 @@
+﻿<sim:tmpl name="opt_settings">
+			<form id="tblSettingsForm" name="tblSettingsForm" action="index.php" method="POST">
+						<input type="hidden" name="opt" value="settings" />
+						<input type="hidden" name="act" value="tblcolssave" />
+						<input type="hidden" name="table" value="{TABLE}" />
+						<div id="popupdescription" style="width:300px;height:500px;overflow:auto">
+						<table  style="width:90%">
+						{FIELDPRINT}
+						
+						</table></div>
+						<div style="padding:20px">
+						</div>
+						<input type="button" value="Spremi" onClick="activateCMCommandPOST('settings','tblcolssave','tblSettingsForm');"/>
+				</form>
+				
+
+</sim:tmpl>

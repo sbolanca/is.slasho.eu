@@ -1,0 +1,14 @@
+<sim:tmpl name="opt_folder">
+					<form id="saveMapaForm" name="saveMapaForm" action="admin.php" method="POST">
+						<input type="hidden" name="opt" value="folder" />
+						<input type="hidden" name="act" value="fld-save" />
+						<input type="hidden" name="id" value="{ROW_ID}" />
+						<table id="popupdescription" width="430">
+						<tr><td>Naziv:</td>
+						<td><input name="naziv" size="40" value="{ROW_NAZIV}"></td></tr>
+						<tr><td></td>
+						<td><input type="button" class="button" value="SPREMI" onClick="activateCMCommandPOST('folder','fld-save','saveMapaForm');" /></td></tr>
+						<tr><td>&nbsp;</td></tr>
+						</table>
+					</form>
+</sim:tmpl>

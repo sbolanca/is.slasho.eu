@@ -1,0 +1,41 @@
+<sim:tmpl name="opt_news">
+ <div id="contenttext"  {CM_GROUP}>							
+					<sim:tmpl name="opt_news_content">
+					<h1>{ROW_TITLE}&nbsp;</h1>
+						<div id="ctx" >
+						{ROW_DESCRIPTION}
+						</div>
+					 </sim:tmpl>	
+	</div>
+	<div id="contentlist" >
+			<sim:tmpl name="opt_news_contentlist" type="condition" conditionvar="ROW_IMAGE">	
+			<sim:sub condition="empty"></sim:sub>		
+			
+			<sim:sub condition="blank.jpg"> 				  
+			  <div class="nbox{ROW_PUBLISHED}" {ROW_TAGID} {ROW_CM}>
+										<h2><a href="admin.php?opt=news&amp;id={ROW_ID}">{ROW_TITLE}</a></h2>
+										<span class="nnns">{ROW_MENU}</span>								
+										 {ROW_INTRO} 
+								<div class="nar"><a href="admin.php?opt=news&amp;id={ROW_ID}">{ROW_MORE} »</a></div>
+			  </div>			
+			 </sim:sub>			
+
+			<sim:sub condition="default"> 
+			  <div class="nbox{ROW_PUBLISHED}" {ROW_TAGID} {ROW_CM}>
+						 	<div class="nimg"><img src="files/Image/{ROW_IMAGE}" alt="" {ROW_JS}/></div>
+							<div class="nc">
+										<h2><a href="admin.php?opt=news&amp;id={ROW_ID}">{ROW_TITLE}</a></h2>
+										<span class="nnns">{ROW_MENU}</span>								
+										 {ROW_INTRO} 
+								<div class="nar"><a href="admin.php?opt=news&amp;id={ROW_ID}">{ROW_MORE} »</a></div>
+							</div>
+							 <div class="cleaner"></div>
+				 </div>			
+				 </sim:sub>		
+			 </sim:tmpl>
+</div>
+	
+			  <div class="cleaner"></div>
+						
+</sim:tmpl>
+

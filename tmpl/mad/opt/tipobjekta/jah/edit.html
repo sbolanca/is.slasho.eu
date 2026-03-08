@@ -1,0 +1,24 @@
+<sim:tmpl name="opt_tipobjekta">
+					<form id="tipobjektaForm" name="tipobjektaForm" action="admin.php" method="POST">
+						<input type="hidden" name="opt" value="tipobjekta" />
+						<input type="hidden" name="act" value="save" />
+						<input type="hidden" name="id" value="{ROW_ID}" />
+						<table class="etbl" style="width:100%">
+						
+						<tr>
+							<th >Naziv:</th>
+							<td><input type="text" name="naziv" value="{ROW_NAZIV}" size="40" />
+							
+							</td>
+						</tr>
+						
+						
+						
+						<tr>
+							<th ></th>
+
+						
+						<th><input type="button" class="button" value="SPREMI" onClick="activateCMCommandPOST('tipobjekta','save','tipobjektaForm');" /></th></tr>
+						</table>
+					</form>
+</sim:tmpl>

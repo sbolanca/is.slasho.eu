@@ -1,0 +1,58 @@
+<sim:tmpl name="mod_log">
+
+<ul id="nav">
+		<li id="log_item"><a>Logovi</a>
+			<ul>
+			<form name="searchForm"  id="searchForm" action="javascript:activateCMCommandPOST('log','list','searchForm')" style="padding:0px; margin:0px;" method="POST" >
+				<input type="hidden" name="opt" value="log"/>
+				<input type="hidden" name="act" value="list"/>
+				<input type="hidden" name="exact" value="0"/>
+				<input type="hidden" name="log_userID" id="log_userID" value="{LOG_USERID}"/>
+				<input type="hidden" name="pagetype" value="{PAGETYPE}"/>
+
+			
+				<li class="pad">
+					Traži po <strong>subjektu:</strong><br/>
+					<input class="sinput2" type="text" name="log_subject" size="12" value="{LOG_SUBJECT}" /><br/>
+					Traži po <strong>detalju:</strong><br/>
+					<input class="sinput2" type="text" name="log_details" size="12" value="{LOG_DETAILS}" /><br/>
+					Traži po  <strong>IP-u:</strong><br/>
+					<input class="sinput2" type="text" name="log_IP" size="12" value="{LOG_IP}" /><br/>
+					Traži po <strong>akciji:</strong><br/>
+					<input class="sinput2" type="text" name="log_title" size="12" value="{LOG_OPTACT}" /><br/>
+					Traži po <strong>korisniku:</strong><br/>
+					<input class="sinput2" type="text" id="log_user" name="log_user" size="12" value="{LOG_USER}" onFocus="this.value='';"/><br/>
+					<img style="display:none;cursor:pointer" src="/images/help.gif" onClick="activateCMCommand('log','optact');"/>
+				</li>
+				
+				
+				<li class="pad">
+					<div class="kileft" style="width:110px"><label for="chk_nofilter">Detaljan ispis:</label></div>
+					<div class="kiright" style="width:65px;text-align:right">
+						<input id="chk_nofilter" type="checkbox" value="1" name="log_nofilter"/>
+					</div>
+					
+				</li>
+				
+				
+				<li class="pad">
+					<input type="submit" value="Traži" class="sinput" style="width:104px;float:left"/>	
+					<input type="button" value="Reset" class="sinput" style="width:50px; float:right" onClick="resetSrc()"/>
+					<div class="cleaner"></div>
+				</li>
+				</form>
+			</ul>
+			
+		</li>
+		
+	</ul>
+<script>
+$(function() {
+		$( "#log_user").autocomplete({
+		  minLength: 2,
+		  source: "json.php?opt=user&act=simple"
+		  
+		});
+	})
+</script>
+</sim:tmpl>

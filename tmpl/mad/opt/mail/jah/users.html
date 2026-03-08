@@ -1,0 +1,16 @@
+<sim:tmpl name="opt_mail">
+						<div style="max-height:500px;overflow:auto">
+						<table class="etbl" id="utbl" style="width:100%">
+						<sim:tmpl name="opt_mail_u">
+						<tr>
+							<th ><input  id="uchk{ROW_ID}" type="checkbox" class="uchk" value="{ROW_ID}" checked/></th>
+							<td><label for="uchk{ROW_ID}">{ROW_NAME}</label></td>
+							<td><label for="uchk{ROW_ID}">{ROW_EMAIL}</label></td>
+						</tr>
+						</sim:tmpl>
+						</table>
+						</div>
+						<div style="padding:5px;text-align:center">
+						<input type="button" value="Primjeni popis korisnika za slanje" onClick="arr=new Array(); $('#utbl .uchk').each(function( index ){if($(this).prop('checked')) arr.push($(this).val())}); if(arr.length) {$('#mailSForm #smids').val(arr.join('|'));$('#mailSForm #ucntBtn').val(arr.length);$('#dialogwindow5').dialog( 'close' );}"/>
+						</div>
+</sim:tmpl>

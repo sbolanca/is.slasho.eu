@@ -1,0 +1,29 @@
+<sim:tmpl name="opt_user">
+						<table id="stable" width="100%" class="itbl sml" cellpadding="0" cellspacing="0" {ONTABLOAD}>
+						<thead>
+						<tr>
+							<th></th>
+							<th style="width:175px">Snimka</th>
+							<th style="width:175px">Glavni izvođač</th>
+							<th style="width:175px">Izvođač</th>
+							<th style="width:135px">Vrsta sudjelovanja</th>
+							<th style="width:120px">Uloga/instr.</th>
+							<th style="text-align:center;width:70px">Datum</th>
+						</tr>
+						</thead>
+						<tbody>
+						<sim:tmpl name="opt_user_pr" type="simplecondition" requiredvars="ROW_ID">						
+						<tr class="{ROW_CLS}"  {ROW_CM} {ROW_TAGID}>
+							<td class="th">{ROW_IX}</td>
+							<td >{ROW_SNIMKA}</td>
+							<td >{ROW_SNIMKA_IZVODJAC}</td>
+							<td >{ROW_NOVI_NAZIV}</td>
+							<td class="{ROW_VCLS}">{ROW_VRSTA}</td>
+							<td class="{ROW_UCLS}">{ROW_ULOGA}</td>
+							<td style="text-align:center">{ROW_FCREATED}</td>
+						</tr>
+						</sim:tmpl>
+						</tbody>
+						</table>
+					
+</sim:tmpl>	

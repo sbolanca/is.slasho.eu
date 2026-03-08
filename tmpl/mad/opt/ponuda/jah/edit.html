@@ -1,0 +1,95 @@
+<sim:tmpl name="opt_ponuda">
+					<form id="ponudaForm" name="ponudaForm" action="admin.php" method="POST">
+						<input type="hidden" name="opt" value="ponuda" />
+						<input type="hidden" name="act" value="save" />
+						<input type="hidden" name="id" value="{ROW_ID}" />
+						<input type="hidden" name="klijentID" value="{ROW_KLIJENTID}" />
+						<table class="etbl" style="width:100%">
+						<tr>
+							<th>Naziv:</th>
+							<td style="width:435px"><input name="naziv" value="{ROW_NAZIV}" style="width:434px"/></td>
+							
+							<th style="width:90px">Broj ponude:</th>
+							<td style="width:100px"><input  style="font-weight:bold;width:100px" name="code" value="{ROW_CODE}" /></td>
+						</tr>
+						
+						<tr>
+
+							<th >Adresa:</th>
+							<td><textarea name="adresa" style="width:100%;height:22px">{ROW_ADRESA}</textarea>
+							
+							</td>
+							<th style="width:80px">OIB:</th>
+							<td><input class="center numeric"  name="oib" value="{ROW_OIB}" style="width:90px"/></td>
+							
+						</tr>
+						
+						<tr>
+							
+							<th>Sjedište:</th>
+							<td><textarea name="sjediste" style="width:100%;height:22px">{ROW_SJEDISTE}</textarea>
+							</td>
+							<th>Datum izrade:</th>
+							<td><input placeholder="datum" class="center numeric" id="dati" name="datum_izdavanja" value="{ROW_DATUM_IZDAVANJA}"  style="width:90px"/>
+						</tr>
+						<tr>
+							<th rowspan="4" valign="top">Opis:</th>
+							<td rowspan="4"><textarea  name="opis" style="font-size:11px;width:100%;height:125px"/>{ROW_OPIS}</textarea></td>
+
+							<th>Vrijedi do:</th>
+							<td><input placeholder="datum" id="datd" class="center numeric"  name="datum_dospijeca" value="{ROW_DATUM_DOSPIJECA}" style="width:90px"/></td>
+
+							</td>
+						</tr>
+						
+						
+						
+						
+						<tr>
+							<th >Sastavio:</th>
+							<td ><select id="usrSelBox" name="userID"  >
+									<option value="0"></option>
+									<sim:tmpl name="opt_r_o">
+									<option value="{ROW_ID}" {ROW_SEL}>{ROW_NAME}</option>
+									</sim:tmpl></select>
+							</td>	
+						</tr>
+						<tr><th>osnovica:</th><td id="osnFld" style="text-align:right" class="blue bld">{ROW_OSNOVICA}</td></tr>
+						<tr><th>pdv:</th><td id="pdvFld" style="text-align:right" class="ljub bld">{ROW_PDV}</td></tr>
+						<tr>
+							<th >Napomena:</th>
+							<td ><select  name="napomenaID"  >
+								<option value="0"></option>
+									<sim:tmpl name="opt_r_n">
+									<option value="{ROW_ID}" {ROW_SEL}>{ROW_NAZIV}</option>
+									</sim:tmpl></select>
+							</td>
+							<th>ukupno:</th><td id="iznFld" style="text-align:right" class="red bld">{ROW_IZNOS}</td>
+						</tr>
+						</table>
+						</form>
+						
+						<div id="gridboxp" width="900" height="200" style="{HIDE};width:900px;height:200px;background-color:white;"></div>
+						
+						
+						<div style="padding:10px" class="bggrey sml">
+							<input type="button" class="button" value="Dodaj novu stavku" onClick="aCMC({ROW_ID},'ponuda','stv-new')" style="margin-right:20px"/>
+							<span class="right"><input type="button" class="button bld blue" value="Spremi ponudu"  onClick="activateCMCommandPOST('ponuda','save','ponudaForm');"/></span>
+							<span class="right" style="margin-right:80px">
+								<form id="ponudaSNewForm" name="ponudaSNewForm" action="admin.php" method="POST">
+								<input type="hidden" name="opt" value="ponuda" />
+								<input type="hidden" name="act" value="stv-insert" />
+								<input type="hidden" name="id" value="{ROW_ID}" />
+									Dodaj stavke iz:
+									
+									<select style="width:315px" class="rfmltv sukob" multiple name="fld[]"><sim:tmpl name="opt_f">
+										<option value="{ROW_ID}" {ROW_SEL}>{ROW_NAZIV} [{ROW_CNT}]</option>
+										</sim:tmpl>
+									</select>
+									<input type="button" class="button" value="Dodaj odabrano" onClick="activateCMCommandPOST('ponuda','stv-insert','ponudaSNewForm');" style="margin-right:20px"/>
+								</form>
+							</span>
+							<div class="cleaner"></div>
+						</div>
+					
+</sim:tmpl>

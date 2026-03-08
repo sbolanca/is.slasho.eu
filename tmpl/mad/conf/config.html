@@ -1,0 +1,20 @@
+<sim:tmpl name="config">
+					<form id="configForm" name="configForm" action="/{MAINPAGE}" method="POST">
+						<input type="hidden" name="opt" value="{C_OPT}" />
+						<input type="hidden" name="group" value="{C_GROUP}" />
+						<input type="hidden" name="act" value="{C_ACT}" />
+						<input type="hidden" name="id" value="{C_ID}" />
+						<input type="hidden" name="lang" value="{C_LANG}" />
+						<div id="popupdescription{WLEVEL}" style="width:650px;max-height:550px;overflow:auto">
+						<table  style="width:620px">
+						<sim:tmpl name="config_content">						
+						{CONF_CONTENT}				
+						</sim:tmpl>	
+						</table>						
+						</div>
+						<div style="padding:4px 20px;border-top:1px solid #aaa;text-align:right">
+							<input type="button" class="button" value="Spremi" onClick="saveConfig('{C_OPT}','{C_ACT}')" />
+						</div>
+						
+					</form>
+					</sim:tmpl>		

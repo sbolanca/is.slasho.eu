@@ -1,0 +1,62 @@
+<sim:tmpl name="opt_mail">
+<style>
+#msenttbl td{font-size:11px}
+</style>
+<table width="100%" height="100%" cellpadding="0" cellspacing="0">
+<tr>
+<td id="lijevo" class="panel">
+		{ACCORDIAN}
+	</td>
+	<td>
+		<table width="100%" height="100%" cellpadding="0" cellspacing="0">
+			<tr>
+				<td class="panel h1">
+					<table width="100%"><tr>
+					<td><h1 id="title">{TITLE}</h1></td>
+					
+						<td></td>
+						<td><input type="button" value="Dodaj novi mail predložak" onClick="if(allowEdit) aCMC(0,'mail','edit','mode=new'); else alert('Nemate ovlasti.');"/>
+							<span class="xls" title="Download Excel" onClick="xls()"/></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr><td height="100%" oncontextmenu="cCM(0,'CM_opt_mail_TBL',event)"><div id="gridbox" width="100%" height="100%" style="background-color:white;" ></div></td></tr>
+			<tr><td class="panel h1">
+				<div class="divleft">Pronađeno <strong><span id="cnt">{CNT}</span></strong> zapisa</div>
+				<div id="so_content" class="divleft so">{SEARCHOPTIONS}</div>
+				<div class="cleaner"></div>
+			</td></tr>
+		</table>
+	</td>
+</tr>
+</table>
+<script>
+
+
+
+	tbl_mail = new dhtmlXGridObject('gridbox');
+	tbl_mail.setImagePath("js/codebase/imgs/");
+	function Init_tbl_mail(cnt) {
+		setHeaderTable("tbl_mail");
+		tbl_mail.setInitWidths(setTableCols("tbl_mail","W"));
+		tbl_mail.setColAlign(setTableCols("tbl_mail","A"));
+		tbl_mail.setColTypes(setTableCols("tbl_mail","T"));
+	   // tbl_arh.enableDragAndDrop(true);
+		tbl_mail.enableMultiselect(true);
+		tbl_mail.attachEvent("onRightClick",mail_cm);
+		tbl_mail.attachEvent("onRowSelect",stdRowSelected);
+		tbl_mail.init();
+
+		loadTable(tbl_mail,"opt=mail&act=list",cnt,true);
+		
+	}  
+	function mail_cm(i,c,e) {doOnTblCM(i,c,e,tbl_mail,'CM_opt_mail_list'); }	
+	Init_tbl_mail({CNT});
+
+
+
+</script>
+			
+
+</sim:tmpl>

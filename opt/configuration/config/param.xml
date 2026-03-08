@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config type="opt">
+	<params>
+		<param name="currentYear" type="text" size="10" default="20" label="Obračunska godina:" description="Obračunska godina" />		
+			
+	</params>
+</config>

@@ -1,0 +1,37 @@
+<sim:tmpl name="opt_user">
+						<table id="stable" width="100%" class="itbl sml" cellpadding="0" cellspacing="0" {ONTABLOAD}>
+						<thead>
+						<tr>
+							<th ></th>
+							<th style="width:50px">#</th>
+							<th style="width:220px">Naziv</th>
+							<th style="width:220px">Izvođač</th>
+							<th style="text-align:center;width:50px">Godina</th>
+							<th style="text-align:center;width:70px">Vrsta</th>
+							<th style="text-align:center;width:50px">Format</th>
+							<th style="text-align:center;width:50px">#snimki</th>
+							<th style="text-align:center;width:50px">#izvodj.</th>
+							<th style="text-align:center;width:80px">Datum</th>
+							<th style="text-align:center;width:25px"></th>
+						</tr>
+						</thead>
+						<tbody>
+						<sim:tmpl name="opt_user_p" type="simplecondition" requiredvars="ROW_ID">						
+						<tr class="{ROW_CLS}"  {ROW_CM} {ROW_TAGID}>
+							<td class="th">{ROW_IX}</td>
+							<td >{ROW_ID}</td>
+							<td >{ROW_NAZIV}</td>
+							<td >{ROW_IZVODJAC}</td>
+							<td style="text-align:center">{ROW_GODINA}</td>
+							<td style="text-align:center">{ROW_VRSTA}</td>
+							<td style="text-align:center">{ROW_FORMAT}</td>
+							<td style="text-align:center">{ROW_SCNT}</td>
+							<td style="text-align:center">{ROW_ICNT}</td>
+							<td style="text-align:center"><sim:var name="ROW_CREATED"   modifier="dateformat" format="%d.%m.%Y"/></td>							
+							<td style="text-align:center">{ROW_VIEWIMG}</td>
+						</tr>
+						</sim:tmpl>
+						</tbody>
+						</table>
+					
+</sim:tmpl>	

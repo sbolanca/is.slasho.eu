@@ -1,4 +1,5 @@
 <?
+/* Model postavki korisnika po tipu vrijednosti spremljenih u tablici settings. */
 class simSettings extends simDBTable {
 	var $userID=null;
 	var $type=null;
@@ -10,6 +11,7 @@ class simSettings extends simDBTable {
 	}
 	
 }
+/* Model globalnih konfiguracijskih vrijednosti aplikacije iz tablice configuration. */
 class simConfiguration extends simDBTable {
 	var $type=null;
 	var $value=null;
@@ -21,6 +23,7 @@ class simConfiguration extends simDBTable {
 	
 	
 }
+/* Ucitava i provjerava dozvole korisnika za odabrani modul ili opciju. */
 class simPermission {
 	var $username=null;
 	var $opt=null;
@@ -48,6 +51,7 @@ class simPermission {
 	}
 }
 
+/* Biljezi log zapise aplikacijskih akcija i po potrebi vezane detaljne stavke. */
 class simLog extends simDBTable {
 	var $id=null;
 	var $userID=null;
@@ -125,6 +129,7 @@ class simLog extends simDBTable {
 	}
 	
 }
+/* Predstavlja pojedinu stavku detaljnog loga vezanu uz glavni zapis u log_table. */
 class simLogTable extends simDBTable {
 	var $id=null;
 	var $logID=null;
@@ -148,67 +153,11 @@ class simLogTable extends simDBTable {
 		simDBTable::store();
 	}	
 }
-class simGroup extends simDBTable {
-	var $id=null;
-	var $type=null;
-	var $parentID=null;
-	var $image=null;
-	var $image2=null;
-	var $position=null;
-	var $ordering=null;
-	var $published=null;
-	var $title=null;
-	var $menu=null;
-	var $description=null;
-
-	function simGroup( &$db ) {
-		$this->simDBTable( 'groups', 'id', $db );
-		$this->setAsHtml('description');
-	}
-	
-}
 
 
 
 
-class simGallery extends simDBTable {
-	var $id=null;
-	var $published=null;
-	var $ordering=null;
-	var $title=null;
-	var $description=null;
-
-	function simGallery( &$db ) {
-		$this->simDBTable( 'gallery', 'id', $db );
-	}
-	
-}
-
-
-class simGalleryItem extends simDBTable {
-	var $id=null;
-	var $galleryID=null;
-	var $image=null;
-	var $published=null;
-	var $ordering=null;
-	var $title=null;
-	var $description=null;
-
-	function simGalleryItem( &$db ) {
-		$this->simDBTable( 'gallery_item', 'id', $db );
-	}
-	function createCMandTagFields($var='CM_opt_content_photo') {
-		$this->cm='oncontextmenu="cCM('.$this->id.','.$var.',event);"';
-		$this->tagid='id="gi_'.$this->id.'"';
-	}
-	function addJSfield() {
-		$this->js='';
-		setThumbScript($this);
-	}
-}
-
-
-
+/* Model datoteke povezane s odredenim zapisom ili stavkom. */
 class simFile extends simDBTable {
 	var $id=null;
 	var $file=null;
@@ -224,6 +173,7 @@ class simFile extends simDBTable {
 }
 
 
+/* Predstavlja mapu korisnika s metapodacima o dijeljenju, vidljivosti i oznakama. */
 class simFolder extends simDBTable {
 	var $id=null;
 	var $naziv=null;
@@ -267,6 +217,7 @@ class simFolder extends simDBTable {
 	}
 }
 
+/* Model modula stranice s pozicijom, filterima i parametrima prikaza. */
 class simModule extends simDBTable {
 	var $id=null;
 	var $name=null;
@@ -287,6 +238,7 @@ class simModule extends simDBTable {
 
 
 
+/* Model poruke ili kontaktnog upita koji moze poslati e-mail i spremiti zapis. */
 class simMessage extends simDBTable {
 	var $id=null;
 	var $type=null;
@@ -346,6 +298,7 @@ class simMessage extends simDBTable {
 
 
 
+/* Parser tekstualnih parametara tipa key=value s pomocnim getterima i zadanim vrijednostima. */
 class simParams {
 	var $_rows=array();
 
@@ -392,6 +345,7 @@ class simParams {
 		else return false;
 	}
 }
+/* Jednostavan objekt opcije za select element s oznakom odabira. */
 class simOption {
 	var $value=null;
 	var $selected=null;
@@ -403,6 +357,7 @@ class simOption {
 		$this->text=$t;
 	}
 }
+/* Sprema par template-varijable i vrijednosti za uvjetno popunjavanje templatea. */
 class simTmplConditionPair {
 	var $tmpl=null;
 	var $name=null;
@@ -416,16 +371,20 @@ class simTmplConditionPair {
 }
 
 
+/* Generira podatke i linkove za paginaciju rezultata. */
 class simPagination {
 	var $page;
 	var $_pages=array();
 	var $link;
+	var $totalRows;
 	var $totalPages;
 	var $pageLimit;
 	var $SQLLimit;
 	var $maxPagesOffset;
 	var $pghp=0;
 	var $pghn=0;
+	var $prev=0;
+	var $next=0;
 	function simPagination($totalRows,$pageLimit,$link,$maxPagesOffset,$pagename='page') {
 		$this->totalRows=$totalRows;
 		$this->pageLimit=$pageLimit;
@@ -469,6 +428,7 @@ class simPagination {
 	}
 
 }
+/* Predstavlja jedan link unutar paginacije s naslovom i CSS klasom. */
 class simPLink {
 	var $title;
 	var $link;
@@ -482,6 +442,7 @@ class simPLink {
 
 
 
+/* Sastavlja i odrzava MySQL index hintove grupirane po tipu i namjeni upita. */
 class MysqlIndexing {
 	var $arr=array();
 	
@@ -520,6 +481,7 @@ class MysqlIndexing {
 		}
 	}
 	function removeAll($ix) {
+        global $types;
 		$tA=explode(",",$types);
 		foreach($tA as $type) 
 			foreach(array_keys($this->arr[$type]) as $for)
@@ -547,6 +509,7 @@ class MysqlIndexing {
 		return $for;
 	}
 }
+/* Gradi i po potrebi ravna hijerarhijsko stablo cvorova na temelju parentID odnosa. */
 class NodesArray 
 { 
    var $filter = 0; 
@@ -589,7 +552,7 @@ class NodesArray
 		 $itm->children=null;
 		 $itm->title=str_repeat($sp,$itm->depth-1).(($itm->depth>$md) ? $ssp : '').$itm->title;
 		 array_push($arr,$itm); 		
-		 if (is_array($itmch) && count(($itmch)>0))
+		 if (is_array($itmch) && (count($itmch)>0))
         	 $arr=array_merge($arr,$this->FlatNestedArray($itmch,$sp,$ssp)) ;
       } 
 	  return $arr;

@@ -9,6 +9,9 @@ for($i=1;$i<13;$i++) {
 for($i=0;$i<7;$i++) {
 	$_local_weekday[]=date("l",mktime(0,0,0,3,5+$i,2006));
 }
+/**
+ * Dohvaca parametar iz zadanog polja, po potrebi ga cisti i vraca zadanu vrijednost ako ne postoji.
+ */
 function simGetParam( &$arr, $name, $def=null, $mask=0 ) {
 	$return = null;
 	if (isset( $arr[$name] )) {
@@ -34,9 +37,11 @@ function simGetParam( &$arr, $name, $def=null, $mask=0 ) {
 }
 
 /**
-* Strip slashes from strings or arrays of strings
-* @param value the input string or array
-*/
+ * Uklanja escape znakove iz stringa ili rekurzivno iz svih elemenata polja.
+ *
+ * @param mixed $value Ulazna vrijednost koja moze biti string, polje ili druga vrijednost.
+ * @return mixed Vrijednost bez escape znakova, uz ocuvanje izvorne strukture.
+ */
 function simStripslashes(&$value)
 {
 	$ret = '';
@@ -55,6 +60,9 @@ function simStripslashes(&$value)
     return $ret;
 } // simStripSlashes
 
+/**
+ * Preusmjerava korisnika na zadani URL i opcionalno dodaje poruku u query string.
+ */
 function simRedirect( $url, $msg='' ) {
 	if (trim( $msg )) {
 	 	if (strpos( $url, '?' )) {
@@ -72,6 +80,10 @@ function simRedirect( $url, $msg='' ) {
 	}
 	exit();
 }
+
+/**
+ * Preslikava vrijednosti iz polja u svojstva objekta, uz mogucnost prefiksa i ignoriranja pojedinih kljuceva.
+ */
 function simBindArrayToObject( $array, &$obj, $ignore="", $prefix=NULL, $checkSlashes=true ) {
 	if (!is_array( $array ) || !is_object( $obj )) {
 		return (false);
@@ -99,12 +111,14 @@ function simBindArrayToObject( $array, &$obj, $ignore="", $prefix=NULL, $checkSl
 }
 
 /**
-* Utility function to read the files in a directory
-* @param string The file system path
-* @param string A filter for the names
-* @param boolean Recurse search into sub-directories
-* @param boolean True if to prepend the full path to the file name
-*/
+ * Cita sadrzaj direktorija i vraca popis datoteka, po zelji rekurzivno i s punom putanjom.
+ *
+ * @param string $path Putanja direktorija koji se cita.
+ * @param string $filter Regularni izraz za filtriranje naziva.
+ * @param bool $recurse Oznacava treba li uci i u poddirektorije.
+ * @param bool $fullpath Odredjuje vracaju li se pune putanje umjesto samih naziva.
+ * @return array Sortiran popis pronadenih stavki.
+ */
 function simReadDirectory( $path, $filter='.', $recurse=false, $fullpath=false  ) {
 	$arr = array();
 	if (!@is_dir( $path )) {
@@ -134,20 +148,24 @@ function simReadDirectory( $path, $filter='.', $recurse=false, $fullpath=false  
 	return $arr;
 }
 
+/* Vraca HTML atribut poput checked ili selected ako testirana vrijednost odgovara stvarnoj. */
 function testVal($test,$real,$ret) {
 	if (($real!='') && ($test==$real)) return $ret."=\"".$ret."\"";
 	else return '';
 }
+/* Vraca HTML atribut ako se vrijednost nalazi u zadanom polju. */
 function testArray($test,$arr,$ret) {
 	if (in_array($test,$arr)) return $ret."=\"".$ret."\"";
 	else return '';
 }
 
+/* Vraca putanju do slike ili zadanu praznu sliku kada naziv nije postavljen. */
 function processImg($f) {
 	if ($f) $ret="img/$f";
 	else $ret="images/blank.jpg";
 	return $ret;
 }
+/* Kreira asocijativno polje u kojem svaki zadani kljuc inicijalizira prazno podpolje. */
 function createAssocNestedArray($keys) {
 	$array=array();
 	if (is_array($keys)) $procarr=$keys;
@@ -155,6 +173,7 @@ function createAssocNestedArray($keys) {
 	foreach($procarr as $key) $array[$key]=array();
 	return $array;
 }
+/* Grupira redove u ugnijezdeno polje prema zadanom kljucu objekta. */
 function simMakeNestedArray(&$rows,$keyFieldName) {
 	$array=array();
 	$curr_key='';
@@ -167,6 +186,9 @@ function simMakeNestedArray(&$rows,$keyFieldName) {
 	}
 	return $array;
 }
+/**
+ * Formira ugnijezdenu strukturu po roditeljskom kljucu i priprema je za sortirani prikaz stabla.
+ */
 function simMakeSortedNestedArray(&$rows,$keyFieldName='parentID',$top=0,$fld='id') {
 	$NestedSorted=array();
 	$Nested=simMakeNestedArray($rows,$keyFieldName);
@@ -174,6 +196,7 @@ function simMakeSortedNestedArray(&$rows,$keyFieldName='parentID',$top=0,$fld='i
 	return $NestedSorted + sortNestedArrayBySimpleArray($Nested[$top],$Nested,$fld);
 	
 }
+/* Rekurzivno ravna ugnijezdenu strukturu u linearno polje elemenata. */
 function simFlatNestedArray(&$rows,$top=0,$fld='id') {
 	$flat=array();
 	foreach($rows[$top] as $el) {
@@ -182,22 +205,26 @@ function simFlatNestedArray(&$rows,$top=0,$fld='id') {
 	}
 	return $flat;
 }
+/* Rekurzivno slaze podstabla prema jednostavnom polju roditeljskih elemenata. */
 function sortNestedArrayBySimpleArray(&$arr,&$arrmain,$fld='id') {	
 	$array=array(); $ret=array();
 	foreach ($arr as $el) if (array_key_exists($el->$fld,$arrmain)) $array[$el->$fld]=$arrmain[$el->$fld];
 	foreach ($array as $k=>$a) $array=$array + sortNestedArrayBySimpleArray($a,$arrmain,$fld);
 	return $array;	
 }
+/* Zamjenjuje vrijednosti iz polja nazivima iz sifrarnika, uz opcionalno generiranje linkova. */
 function replaceWithSifrarnik(&$array,&$sifrarnik,&$lnk='') {
 	for ($i=0;$i<count($array); $i++) if (array_key_exists($array[$i],$sifrarnik)) {
 		if ($lnk)  $array[$i]='<a href="'.$lnk.$array[$i].'">'.$sifrarnik[$array[$i]].'</a>';
 		else $array[$i]=$sifrarnik[$array[$i]];
 	}
 }
+/* Dohvaca trazeno polje iz sifrarnika prema sifri ili po potrebi vraca samu sifru. */
 function getFromSif($code,&$sif,$field,$retcode=false) {
 	if($code && in_array($code,array_keys($sif))) return $sif[$code]->$field;
 	else return $retcode?$code:'';
 }
+/* Grupira redove po kljucu u ugnijezdeno polje bez dodatne obrade redoslijeda. */
 function simMakeInfNestedArray(&$rows,$keyFieldName) {
 	$array=array();
 	$curr_key='';
@@ -212,6 +239,11 @@ function simMakeInfNestedArray(&$rows,$keyFieldName) {
 }
 
 
+/**
+ * Kreira i salje e-mail poruku, ukljucujuci primatelje, kopije i privitke.
+ *
+ * @return bool Rezultat pokusaja slanja poruke.
+ */
 function simMail($from, $fromname, $recipient, $subject, $body, $mode=0, $cc=NULL, $bcc=NULL, $attachment=NULL ) {
 	global $simConfig_debug;
 	$mail = simCreateMail( $from, $fromname, $subject, $body );
@@ -256,6 +288,11 @@ function simMail($from, $fromname, $recipient, $subject, $body, $mode=0, $cc=NUL
 	return $mailssend;
 } 
 
+/**
+ * Inicijalizira i konfigurira PHPMailer instancu prema globalnim postavkama sustava.
+ *
+ * @return simPHPMailer Konfigurirana mail instanca spremna za daljnju doradu ili slanje.
+ */
 function simCreateMail( $from='', $fromname='', $subject, $body ) {
 	global $simConfig_absolute_path, $simConfig_sendmail;
 	global $simConfig_smtpauth, $simConfig_smtpuser;
@@ -299,6 +336,7 @@ function simCreateMail( $from='', $fromname='', $subject, $body ) {
 	return $mail;
 }
 
+/* U template upisuje oznake checked za radio gumbe prema zadanoj vrijednosti. */
 function simProcessRadio(&$tmpl,$t, $nmvar, $val) {
 	if ($val) { 
 		$tmpl->addVar($t,$nmvar."0",'');
@@ -309,6 +347,7 @@ function simProcessRadio(&$tmpl,$t, $nmvar, $val) {
 	}
 }
 
+/* Prenosi definirane jezicne konstante s odabranim prefiksom u template. */
 function simConvertLangConsts(&$tmpl,$t,$pref="_") {
 	foreach (get_defined_constants() as $k => $v) 
 		if (substr($k,0,strlen($pref))==$pref) 
@@ -318,6 +357,7 @@ function simConvertLangConsts(&$tmpl,$t,$pref="_") {
 }
 
 
+/* Zamjenjuje engleske nazive mjeseci i dana lokaliziranim vrijednostima. */
 function simDateTimeToLocal($ts) {
 	global $lang_weekday,$lang_month,$_local_weekday,$_local_month;
 	$ret=$ts; $i=0;
@@ -332,6 +372,7 @@ function simDateTimeToLocal($ts) {
 	}
 	return $ret;
 }
+/* Pretvara SQL datum ili datum-vrijeme u zadani lokalizirani format ispisa. */
 function simConvertSQLDateTimeToFormat($d,$format="d.m.Y.") {
 		if ($d) {
 			$darr=explode(" ",$d);
@@ -342,6 +383,7 @@ function simConvertSQLDateTimeToFormat($d,$format="d.m.Y.") {
 			return simDateTimeToLocal($tm);		
 		} else return false;
 	}
+/* Pretvara SQL datum-vrijeme u hrvatski tekstualni zapis. */
 function convertSQLDateTimeToHr($d) {
 		if ($d) {
 			$darr=explode(" ",$d);
@@ -353,6 +395,7 @@ function convertSQLDateTimeToHr($d) {
 			return $ret;
 		} else return false;
 	}
+/* Pretvara datum iz hrvatskog formata u SQL format YYYY-MM-DD. */
 function convertDateToSQL($d) {
 		$ret='';
 		if ($d) {
@@ -361,6 +404,7 @@ function convertDateToSQL($d) {
 		}
 		return $ret;
 	}
+/* Kreira objekt opcije za select element i oznacava ga ako je odabran. */
 function makeOption( $value, $text='',&$sel,$selmark='selected',$id='',$title='') {
 		$obj = new stdClass;
 		$obj->id = $id;
@@ -372,16 +416,19 @@ function makeOption( $value, $text='',&$sel,$selmark='selected',$id='',$title=''
 		else if ($sel==$obj->value) $obj->sel=$selmark;
 		return $obj;
 }
+/* Generira listu opcija za mjesece koristeci lokalizirane nazive. */
 function simCreateMonthOptionList($sel=1,$selmark='selected') {
 	global $lang_month;
 	$l=simCreateArrayOptionList($lang_month,1,$sel,$selmark);
 	return $l;	
 }
+/* Generira listu opcija za numericki raspon sa zadanim korakom. */
 function simCreateRangeOptionList($start,$end,$sel=0,$selmark='selected',$step=1) {
 	$l=array();
 	for ($i=$start;$i<($end+1);$i=$i+$step) array_push($l,makeOption($i,$i,$sel,$selmark));
 	return $l;	
 }
+/* Generira listu opcija iz polja ili stringa razdvojenog zadanim separatorom. */
 function simCreateArrayOptionList($arr,$start=-1,$sel=0,$selmark='selected',$del='|') {
 	$l=array();
 	$arrx=array();
@@ -394,6 +441,7 @@ function simCreateArrayOptionList($arr,$start=-1,$sel=0,$selmark='selected',$del
 	}
 	return $l;	
 }
+/* Generira listu opcija ciji se nazivi citaju iz jezicnih konstanti. */
 function simCreateLangConstArrayOptionList($arr,$pref,&$sel,$selmark='selected',$del='|') {
 	$l=array();
 	$arrx=array();
@@ -408,6 +456,7 @@ function simCreateLangConstArrayOptionList($arr,$pref,&$sel,$selmark='selected',
 	}
 	return $l;	
 }
+/* Generira listu opcija iz kolekcije objekata dohvacenih iz baze ili drugog izvora. */
 function simCreateDBOptionList($arr,&$sel,$textField='title',$valField='id',$selmark='selected',$del='|') {
 	$l=array();
 	$arrx=array();
@@ -423,6 +472,7 @@ function simCreateDBOptionList($arr,&$sel,$textField='title',$valField='id',$sel
 	}
 	return $l;	
 }
+/* Generira jednostavnu listu opcija gdje su vrijednost i tekst isti. */
 function simCreateSimpleOptionList($arr,&$sel,$selmark='selected',$del='|') {
 	$l=array();
 	$arrx=array();
@@ -435,12 +485,14 @@ function simCreateSimpleOptionList($arr,&$sel,$selmark='selected',$del='|') {
 	}
 	return $l;	
 }
+/* Sastavlja HTML select element iz stringa vrijednosti razdvojenih separatorom. */
 function getSimpleOptionsString($name,$field,$selfld,$sep='|') {
 		$opts='';
 		foreach(explode($sep,$field) as $n) $opts.='<option value="'.trim($n).'" '.((trim($n)==trim($selfld)) ? 'selected' : '').'>'.trim($n).'</option>';
 		return '<select name="'.$name.'" />'.$opts.'</select>';
 }
 
+/* Ucitava modulsku provjeru prikaza ako za odabranu opciju postoji pripadna datoteka. */
 function simModuleShowtest($vars) {
 	$showtestvars=explode("|",$vars);
 	$opt=$showtestvars[0];
@@ -450,12 +502,16 @@ function simModuleShowtest($vars) {
 	} else return false;
 }
 
+/* Pretvara POST polje s vise odabira u string spojen zadanim delimiterom. */
 function convertPostArray($fld,$delim="|") {
 	$ret="";
 	if (isset($_POST[$fld]) && is_array($_POST[$fld]) && (count($_POST[$fld])>0)) $ret=implode($delim,$_POST[$fld]);
 	return $ret;
 }
 
+/**
+ * Rekurzivno upisuje ugnijezdenu strukturu u template i generira podliste za djecu.
+ */
 function putNestedArrayIntoTmpl(&$tmpl,&$arr,$tmain,$tgroup,$tsublist,$fparent,$fid,$fsub,$pref,$l) {
 	for ($i=0;$i<count($arr[$l]);$i++) if(isset($arr[$arr[$l][$i]->$fid]) && count($arr[$arr[$l][$i]->$fid])) {
 		putNestedArrayIntoTmpl($tmpl,$arr,$tsublist,$tgroup,$tsublist,$fparent,$fid,$fsub,$pref,$arr[$l][$i]->$fid);
@@ -467,6 +523,7 @@ function putNestedArrayIntoTmpl(&$tmpl,&$arr,$tmain,$tgroup,$tsublist,$fparent,$
 	}
 }
 
+/* Generira SQL izraz za HTML oncontextmenu atribut s proslijedenim argumentima. */
 function makeSqlCM($addCM,$variable,$var1) {
 	//if ($slashes) $ret="CONCAT('oncontextmenu=\"cCM(\'',".$var1.",'\',".$variable.",event"; 
 	//else $ret="CONCAT('oncontextmenu=\"cCM(',".$var1.",',".$variable.",event"; 
@@ -482,13 +539,16 @@ function makeSqlCM($addCM,$variable,$var1) {
 	return $ret;	
 }
 
+/* Generira SQL IF izraz koji bira izmedu dva context-menu atributa. */
 function makeSqlIfCM($cond,$variable1,$var11,$var12,$var13,$variable2,$var21,$var22,$var23,$fld="cm") {
 	$ret="IF(".$cond.",".makeSqlCM(false,$variable1,$var11,$var12,$var13).",".makeSqlCM(false,$variable2,$var21,$var22,$var23).") as cm ";
 	return $ret;
 }
+/* Generira SQL izraz koji sastavlja HTML id atribut iz prefiksa i identifikatora. */
 function makeSqlTagID($sub,$fldid,$fld="tagid") {
 	return "CONCAT('id=\"".$sub."',".$fldid.",'\"') as ".$fld." ";
 }
+/* Upisuje sve registrirane condition pair vrijednosti iz glavnog framea u template. */
 function tmplAddConditionPairs(&$tmpl) {
 	global $mainFrame;
 	foreach ($mainFrame->conditionPairs as $pair) $tmpl->addVar($pair->tmpl, $pair->name, $pair->value); 
@@ -497,6 +557,7 @@ function tmplAddConditionPairs(&$tmpl) {
 
 
 
+/* Pretvara tekst iz cirilice u latinicu prema globalnoj mapi zamjena. */
 function convertToLatin(&$text) {
 	global $conv;
 	$prijevod=$text;
@@ -508,6 +569,7 @@ function convertToLatin(&$text) {
 	}
 	return $prijevod;	
 }
+/* Pretvara tekst iz latinice u cirilicu prema pripremljenoj mapi znakova. */
 function convertToCiril(&$text) {
 	global $conv;
 	$prijevod=$text;
@@ -521,6 +583,7 @@ function convertToCiril(&$text) {
 	return $prijevod;	
 }
 
+/* Oznacava prvi i zadnji element polja vrijednostima za pozicioniranje u poretku. */
 function setOrderPos(&$r,$offset=0) {
 	if (count($r)) {
 		$r[$offset]->orderpos=0;
@@ -528,6 +591,7 @@ function setOrderPos(&$r,$offset=0) {
 	}
 }
 
+/* Uklanja zadanu vrijednost iz tekstualno spremljenog niza i vraca je li promjena napravljena. */
 function deleteFromTextArray(&$tar,$val,$sep,$sep2='') {
 		$ret=false;
 		if (trim($tar)) {
@@ -543,6 +607,7 @@ function deleteFromTextArray(&$tar,$val,$sep,$sep2='') {
 		} 
 		return $ret;
 	}
+/* Dodaje vrijednost u tekstualno spremljen niz samo ako vec nije prisutna. */
 function addToTextArray(&$tar,$val,$sep) {
 		if (trim($tar)) {
 			$arr=explode($sep,trim($tar));
@@ -551,6 +616,7 @@ function addToTextArray(&$tar,$val,$sep) {
 		return $tar;
 	}
 
+/* Uklanja element s odabranog indeksa iz tekstualno spremljenog niza. */
 function deleteIndexFromTextArray(&$tar,$index,$sep) {
 		$ret=false;
 		if (trim($tar)) {
@@ -569,6 +635,7 @@ function deleteIndexFromTextArray(&$tar,$index,$sep) {
 		return $ret;
 	}
 
+/* Uklanja stupac s odabranog indeksa iz tekstualno spremljene tablice. */
 function deleteColIndexFromTextTable(&$tar,$index,$sep,$sep2) {
 		$ret=false;
 		if (trim($tar)) {
@@ -583,6 +650,7 @@ function deleteColIndexFromTextTable(&$tar,$index,$sep,$sep2) {
 		} 
 		return $ret;
 	}
+/* Umece vrijednost na zadani indeks unutar tekstualno spremljenog niza. */
 function insertIndexAtTextArray(&$tar,$index,$sep,$val) {
 		$ret='';
 		if (trim($tar)) {
@@ -601,6 +669,7 @@ function insertIndexAtTextArray(&$tar,$index,$sep,$val) {
 		$ret=$tar;
 		return $ret;
 	}
+/* Umece vrijednost na zadani indeks u svakom retku tekstualno spremljene tablice. */
 function insertColIndexAtTextArray(&$tar,$index,$sep,$sep2,$val) {
 		$ret='';
 		if (trim($tar)) {
@@ -616,6 +685,7 @@ function insertColIndexAtTextArray(&$tar,$index,$sep,$sep2,$val) {
 		$ret=$tar;
 		return $ret;
 	}
+/* Omata jednu vrijednost ili sve elemente polja zadanim HTML tagom. */
 function pushToTag($var,$tag,$add='') {
 	if (is_array($var)) {
 		$ret=array();
@@ -623,6 +693,9 @@ function pushToTag($var,$tag,$add='') {
 	} else $ret="<$tag".($add ? " ".$add :"").">$var</$tag>";
 	return $ret;
 }
+/**
+ * Cita sortiranje iz zahtjeva i sessiona te vraca aktivni i suprotni smjer sortiranja.
+ */
 function processRequestOrdering($deftype,$defdir,$spref) {
 	if(!isset($_SESSION[$spref.'_ord'])) $_SESSION[$spref.'_ord']=$deftype;
 	if(!isset($_SESSION[$spref.'_dir'])) $_SESSION[$spref.'_dir']=$defdir;
@@ -638,6 +711,9 @@ function processRequestOrdering($deftype,$defdir,$spref) {
 	return $ret;	
 }
 
+/**
+ * Priprema JavaScript podatke i placeholder za prikaz tablicnog bloka s opcionalnom paginacijom.
+ */
 function createTableView($tmplname,$name,&$rows,&$pagination,$fields,$CM,$fieldsForCM='id') {
 	global $mainFrame,$tmpl;
 	
@@ -691,6 +767,7 @@ function createTableView($tmplname,$name,&$rows,&$pagination,$fields,$CM,$fields
 	$tmpl->addVar($tmplname,$name, '<div id="'.$name.'_p_head"></div><div id="'.$name.'" style="display:block"></div><div id="'.$name.'_p_pages"></div>'); 
 
 }
+/* Generira listu linkova za alfanumericko filtriranje, ukljucujuci prikaz svih zapisa. */
 function createAlphaNumLinks($lnk) {
 	$alnarr=array('0','1','2','3','4','5','6','7','8','9',
 	'a','b','c','č','ć','d','dž','đ','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','š','t','u','v','x','y','w','z','ž');
@@ -708,6 +785,7 @@ function createAlphaNumLinks($lnk) {
 		
 	return $ret;
 }
+/* Nadopunjuje jednoznamenkasti broj vodecom nulom. */
 function fillnum($num) {
 	if ($num<10) return '0'.$num;
 	else return $num;
@@ -732,6 +810,9 @@ $replaceCharsArray=array(
 "-"=>"_",","=>"_"," "=>"_","["=>"_","]"=>"_","("=>"_",")"=>"_","{"=>"_","}"=>"_","&"=>"_",
 "="=>"_","+"=>"_","#"=>"_","$"=>"_","%"=>"_","!"=>"_","?"=>"_","\""=>"_"
 );
+/**
+ * Cisti naziv datoteke zamjenom i uklanjanjem nedopustenih znakova.
+ */
 function clearFilename($n,$allString='') {
 	
 	global $replaceCharsArray,$allowedChars;
@@ -749,11 +830,15 @@ function clearFilename($n,$allString='') {
 	$n=preg_replace('/\-\-+/', '-', $n);
 	return trim($n,"_");
 }
+/* Vraca posebne zamjenske oznake natrag u njihove izvorne znakove. */
 function clearJah($val) {
 	$ret=str_replace("%$#","&",$val);
 	$ret=str_replace("*7*8*7*6*","+",$ret);
 	return $ret;
 }
+/**
+ * Normalizira popis autora u sazeti oblik inicijali-prezime i uklanja duplikate.
+ */
 function standardizeAuthorField($fld,$conv=true) {
 	$a=trim($fld);
 	while (substr_count( $a , '  ')) $a=str_replace('  ',' ',$a);
@@ -772,6 +857,7 @@ function standardizeAuthorField($fld,$conv=true) {
 	return $conv ? trim(iconv("windows-1250",'UTF-8',implode(",",$list))) : trim(implode(",",$list));
 }
 
+/* Provjerava je li zadani string valjan JMBG prema duljini, numerickom formatu i kontrolnoj znamenki. */
 function isJMBG($txt) {
 	if (strlen($txt) != 13) return false;
 	if (!is_numeric($txt)) return false;
@@ -786,6 +872,7 @@ function isJMBG($txt) {
 	else if (!($razlika==substr($txt,12,1)*1)) return false;
 	else return true;
 }
+/* Provjerava valjanost OIB-a pomocu sluzbenog algoritma kontrolne znamenke. */
 function isOIB($oib) {
 	if (!(strlen($oib) == 11)) return false;
 	if (!is_numeric($oib)) return false;
@@ -801,6 +888,7 @@ function isOIB($oib) {
 	if ($kon == 10) $kon = 0;
 	return $kon == substr($oib,10, 1)*1;
 }
+/* Provjerava odgovara li e-mail adresa ocekivanom formatu lokalnog i domenskog dijela. */
 function isEmail($email) {
         // First, we check that there's one @ symbol, and that the lengths are right
         if (!preg_match("/^[^@]{1,64}@[^@]{1,255}$/", $email)) {
@@ -829,6 +917,7 @@ function isEmail($email) {
 
         return true;
     }
+/* Kreira potrebnu strukturu direktorija za pohranu datoteka i vraca zavrsnu putanju. */
 function createSimPath($fold,$sub='',$group='File') {
 		global $simConfig_absolute_path;
 		$path=$simConfig_absolute_path."/files/$group/".($sub?$sub."/":'');
@@ -840,6 +929,7 @@ function createSimPath($fold,$sub='',$group='File') {
 		}
 		return $path.$fold;
 	}
+/* Generira korisnicko ime iz imena i prezimena, uz opcionalni dodatni sufiks. */
 function generateUsername($i,$p,$x='') {
 		$ach="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
 		$ime=preg_replace('/\W/', '', strtolower(trim(clearFilename($i,$ach))));
@@ -848,12 +938,16 @@ function generateUsername($i,$p,$x='') {
 		if ($x) $uname.=$x;
 		return $uname;
 	}
+/* Generira nasumicnu lozinku zadane duljine iz unaprijed definiranog skupa znakova. */
 function generatePassword($length=8) {
 		$chars = "23456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ";
 		$password = "";
 		for ($i=0;$i <= $length;$i++) $password .= $chars{mt_rand(0,strlen($chars)-1)};
 		return $password;
 }
+/**
+ * Rekurzivno brise sadrzaj direktorija i njegove poddirektorije.
+ */
 function simRmDir($pth) {
 		$d = dir($pth);
 		while (false !== ($entry = $d->read())) 
@@ -864,24 +958,30 @@ function simRmDir($pth) {
 			}
 		$d->close();
 }
+/* Pretvara naziv u UTF-8 kada je sustav konfiguriran za Windows kodnu stranicu. */
 function getUTFName($str) {
 	return _WIN?iconv("windows-1250",'UTF-8',$str):$str;
 	
 }
+/* Pretvara UTF-8 naziv u sistemsku kodnu stranicu na Windows okruzenju. */
 function getSysName($str) {
 	return _WIN?iconv('UTF-8',"windows-1250",$str):$str;
 }
+/* Brise direktorij samo ako je globalna zastavica za brisanje omogucena. */
 function delFolder($str) {
 	if(_DEL) rmdir($str);
 }
+/* Brise datoteku samo ako je globalna zastavica za brisanje omogucena. */
 function delFile($str) {
 	if(_DEL) unlink($str);
 }
+/* Priprema putanju i naziv za rad s RAR arhivom u odgovarajucoj kodnoj stranici. */
 function prepareRar($p,$n) {
 	$codedfolder=_WIN?iconv('windows-1250','CP852//TRANSLIT//IGNORE',$p):$p;
 	$codedname=_WIN?iconv('UTF-8','CP852//TRANSLIT//IGNORE',$n):$n;
 	return $codedfolder."/".$codedname;
 }
+/* Prilagodava naziv datoteke iz ZIP arhive sistemskoj kodnoj stranici. */
 function prepareZip($p_event, &$h) {
    $info = pathinfo($h['filename']);
 
@@ -889,10 +989,12 @@ function prepareZip($p_event, &$h) {
 					   :iconv('CP852','UTF-8//TRANSLIT//IGNORE',$h['filename']);
     return 1;
 }
+/* Pretvara putanju za ZIP arhivu u kodnu stranicu ocekivanu na ciljnom sustavu. */
 function prepareZipPath($str) {
 	return _WIN?iconv('windows-1250','CP852//TRANSLIT//IGNORE',$str)
 			   :iconv('UTF-8','CP852//TRANSLIT//IGNORE',$str);
 }
+/* Sastavlja vrijeme iz odvojenih polja sekundi, minuta i sati te ga upisuje u objekt. */
 function processTime(&$row,$fld,&$VAR,$def='NULL') {
 		if (isset($VAR[$fld.'_sec'])) {
 			$sec=intval(simGetParam($VAR,$fld.'_sec','0'));
@@ -905,6 +1007,7 @@ function processTime(&$row,$fld,&$VAR,$def='NULL') {
 			else  $row->$fld=$def;
 		}
 }
+/* Sastavlja SQL datum iz odvojenih hrvatskih polja dan, mjesec i godina. */
 function processHRDate(&$row,$fld,&$VAR,$def='NULL') {
 		if (isset($VAR[$fld.'_dan'])) {
 			$dan=intval(simGetParam($VAR,$fld.'_dan','0'));
@@ -914,6 +1017,7 @@ function processHRDate(&$row,$fld,&$VAR,$def='NULL') {
 			else $row->$fld=$def;
 		}
 }
+/* Spaja hrvatski datum i odvojena polja vremena u SQL datum-vrijeme zapis. */
 function processHRPickupDateTime(&$row,$fld,&$VAR,$def='NULL') {
 		$row->$fld=convertDateToSQL($row->$fld);
 		if (isset($VAR[$fld.'_min'])) {
@@ -929,6 +1033,7 @@ function processHRPickupDateTime(&$row,$fld,&$VAR,$def='NULL') {
 		}
 		if(!trim($row->$fld)) $row->$fld=$def;
 }
+/* Generira SQL uvjet pretrage ovisno o duljini i sadrzaju trazenog pojma. */
 function createLengthDependedCondition($fields,$src,$seps='-. (',$l0=3,$l1=6) {
 	$fA=explode(",",$fields);
 	$sA=array('');
@@ -940,6 +1045,7 @@ function createLengthDependedCondition($fields,$src,$seps='-. (',$l0=3,$l1=6) {
 	else foreach($fA as $f) if(preg_match('/%|_/',$src)) $ret[]="$f LIKE '$src'"; else $ret[]="$f='$src'";
 	return implode(" OR ",$ret);
 }
+/* Generira jednostavan SQL LIKE uvjet za jedno ili vise polja. */
 function createSimpleCondition($fields,$src,$start=0) {
 	$fA=explode(",",$fields);
 	$ret=array();
@@ -949,6 +1055,7 @@ function createSimpleCondition($fields,$src,$start=0) {
 	}
 	return implode(" OR ",$ret);
 }
+/* Pretvara objekt u tekstualni zapis kljuc-vrijednost sa zadanim delimiterima. */
 function objToString($obj,$flds='',$del1="\n",$del2='=') {
 	$ret='';
 	$fldArr=array();
@@ -959,6 +1066,7 @@ function objToString($obj,$flds='',$del1="\n",$del2='=') {
 	
 
 }
+/* Pretvara objekt u jednostavan XML zapis s odabranim nazivom korijenskog taga. */
 function objToXml($obj,$tagname='result',$flds='') {
 	$ret='';
 	$fldArr=array();
@@ -970,6 +1078,7 @@ function objToXml($obj,$tagname='result',$flds='') {
 	} 
 	return $ret;
 }
+/* Provjerava pojavljuje li se ijedna vrijednost iz liste u zadanom polju vrijednosti. */
 function inArray($list,$flds,$sep=','){
 	$ret=false;
 	if(is_array($list)) $lArr=$list;
@@ -980,6 +1089,7 @@ function inArray($list,$flds,$sep=','){
 
 	return $ret;
 }
+/* Transliterira niz stranih dijakritickih znakova u priblizne ASCII ekvivalente. */
 function transliteracija_nehr($s) {
     $replace = array(
         'À'=>'A', 'Á'=>'A', 'Â'=>'A', 'Ã'=>'A', 'Ä'=>'A', 'Å'=>'A', 'Æ'=>'A', 'Ă'=>'A', 'Ą'=>'A', 'Ā'=>'A', 
@@ -1006,23 +1116,27 @@ function transliteracija_nehr($s) {
     );
     return strtr($s, $replace);
 }
+/* Pretvara broj iz lokalnog zapisa u decimalni zapis s tockom. */
 function makeUSFloat($str,$dec=-1) {
 	$ret=1*(substr_count($str,",")?str_replace(',','.',str_replace(".","",$str)):$str);
 	if($dec>-1) return str_replace(",",".",round($ret,$dec));
 	else return str_replace(",",".",$ret);
 }
 
+/* Formatira broj u hrvatski zapis s decimalnim zarezom i opcionalnim sufiksom. */
 function makeHRFloat($str,$sufix='',$printZero=false) {
 	if (floatval($str)>0) return str_replace("#",",",str_replace(",",".",str_replace(".","#",number_format($str,2)))).$sufix;
 	else if ($printZero) return '0,00'.$sufix;
 	else return '';
 }
 
+/* Preslaguje polje objekata tako da zadano svojstvo postane novi kljuc. */
 function reindex(&$arr,$fld) {
 	$arr2=array();
 	foreach($arr as $k=>$v) $arr2[$v->$fld]=$v;
 	return $arr2;
 }
+/* Provjerava valjanost IBAN broja prema duljini drzave i mod 97 algoritmu. */
 function checkIBAN($iban) {
     $iban = strtolower(str_replace(' ','',$iban));
     $Countries = array('al'=>28,'ad'=>24,'at'=>20,'az'=>28,'bh'=>22,'be'=>16,'ba'=>20,'br'=>29,'bg'=>22,'cr'=>21,'hr'=>21,'cy'=>28,'cz'=>24,'dk'=>18,'do'=>28,'ee'=>20,'fo'=>18,'fi'=>18,'fr'=>27,'ge'=>22,'de'=>22,'gi'=>23,'gr'=>27,'gl'=>18,'gt'=>28,'hu'=>28,'is'=>26,'ie'=>22,'il'=>23,'it'=>27,'jo'=>30,'kz'=>20,'kw'=>30,'lv'=>21,'lb'=>28,'li'=>21,'lt'=>20,'lu'=>20,'mk'=>19,'mt'=>31,'mr'=>27,'mu'=>30,'mc'=>27,'md'=>24,'me'=>22,'nl'=>18,'no'=>15,'pk'=>24,'ps'=>29,'pl'=>28,'pt'=>25,'qa'=>29,'ro'=>24,'sm'=>27,'sa'=>24,'rs'=>22,'sk'=>24,'si'=>19,'es'=>24,'se'=>24,'ch'=>21,'tn'=>24,'tr'=>26,'ae'=>23,'gb'=>22,'vg'=>24);
@@ -1053,6 +1167,7 @@ function checkIBAN($iban) {
         return FALSE;
     }   
 }
+/* Dodaje vrijeme zadnje izmjene u naziv resursa radi cache bustinga. */
 function auto_version($file)
 {
   global $simConfig_absolute_path;
@@ -1062,6 +1177,9 @@ function auto_version($file)
   $mtime = filemtime($simConfig_absolute_path."/". $file);
   return preg_replace('{\\.([^./]+)$}', ".$mtime.\$1", $file);
 }
+/**
+ * Ispisuje datoteku u manjim blokovima i po potrebi vraca ukupan broj isporucenih bajtova.
+ */
 function readfile_chunked($filename, $retbytes = TRUE) {
 	 $buffer = '';
     $cnt =0;
@@ -1084,6 +1202,7 @@ function readfile_chunked($filename, $retbytes = TRUE) {
     }
     return $status;
   }
+/* Generira GUID koristeci COM ekstenziju ili rezervni algoritam kada nije dostupna. */
 function getGUID() {
     if (function_exists('com_create_guid')) {
 	return trim(com_create_guid(), '{}');

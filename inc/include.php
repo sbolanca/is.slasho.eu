@@ -1,109 +1,9 @@
 <?
 
-function getGalleryItems($galleryID,$onlyCount=false,$thpath='thumbs',$onlyPublished=true,$alt='',$limit=0) {
-	global $database,$lang,$isAdmin,$opt;
-	global $IMGCONF,$IMGTHCONF;
-	$galleryRows=($onlyCount ? 0 : array());
-	if ($galleryID) {
-		
-		if (intval($limit)) $lim=" LIMIT ".$limit;
-		else $lim=''; 
-		$database->setQuery("SELECT ".($onlyCount ? "COUNT(g.id)" : "g.*, l.title,l.description, '' as js")
-		.((!$onlyCount && $isAdmin) ? ", ".makeSqlCM(true,"CM_opt_".$opt."_photo","g.id").", ".makeSqlTagID("gi_","g.id") :"")
-		." FROM gallery_item as g "
-		.($onlyCount ? "" : " LEFT JOIN gallery_item_lang as l ON (l.id=g.id AND l.langID='$lang') ")
-		." WHERE g.galleryID=".$galleryID.($onlyPublished ? " AND g.published=1 " : " ").($onlyCount ? "" :  " ORDER BY g.ordering".$lim));
-		$galleryRows=($onlyCount ? $database->loadResult() : $database->loadObjectList());
-		if (!$onlyCount) 
-		 	for ($i=0;$i<count($galleryRows); $i++) 
-			 	if (setThumbScript($galleryRows[$i],$thpath)) if (trim($alt)) {
-					  if ($galleryRows[$i]->title) $galleryRows[$i]->title.=' ('.$alt.')';
-					  else $galleryRows[$i]->title=$alt;
-				}
-				
-		
-		if ($isAdmin && !$onlyCount && !count($galleryRows)) {
-			$r=new simGalleryItem($database);
-			$r->id=0;
-			$r->galleryID=$galleryID;
-			$r->image='blank.jpg';
-			array_push($galleryRows,$r);
-		}
-	}
-	return $galleryRows;
-}
-
-function setThumbScript(&$row,$thpath='thumbs',$imgfieldname='image') {
-	global $simConfig_absolute_path;
-	$ret=false;
-	if ((substr_count($row->$imgfieldname,'$thpath/')>0) && file_exists($simConfig_absolute_path.'/files/Image/'.str_replace('$thpath/','',$row->$imgfieldname))) {
-					$row->js='onclick="IMP(\''.str_replace('$thpath/','',$row->$imgfieldname).'\');"';					
-					$ret=true;
-	} else {
-		$img=$row->$imgfieldname;
-		$imgthumb="$thpath/".$row->$imgfieldname;
-		if (substr_count($img,"/")>0) {
-				$imgname=substr($img,strrpos($img,'/'));
-				$imgpath=substr($img,0,strrpos($img,'/'));
-				$imgthumb=$imgpath."/$thpath".$imgname;
-		}
-		
-		if (file_exists($simConfig_absolute_path.'/files/Image/'.$imgthumb)) {
-			$row->js='onclick="IMP(\''.$row->$imgfieldname.'\');"';
-			$row->big=$row->$imgfieldname;
-			$row->$imgfieldname=$imgthumb;
-			$ret=true;
-			
-		}
-	}
-	return $ret;
-}
-function getConfThumb($model='news') {
-	global $IMGCONF,$IMGTHCONF;
-
-	$thmA=explode("|",$IMGCONF[$model][2]);
-	return $IMGTHCONF[$thmA[0]][0];
-	
-}
-function createThumbFile(&$row,$width,$subfold,$field='image') {
-  global $simConfig_absolute_path;
-	$ret=false;
-	$origname=$row->$field;
-	if (substr_count($row->$field,'thumbs/')>0) $row->$field=str_replace('thumbs/','',$row->$field);
-	
-	$img=$row->$field;
-
-	$imgpath=substr($img,0,strrpos($img,'/'));				
-	
-		$imgthumb=$subfold."/".$row->$field;
-		if (substr_count($img,"/")>0) {
-				$imgname=substr($img,strrpos($img,'/'));
-				$imgthumb=$imgpath."/".$subfold.$imgname;
-		}
-		$thumbfold=$imgpath."/".$subfold;
-		
-		if (!file_exists($simConfig_absolute_path.'/files/Image/'.$imgthumb)) {
-			include_once ("inc/resize_jpeg.php");
-			if(!is_dir($simConfig_absolute_path.'/files/Image/'.$thumbfold) && !is_file($simConfig_absolute_path.'/files/Image/'.$thumbfold))
-				{
-					mkdir($simConfig_absolute_path.'/files/Image/'.$thumbfold,0777);	
-					chmod($simConfig_absolute_path.'/files/Image/'.$thumbfold,0777);
-					$refresh_dirs = true;
-				}
-			if (!file_exists($simConfig_absolute_path.'/files/Image/'.$img) && 	file_exists($simConfig_absolute_path.'/files/Image/'.$origname))
-				$srcfile=$origname;
-			else $srcfile=$img;
-			$slika_thumb_im=resizejpeg_to_width($simConfig_absolute_path.'/files/Image/'.$srcfile,$simConfig_absolute_path.'/files/Image/'.$imgthumb,$width,60,true);
-		}
-		
-	$row->$field=$imgthumb;
-	
-		
-	
-	return $ret;
-}
 
 
+
+// Ucitava povezane lookup vrijednosti kao niz stavki.
 function loadExpandedLookupFieldArray(&$row,&$lookup,$fld,$tbl,$key,$keyfixedFld,$lnk='',$lnktitle='',$lnkcondition='',$filterFld='id') {
 		global $database;
 		$cntfld='cnt_'.$fld;
@@ -122,12 +22,14 @@ function loadExpandedLookupFieldArray(&$row,&$lookup,$fld,$tbl,$key,$keyfixedFld
 			}
 		return $ret;
 }
+// Spaja povezane lookup vrijednosti u jedan tekstualni niz.
 function loadExpandedLookupFieldString(&$row,&$lookup,$fld,$tbl,$key,$keyfixedFld,$lnk='',$lnktitle='',$lnkcondition='',$separator=', ',$filterFld='id') {
 		$array_m=loadExpandedLookupFieldArray($row,$lookup,$fld,$tbl,$key,$keyfixedFld,$lnk,$lnktitle,$lnkcondition,$filterFld);
 		$row->$fld=implode($separator,$array_m);
 }
 
 
+// Brise retke iz tablice prema zadanom polju i vrijednosti.
 function clearTable($table,$field,$id,$cond='') {
 		global $database;
 		if (is_string($id) && (count(explode(',',$id))>1))
@@ -137,6 +39,7 @@ function clearTable($table,$field,$id,$cond='') {
 		$database->setQuery($q);
 		return $database->query();	
 }
+// Brise povezane retke iz glavne i dodatnih tablica.
 function clearComplexTable($table,$ntable,$field,$id,$nid='id',$tid='id') {
 		global $database;
 		$ret=true;
@@ -158,6 +61,7 @@ function clearComplexTable($table,$ntable,$field,$id,$nid='id',$tid='id') {
 		return $ret;
 }
 
+// Azurira vrijednost polja u tablici za zadani zapis ili skup zapisa.
 function updateTable($table,$field,$id,$newval=0) {
 		global $database;
 		if (is_string($id) && (count(explode(',',$id))>1))
@@ -168,6 +72,7 @@ function updateTable($table,$field,$id,$newval=0) {
 		return $database->query();	
 }
 
+// Vraca jedinstvene vrijednosti polja kao tekstualnu listu ID-eva.
 function loadRowsIdAsText($table,$field,$filterFld,$filterValue) {
 	global $database;
 	if (is_string($filterValue) && (count(explode(',',$filterValue))>1))
@@ -177,6 +82,7 @@ function loadRowsIdAsText($table,$field,$filterFld,$filterValue) {
 	return $database->loadResultArrayText($q);		
 }
 
+// Vraca vrijednosti koje su vezane iskljucivo uz zadani filter.
 function loadExactRowsIdAsText($table,$field,$filterFld,$filterValue) {
 	global $database;
 	if (is_string($filterValue) && (count(explode(',',$filterValue))>1))
@@ -185,6 +91,7 @@ function loadExactRowsIdAsText($table,$field,$filterFld,$filterValue) {
 			$q="SELECT DISTINCT($field) FROM $table WHERE $filterFld='$filterValue' AND $field NOT IN (SELECT DISTINCT($field) FROM $table WHERE $filterFld<>'$filterValue' AND $filterFld IS NOT NULL)";
 	return $database->loadResultArrayText($q);		
 }
+// Rekurzivno gradi putanju nadredenih ID-eva za zapis.
 function loadPathId($tbl,$id) {
 	global $database;
 	$tmp=array();
@@ -198,6 +105,7 @@ function loadPathId($tbl,$id) {
 	}
 	return $tmp;
 }
+// Rekurzivno dohvaca sve podredene ID-eve za zadani zapis.
 function loadSubIds($tbl,$id,$putInitial=true,$idFld='id',$parentFld='parentID') {
 	global $database;
 	$tmp=array();
@@ -213,6 +121,7 @@ function loadSubIds($tbl,$id,$putInitial=true,$idFld='id',$parentFld='parentID')
 	}
 	return $tmp;
 }
+// Pretvara svojstva objekta u jednostavan tekstualni zapis.
 function exportObject( $obj,$ttl="" ) {
 		
 		if (trim($ttl)) $xml=$ttl."\n"; else $xml = '';
@@ -231,6 +140,7 @@ function exportObject( $obj,$ttl="" ) {
 		return $xml;
 	}
 
+// Upisuje konfiguraciju zaglavlja tablice u JavaScript varijable.
 function printTableHeaderJSVars($tbl,$sort=false) {
 	global $SETTINGS,$mainFrame;
 	
@@ -256,6 +166,7 @@ function printTableHeaderJSVars($tbl,$sort=false) {
 	if ($sort) $mainFrame->addHeaderScript("var ".$tbl."_S={".implode(",",$sorts)."};",$tbl."_S");
 }
 
+// Salje konfiguraciju zaglavlja tablice kroz JAH JavaScript odgovor.
 function updateTableHeaderJSVarsJah($tbl,$sort=false) {
 	global $SETTINGS,$res;
 	
@@ -281,16 +192,18 @@ function updateTableHeaderJSVarsJah($tbl,$sort=false) {
 	$res->javascript($tbl."_A={".implode(",",$aligns)."};");
 	$res->javascript($tbl."_T={".implode(",",$types)."};");
 
-	if ($sort) $res->javascript($table."_S={".implode(",",$sorts)."};");
+	if ($sort) $res->javascript($tbl."_S={".implode(",",$sorts)."};");
 }
 
 
+// Dodaje trazene joinove i njihove ovisnosti u listu potrebnih joinova.
 function addDBRelatedJoins($joins,&$requiredArr,&$allInArr,$sep='|') {
 	if (trim($joins)) foreach(explode($sep,trim($joins)) as $j) if (!in_array($j,$requiredArr)) {
 		array_push($requiredArr,$j);
 		addDBRelatedJoins($allInArr[$j]->required_previous_joins,$requiredArr,$allInArr);
 	}
 }
+// Gradi SQL dio za SELECT polja prema trazenim stupcima.
 function getDBFieldsQuery($flds,&$FIELDS,&$required_joins,&$JOINS) {
 	$fldsSQL='';
 	foreach($FIELDS as $k=>$v) 
@@ -301,6 +214,7 @@ function getDBFieldsQuery($flds,&$FIELDS,&$required_joins,&$JOINS) {
 		}
 	return $fldsSQL;
 }
+// Gradi SQL dio za JOIN naredbe na temelju potrebnih joinova.
 function getDBJoinQuery(&$required_joins,&$JOINS) {
 	$joinsSQL='';
 	foreach($JOINS as $k=>$v) 
@@ -309,6 +223,7 @@ function getDBJoinQuery(&$required_joins,&$JOINS) {
 	return $joinsSQL;
 }
 
+// Sprema generirane SQL dijelove za stupce i joinove u sesiju.
 function updateColumnsDependedQuerySession($tbl,$flds,&$FIELDS,&$required_joins,&$JOINS){
 		
 		$fldsSQL=getDBFieldsQuery($flds,$FIELDS,$required_joins,$JOINS);
@@ -319,6 +234,7 @@ function updateColumnsDependedQuerySession($tbl,$flds,&$FIELDS,&$required_joins,
 		
 		
 	}
+// Ucitava modul i umece njegov sadrzaj u predlozak.
 function insertModule(&$tmpl,$ix,$t='',$var='ACCORDIAN') {
 	global $database,$opt,$mainFrame;
 	if (!$t) $t='opt_'.$opt;
@@ -327,6 +243,7 @@ function insertModule(&$tmpl,$ix,$t='',$var='ACCORDIAN') {
 	$cont=getModuleContent($tmpl,$module);
 	$tmpl->addVar( $t, $var, $cont);
 }
+// Oznacava zapis kao pregledan od strane trenutnog korisnika.
 function setViewedMark(&$row,$table='prijava',$userFld='clanID') {
 	global $database,$myID;
 	$isFU=property_exists(get_class($row),'forum_userID')?1:0; 
@@ -334,11 +251,13 @@ function setViewedMark(&$row,$table='prijava',$userFld='clanID') {
 	$row->viewed=$myID;
 	return $myID;
 }
+// Dodaje trenutnog korisnika u listu pregledanih zapisa.
 function removeViewed(&$row,$table='prijava') {
 	global $database,$myID;
 	addToTextArray($row->viewed,$myID,',');
 	$database->execQuery("UPDATE $table SET viewed='".$row->viewed."' WHERE id=".$row->id);
 }
+// Kreira i inicijalizira patTemplate objekt s globalnim varijablama.
 function createTemplate( $t, $isAdmin=false, $useCache=false ) {
 		
 		global $template,$lang,$simConfig_live_site,$lang_encoding;
@@ -375,11 +294,13 @@ function createTemplate( $t, $isAdmin=false, $useCache=false ) {
 		return $tmpl;
 }
 
+// Vraca naslov taba komentara s brojem komentara.
 function getKomentariTabTitle($id,$tbl='prijava',$idfld='prijava') {
 	global $database;
 	$kCnt=$database->getResult("SELECT COUNT(id) FROM ".$tbl."_forum WHERE ".$idfld."ID=".$id);
 	return 'Komentari'.($kCnt?" ($kCnt)":'');
 }
+// Sastavlja puni naslov retka iz osnovnih polja.
 function getRowFullTitle(&$row,$includeID=false,$fld='izvodjac') {
 	$ret=$row->naziv;
 	if (isset($row->$fld) && trim($row->$fld)) $ret.=" / ".$row->$fld;
@@ -387,12 +308,14 @@ function getRowFullTitle(&$row,$includeID=false,$fld='izvodjac') {
 	if($includeID) $ret=$row->id." | ".$ret;
 	return $ret;
 }
+// Vraca oznaku za multiselect ili alternativni tekst.
 function getMultiTitle(&$list,$alt='') {
 
 	if(count($list)>1) return "»»» multiselect (".count($list).") «««";
 	else return $alt;
 }
 
+// Popunjava predlozak podacima za kazalo foldera.
 function setFolderKazalo($SN,$tmpl,$opt) {
 	if(isset($SN['folder'])) {
 		$colors=5;$hide=0;
@@ -409,6 +332,7 @@ function setFolderKazalo($SN,$tmpl,$opt) {
 		$tmpl->addObject("opt_".$opt."_fkazalo",$SN['folder'], "row_",true);
 	}
 }
+// Dohvaca podatke o programu prema sifri postaje ili ID-u.
 function getProgramData($postaja_code) {
 	global $database;
 	if((substr($postaja_code,0,1)=='1') || (substr($postaja_code,0,1)=='0'))  {
@@ -427,6 +351,7 @@ function getProgramData($postaja_code) {
 	return $row;
 }
 
+// Inicijalizira korisnicke postavke stupaca i sirina u sesiji.
 function setTblSessions($tbl) {
 	global $database,$SETTINGS;
 	$myID=intval($_SESSION['MM_id']);
@@ -438,11 +363,13 @@ function setTblSessions($tbl) {
 	}	
 	
 }
+// Dohvaca konfiguracijsku vrijednost po tipu.
 function getConfig($type) {
 	global $database;
 	return $database->getResult("SELECT value FROM configuration WHERE type='$type'");
 }
 
+// Vraca mapu zaglavlja tablice prema konfiguraciji iz sesije.
 function getHeaderArrayFromSessionField($tbl) {
 	global $SETTINGS;
 	$ret=array();
@@ -452,6 +379,7 @@ function getHeaderArrayFromSessionField($tbl) {
 	return $ret;
 }
 
+// Ucitava povezane retke iz _link tablice zajedno s trazenim poljima.
 function loadLinkedTable($tbl,$flds) {
 	global $database;
 	$fldslist="s.".str_replace(",",",s.",$flds);
@@ -459,6 +387,7 @@ function loadLinkedTable($tbl,$flds) {
 	."\n FROM ".$tbl."_link AS l LEFT JOIN $tbl AS s ON s.id=l.newID");
 	return $database->loadObjectList('old_ID');
 }
+// Pronalazi krajnji povezani zapis i broj preskocenih veza.
 function getNewLinkedRow(&$linkRows,$oldID){
 	$newID=$oldID; $linked=0;
 	while (isset($linkRows[$newID])) {
@@ -471,6 +400,7 @@ function getNewLinkedRow(&$linkRows,$oldID){
 }
 
 
+// Vraca obracunsku godinu iz requesta ili sesije i po potrebi je sprema.
 function getObracunskaGodina($setSession=true){
 	global $simConfig_YEAR;
 	$sessObrGod=intval(simGetParam($_SESSION,'obrgod',$simConfig_YEAR));

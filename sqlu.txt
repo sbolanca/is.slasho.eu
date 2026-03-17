@@ -1,2 +1,0 @@
-SELECT COUNT(DISTINCT(s.id)) FROM user as s   
- WHERE (s.recyclebin=0);
